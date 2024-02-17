@@ -64,14 +64,14 @@ public class SaveManager : MonoBehaviour
             Debug.LogError("Multiple Save Managers");
             Destroy(this);
         }
-        savedStats = new SavedStats
+        /*savedStats = new SavedStats
         {
             PlayerName = " ",
             Coins = 0,
             CurrentSeasonLevel = 0,
             UpgradeLevels = new List<UpgradeLevel>(),
             SkinsUnlocked = new List<BoatSkin>()
-        };
+        };*/
         upgradeHolder = UpgradeHolder.Instance;
         saveFilePath = Application.dataPath + "/Saves/" + fileName + ".json";
     }
@@ -112,7 +112,7 @@ public class SaveManager : MonoBehaviour
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            Debug.LogError(e);
         }
     }
 
@@ -125,7 +125,7 @@ public class SaveManager : MonoBehaviour
             SaveToFile();
         } catch(Exception e)
         {
-            // Ignore
+            Debug.LogError(e);
         }
     }
     
@@ -138,7 +138,7 @@ public class SaveManager : MonoBehaviour
             SaveToFile();
         } catch(Exception e)
         {
-            // Ignore
+            Debug.LogError(e);
         }
     }
 
@@ -150,7 +150,7 @@ public class SaveManager : MonoBehaviour
             SaveToFile();
         } catch(Exception e)
         {
-            // Ignore
+            Debug.LogError(e);
         }
     }
     
@@ -163,7 +163,7 @@ public class SaveManager : MonoBehaviour
             SaveToFile();
         } catch(Exception e)
         {
-            // Ignore
+            Debug.LogError(e);
         }
     }
 
@@ -181,7 +181,7 @@ public class SaveManager : MonoBehaviour
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            Debug.LogError(e);
         }
     }
     
@@ -203,7 +203,7 @@ public class SaveManager : MonoBehaviour
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            Debug.LogError(e);
         }
     }
 

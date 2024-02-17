@@ -239,7 +239,7 @@ public class GameManager : MonoBehaviour
                 SaveManager.Instance.LevelSaved(currentLevelIndex, Coins);
             } catch(Exception e)
             {
-                // Ignore
+                Debug.LogError(e);
             }
         }
         if (doStart)
@@ -353,15 +353,10 @@ public class GameManager : MonoBehaviour
             ReEnableAllInteractables();
         }  catch(Exception e)
         {
-            // Ignore
+            Debug.LogError(e);
         }
-        try
-        {
-            levelTimer.Reset();
-        }  catch(Exception e)
-        {
-            // Ignore
-        }
+        levelTimer.Reset();
+        
     }
     private void ResetPlayerPosition()
     {
@@ -376,20 +371,9 @@ public class GameManager : MonoBehaviour
         // Resets force and torque to zero.
         rb.AddForce(-rb.GetAccumulatedForce());
         rb.AddTorque(-rb.GetAccumulatedTorque());
-        try
-        {
-            player.RestoreHealth();
-        } catch(Exception e)
-        {
-            // Ignore
-        }
-        try
-        {
-            playerInput.SetIdle();
-        } catch(Exception e)
-        {
-            // Ignore
-        }
+        
+        player.RestoreHealth();
+        playerInput.SetIdle();
     }
     private void ReEnableAllInteractables()
     {
@@ -397,10 +381,10 @@ public class GameManager : MonoBehaviour
         {
             try
             {
-                interactable?.Activate();
+                interactable.Activate();
             } catch(Exception e)
             {
-                // Ignore
+                Debug.LogError(e);
             }
         }
     }
