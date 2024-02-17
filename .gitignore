@@ -80,3 +80,4 @@ Saves/
 
 # No perforce locally
 VersionControlSettings.asset
+ProjectSettings/VersionControlSettings.asset
