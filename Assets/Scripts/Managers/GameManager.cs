@@ -158,10 +158,7 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.ReturnToMainMenu();
             return;
         }
-        LoadLevel(index, () =>
-        {
-            StartCountdown();
-        });
+        LoadLevel(index, () => StartCountdown());
     }
     public void LoadLevel(int index)
     {
