@@ -52,22 +52,14 @@ public class Player : MonoBehaviour
         rightSplash.Stop();
         leftSplash.Stop();
     }
-    public void PlaySplashVFX(bool leftOar, bool rightOar, bool isFalling)
+    public void PlaySplashVFX(bool leftOar, bool rightOar)
     {
-        if (isFalling)
-        {
-            rightSplash.Stop();
-            leftSplash.Stop();
-            return;
-        }
         if (leftOar)
         {
-            Debug.Log("Splashing_L");
             leftSplash.Play(true); 
         }
         if (rightOar)
         {
-            Debug.Log("Splashing_R");
             rightSplash.Play(true);
         }
     }

@@ -39,7 +39,13 @@ public class PlayerInput : MonoBehaviour
     {
         leftInput.FixedUpdate();
         rightInput.FixedUpdate();
-        player.PlaySplashVFX(rightInput.Active == 1, leftInput.Active == 1, boat.IsFalling);
+        if (boat.IsFalling){
+            player.StopSplashVFX();
+        }
+        else {
+            player.PlaySplashVFX(rightInput.Active == 1, leftInput.Active == 1);
+
+        }
         ApplyForceFromInput();
     }
     private void ApplyForceFromInput()

@@ -1,11 +1,5 @@
 using System;
-using System.Collections.Generic;
-using Dreamteck.Splines;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
-using UnityEngine.Serialization;
 using Vector3 = UnityEngine.Vector3;
 
 public class BoatPhysics : MonoBehaviour
@@ -42,11 +36,12 @@ public class BoatPhysics : MonoBehaviour
     private Vector3 localFlowDirection;
     private Vector3 localNormal;
     private Vector3 nextSplinePosition;
-    // Interaction booleans
+    // Update loop booleans
+    private bool isFalling;
     private bool hasBeenKnockedBack;
     public float TopSpeed {get; private set;}
     public Rigidbody Rigidbody {get; private set;}
-    public bool IsFalling { get; private set; }
+    public bool IsFalling => isFalling;
     private void Awake()
     {
         Rigidbody = GetComponent<Rigidbody>();
@@ -141,8 +136,7 @@ public class BoatPhysics : MonoBehaviour
             Rigidbody.AddForce(new Vector3(0, Mathf.Max(-Rigidbody.velocity.y, 0), 0), ForceMode.Impulse);
         }
         AddContinuousForce(waterFlowForce*(isTooDeep ? ProjectOnXZPlane(localFlowDirection).normalized : localFlowDirection));
-        MakeFall(isTooDeep, out bool isFalling);
-        IsFalling = isFalling;
+        MakeFall(isTooDeep);
         if (!isFalling)
         {
             float angleDifference = Mathf.Deg2Rad * Vector3.SignedAngle(transform.forward, localFlowDirection, localNormal);
@@ -190,7 +184,7 @@ public class BoatPhysics : MonoBehaviour
         Vector3 axisScaledByError = Vector3.Cross(transform.up, localNormal);
         Rigidbody.AddTorque(normalChangeTorque * torqueScalar * axisScaledByError, ForceMode.Acceleration);
     }
-    private void MakeFall(bool isTooDeep, out bool isFalling)
+    private void MakeFall(bool isTooDeep)
     {
         isFalling = false;
         Vector3 fromPointToBoat = transform.position-localSplinePosition;
