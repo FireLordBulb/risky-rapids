@@ -74,3 +74,6 @@ crashlytics-build.properties
 # Save data
 save.json
 Save.json
+save.json.meta
+Save.json.meta
+Saves/
