@@ -51,9 +51,9 @@ public class SpeedBoost : Powerup
         AudioManager.Instance.PlayBoostAudio();
     }
 
-    public override void Activate()
+    public override void Reset()
     {
-        base.Activate();
+        base.Reset();
         meshes.ForEach(mesh => mesh.enabled = true);
         boat.ResetMovementForces();
         activated = false;

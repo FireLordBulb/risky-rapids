@@ -1,19 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Dreamteck.Splines;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 { 
     public static GameManager Instance;
     
-    [SerializeField] private GameObject finishLinePrefab;
     [SerializeField] private List<SO_GameData> gameDatas;
     [SerializeField] private SO_LevelDataList levelDataList;
     [SerializeField] private float coinsPerSecond;
@@ -30,6 +24,7 @@ public class GameManager : MonoBehaviour
     private BoatPhysics boatPhysics;
     private PlayerInput playerInput;
     private LevelTimer levelTimer;
+    private UpgradeHolder upgradeHolder;
 
     private SO_LevelData currentLevel;
     private int currentLevelIndex = -1;
@@ -72,7 +67,6 @@ public class GameManager : MonoBehaviour
             SO_LevelData level = levels[i];
             if (level.name.Equals(currentSceneName))
             {
-                CurrentGameState = GameStates.Playing;
                 currentLevel = level;
                 currentLevelIndex = i;
                 break;
@@ -81,7 +75,7 @@ public class GameManager : MonoBehaviour
         if (currentSceneName.Equals(UI))
         {
             CurrentGameState = GameStates.MainMenu;
-            LoadLevelWithoutStarting(0);
+            LoadLevel(0);
         } else { 
             CurrentGameState = GameStates.Playing;
             SceneManager.LoadScene(UI, LoadSceneMode.Additive);
@@ -91,10 +85,10 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
     private void Start()
     {
         levelTimer = FindObjectOfType<LevelTimer>(true);
+        upgradeHolder = FindObjectOfType<UpgradeHolder>();
         // Main menu and playing are the only two possible starting GameStates.
         switch(CurrentGameState)
         {
@@ -113,39 +107,6 @@ public class GameManager : MonoBehaviour
                 Debug.LogError($"Invalid game start GameState: {CurrentGameState.ToString()}!!!");
                 throw new ArgumentOutOfRangeException();
         }
-        InitializeCurrentLevel();
-    }
-    private void InitializeCurrentLevel()
-    {
-        if (FindObjectOfType<FinishLine>() == null)
-        {
-            Instantiate(finishLinePrefab, SplineManager.Instance.Positions[^1], Quaternion.LookRotation(SplineManager.Instance.Directions[^2]));
-        }
-        TerrainCollider[] terrainColliders = FindObjectsOfType<TerrainCollider>();
-        foreach (TerrainCollider terrainCollider in terrainColliders)
-        {
-            terrainCollider.enabled = false;
-        }
-    }
-    // Pain death, all hope is lost. Update method in GameManager is needed.
-    private void FixedUpdate()
-    {
-        /*if (!SceneManager.GetSceneByName(currentLevel.name).isLoaded)
-        {
-            return;
-        }
-        if (SceneManager.GetSceneByName(currentLevel.name) != SceneManager.GetActiveScene())
-        {
-            MakeCurrentLevelActiveScene();
-        }
-        if (hasLoadedNewLevel)
-        {
-            hasLoadedNewLevel = false;
-            MakeCurrentLevelActiveScene();
-            InitializeCurrentLevel();
-            player.InitalizePlayerModel();
-            UIManager.Instance.UpdatePlayer();
-        }*/
     }
     private void Update()
     {
@@ -168,7 +129,7 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.UpdateCountDownText("");
         }
     }
-    public void InitalizePlayer(Player newPlayer)
+    public void InitializePlayer(Player newPlayer)
     {
         player = newPlayer;
         playerSpawnPosition = player.transform.position;
@@ -188,99 +149,63 @@ public class GameManager : MonoBehaviour
     }
     public void LoadNextLevel()
     {
-        LoadLevel(currentLevelIndex+1);
+        AudioManager.Instance.StopMenuAudio();
+        AudioManager.Instance.PlayBackgroundAudio();
+        UIManager.Instance.ToggleLoadingScreen(true);
+        int index = currentLevelIndex+1;
+        if (levels.Length <= index)
+        {
+            UIManager.Instance.ReturnToMainMenu();
+            return;
+        }
+        LoadLevel(index, () =>
+        {
+            StartCountdown();
+        });
     }
     public void LoadLevel(int index)
     {
-        if (index < 0 || levels.Length <= index)
-        {
-            Debug.Log($"Level with index {index} doesn't exist. Returning to Main Menu.");
-            UIManager.Instance.ReturnToMainMenu();
-            return;
-        }
-        UIManager.Instance.ToggleLoadingScreen(true);
-        AudioManager.Instance.StopMenuAudio();
-        AudioManager.Instance.PlayBackgroundAudio();
-        LoadLevelCore(index, true);
+        LoadLevel(index, () => { });
     }
-    public void LoadLevelWithoutStarting(int index)
-    {
-        if (index < 0 || levels.Length <= index)
-        {
-            Debug.Log($"Level with index {index} doesn't exist. Returning to Main Menu.");
-            UIManager.Instance.ReturnToMainMenu();
-            return;
-        }
-        LoadLevelCore(index, false);
-    }
-    private void LoadLevelCore(int index, bool doStart)
+    public void LoadLevel(int index, Action postLoadAction)
     {
         if (index == currentLevelIndex)
         {
             return;
         }
-        string previousLevelName = null;
         if (currentLevel != null)
         {
-            previousLevelName = currentLevel.name;
-        }
-        interactableObjects.Clear();
-        if (levelTimer != null)
-        {
-            levelTimer.Reset();
+            SceneManager.UnloadSceneAsync(currentLevel.name);
+            interactableObjects.Clear();
         }
         currentLevelIndex = index;
         currentLevel = levels[currentLevelIndex];
-        string nextLevelName = currentLevel.name;
-        if (previousLevelName != null && currentLevelIndex != -1)
-        {
-            SaveManager.Instance.LevelSaved(currentLevelIndex, Coins);
-        }
-        if (doStart)
-        {
-            StartCountdown();
-        }
-        if (previousLevelName != null)
-        {
-            StartCoroutine(UnloadAnAsyncScene(SceneManager.GetSceneByName(previousLevelName), nextLevelName));
-            
-        }
-        StartCoroutine(LoadAnAsyncScene(nextLevelName));
+        StartCoroutine(LoadLevelCoroutine(postLoadAction));
     }
-    IEnumerator UnloadAnAsyncScene(Scene scene, string nextLevelName)
+    IEnumerator LoadLevelCoroutine(Action postLoadAction)
     {
-        AsyncOperation asyncLoad = SceneManager.UnloadSceneAsync(scene);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(currentLevel.name, LoadSceneMode.Additive);
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
-        
-    }
-    IEnumerator LoadAnAsyncScene(string sceneName)
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-        MakeCurrentLevelActiveScene();
-        InitializeCurrentLevel();
-        player.InitalizePlayerModel();
-        UIManager.Instance.UpdatePlayer();
-        UIManager.Instance.ToggleLoadingScreen(false);
-    }
-    private void MakeCurrentLevelActiveScene()
-    {
         Scene currentLevelScene = SceneManager.GetSceneByName(currentLevel.name);
         SceneManager.SetActiveScene(currentLevelScene);
+        foreach (TerrainCollider terrainCollider in FindObjectsOfType<TerrainCollider>())
+        {
+            terrainCollider.enabled = false;
+        }
+        player.InitalizePlayerModel();
+        upgradeHolder.FixUpgrades();
+        upgradeHolder.ApplyCurrentBoatSkin();
+        UIManager.Instance.ToggleLoadingScreen(false);
+        postLoadAction();
     }
+
     public void StartCountdown(bool tutorialIsOver = false)
     {
-        if (SceneManager.GetSceneByName(currentLevel.name).isLoaded)
-        {
-            player.InitalizePlayerModel();
-        }
         Time.timeScale = 1;
+        player.InitalizePlayerModel();
         if (currentLevelIndex == 0 && !tutorialIsOver)
         {
             CurrentGameState = GameStates.Tutorial;
@@ -306,8 +231,8 @@ public class GameManager : MonoBehaviour
     public void ReturnToMenu()
     {
         CurrentGameState = GameStates.MainMenu;
-        ResetLevel();
         Time.timeScale = 1;
+        ResetLevel();
     }
 
     private void ResetCoins()
@@ -326,11 +251,10 @@ public class GameManager : MonoBehaviour
         Coins += coinsFromTime;
         levelStartCoins = Coins;
         UIManager.Instance.SetEndPanelValues(levelTimer.CurrentTimeString, coinsFromTime, coinsCollected);
+        levelTimer.Reset();
+
         UIManager.Instance.OnGameEnded?.Invoke();
-        if (currentLevelIndex != -1)
-        {
-            SaveManager.Instance.LevelSaved(currentLevelIndex, Coins);
-        }
+        SaveManager.Instance.SaveCoins(Coins);
     }
     public void FailGame()
     {
@@ -341,12 +265,10 @@ public class GameManager : MonoBehaviour
     }
     private void ResetLevel()
     {
-        ResetPlayerPosition();
-        ReEnableAllInteractables();
-        levelTimer.Reset();
-        
+        ResetPlayer();
+        ResetInteractableObjects();
     }
-    private void ResetPlayerPosition()
+    private void ResetPlayer()
     {
         if (!boatPhysics) return;
         Rigidbody rb = boatPhysics.Rigidbody;
@@ -363,11 +285,11 @@ public class GameManager : MonoBehaviour
         player.RestoreHealth();
         playerInput.SetIdle();
     }
-    private void ReEnableAllInteractables()
+    private void ResetInteractableObjects()
     {
         foreach (IInteractable interactable in interactableObjects)
         {
-            interactable.Activate();
+            interactable.Reset();
         }
     }
     public SO_GameData GetCurrentGameData()

@@ -18,9 +18,9 @@ public class Coin : InteractableClass
         AudioManager.Instance.PlayCoinstAudio();
     }
 
-    public override void Activate()
+    public override void Reset()
     {
-        base.Activate();
+        base.Reset();
         transform.position = currentPos;
     }
 }

@@ -23,7 +23,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject tutorialPanel2;
     [SerializeField] private GameObject pauseButton;
     [SerializeField] private GameObject loadingScreenPanel;
-    [SerializeField] private UpgradeHolder upgradeHolder;
     
     [Space] [Space] 
     
@@ -58,7 +57,7 @@ public class UIManager : MonoBehaviour
     public void LoadSpecificLevel(int index)
     {
         ToggleCharacterSelect(true);
-        GameManager.Instance.LoadLevelWithoutStarting(index);
+        GameManager.Instance.LoadLevel(index);
     }
     
     public void StartGame()
@@ -203,11 +202,7 @@ public class UIManager : MonoBehaviour
     {
         wrongWayPanel.SetActive(isActive);
     }
-    public void UpdatePlayer()
-    {
-        upgradeHolder.FixUpgrades();
-        upgradeHolder.ApplyCurrentBoatSkin();
-    }
+
     private void UpdateHealthText(float health)
     {
         if (Instance == null) return;

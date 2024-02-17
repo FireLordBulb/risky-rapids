@@ -47,15 +47,13 @@ public class SaveManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
+        if (Instance != null)
         {
             Destroy(gameObject);
+            return;
         }
-        
+        Instance = this;
+
         upgradeHolder = UpgradeHolder.Instance;
         saveDirectoryPath = Application.persistentDataPath + "/Saves/";
         saveFilePath = saveDirectoryPath + fileName + ".json";
@@ -129,7 +127,7 @@ public class SaveManager : MonoBehaviour
         SaveToFile();
     }
     
-    public void LevelSaved(int level, int coins)
+    public void SaveCoins(int coins)
     {
         savedStats.Coins = coins;
         SaveToFile();

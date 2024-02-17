@@ -14,7 +14,7 @@ public abstract class InteractableClass : MonoBehaviour, IInteractable
     public virtual void OnCollisionDetected(Player player){}
     public virtual void OnCollisionDetected(Player player, Vector3 collisionPoint){}
     
-    public virtual void Activate()
+    public virtual void Reset()
     {
         gameObject.SetActive(true);
     }

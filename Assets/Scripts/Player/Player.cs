@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         playerHealth = new PlayerHealth(GameManager.Instance.GetCurrentGameData().MaxHealth, GameManager.Instance.GetCurrentGameData().Armor);
-        GameManager.Instance.InitalizePlayer(this);
+        GameManager.Instance.InitializePlayer(this);
     }
     
     public void InitalizePlayerModel()
