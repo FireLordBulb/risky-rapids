@@ -168,6 +168,8 @@ public class GameManager : MonoBehaviour
     {
         if (index == currentLevelIndex)
         {
+            UIManager.Instance.ToggleMenuBackground(false);
+            UIManager.Instance.ToggleLoadingScreen(false);
             return;
         }
         if (currentLevel != null)
