@@ -234,13 +234,7 @@ public class GameManager : MonoBehaviour
         string nextLevelName = currentLevel.name;
         if (previousLevelName != null && currentLevelIndex != -1)
         {
-            try
-            {
-                SaveManager.Instance.LevelSaved(currentLevelIndex, Coins);
-            } catch(Exception e)
-            {
-                Debug.LogError(e);
-            }
+            SaveManager.Instance.LevelSaved(currentLevelIndex, Coins);
         }
         if (doStart)
         {
@@ -348,13 +342,7 @@ public class GameManager : MonoBehaviour
     private void ResetLevel()
     {
         ResetPlayerPosition();
-        try
-        {
-            ReEnableAllInteractables();
-        }  catch(Exception e)
-        {
-            Debug.LogError(e);
-        }
+        ReEnableAllInteractables();
         levelTimer.Reset();
         
     }
@@ -379,13 +367,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (IInteractable interactable in interactableObjects)
         {
-            try
-            {
-                interactable.Activate();
-            } catch(Exception e)
-            {
-                Debug.LogError(e);
-            }
+            interactable.Activate();
         }
     }
     public SO_GameData GetCurrentGameData()
