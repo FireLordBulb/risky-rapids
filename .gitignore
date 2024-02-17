@@ -77,3 +77,6 @@ Save.json
 save.json.meta
 Save.json.meta
 Saves/
+
+# No perforce locally
+VersionControlSettings.asset
