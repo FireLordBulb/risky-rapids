@@ -195,6 +195,7 @@ public class GameManager : MonoBehaviour
         player.InitalizePlayerModel();
         upgradeHolder.FixUpgrades();
         upgradeHolder.ApplyCurrentBoatSkin();
+        UIManager.Instance.ToggleMenuBackground(false);
         UIManager.Instance.ToggleLoadingScreen(false);
         postLoadAction();
     }

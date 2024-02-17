@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject tutorialPanel1;
     [SerializeField] private GameObject tutorialPanel2;
     [SerializeField] private GameObject pauseButton;
+    // An opaque panel to be behind the transparent menu panel during level loading.
+    [SerializeField] private GameObject menuBackgroundPanel;
     [SerializeField] private GameObject loadingScreenPanel;
     
     [Space] [Space] 
@@ -57,6 +59,7 @@ public class UIManager : MonoBehaviour
     public void LoadSpecificLevel(int index)
     {
         ToggleCharacterSelect(true);
+        ToggleMenuBackground(true);
         GameManager.Instance.LoadLevel(index);
     }
     
@@ -114,6 +117,10 @@ public class UIManager : MonoBehaviour
     public void TogglePauseButton(bool toggle)
     {
         pauseButton.SetActive(toggle);
+    }
+    public void ToggleMenuBackground(bool toggle)
+    {
+        menuBackgroundPanel.SetActive(toggle);
     }
     public void ToggleLoadingScreen(bool toggle)
     {
