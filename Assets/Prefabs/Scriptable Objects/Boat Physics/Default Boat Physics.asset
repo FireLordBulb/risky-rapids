@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de9e5428a868454694ff18813b26db2, type: 3}
+  m_Name: Default Boat Physics
+  m_EditorClassIdentifier: 
+  linearDrag: 1.5
+  forceScalar: 1
+  gravity: -26
+  buoyancy: 120
+  minBuoyancyScalar: 0.3
+  waterFlowForce: 12
+  baseRowForce: 24
+  singleOarSideScalar: 0.5
+  singleOarForwardsScalar: 0.5
+  twoOarsBackwardsScalar: -0.3
+  angularDrag: 1.5
+  torqueScalar: 1
+  waterTorque: 0.8
+  rowTorque: 3
+  normalChangeTorque: 6
+  riverbankSideForce: -15
+  riverbankBackForce: -50
+  riverbankMinScalar: 20

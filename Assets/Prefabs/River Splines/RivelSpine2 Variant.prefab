@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4358253502796667325
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1389035119641042244, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5336674407836999677, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 367.9625
+      objectReference: {fileID: 0}
+    - target: {fileID: 5336674407836999677, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0000076293945
+      objectReference: {fileID: 0}
+    - target: {fileID: 5336674407836999677, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 243.08908
+      objectReference: {fileID: 0}
+    - target: {fileID: 5336674407836999677, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5336674407836999677, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5336674407836999677, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5336674407836999677, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5336674407836999677, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5336674407836999677, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5336674407836999677, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644160280879759639, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: _clipToSample.position.x
+      value: 367.9625
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644160280879759639, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: _clipToSample.position.y
+      value: -0.0000076293945
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644160280879759639, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: _clipToSample.position.z
+      value: 243.08908
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644160280879759639, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: _clipFromSample.position.x
+      value: 367.9625
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644160280879759639, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: _clipFromSample.position.y
+      value: -0.0000076293945
+      objectReference: {fileID: 0}
+    - target: {fileID: 6644160280879759639, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: _clipFromSample.position.z
+      value: 243.08908
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950148852001526643, guid: 6943483db71d824449fe0579c242d9cd,
+        type: 3}
+      propertyPath: m_Name
+      value: RivelSpine2 Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6943483db71d824449fe0579c242d9cd, type: 3}
