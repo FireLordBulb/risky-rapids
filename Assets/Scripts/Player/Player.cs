@@ -7,16 +7,17 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerData playerData;
 
-    [SerializeField] private List<SkinnedMeshRenderer> bodyModels = new List<SkinnedMeshRenderer>();
-    [SerializeField] private List<GameObject> hairStyles = new List<GameObject>();
-    [SerializeField] private List<GameObject> hairStylesRowerTwo = new List<GameObject>();
+    [SerializeField] private List<SkinnedMeshRenderer> bodyModels = new();
+    [SerializeField] private List<GameObject> hairStyles = new();
+    [SerializeField] private List<GameObject> hairStylesRowerTwo = new();
     [Space] 
     [SerializeField] private ParticleSystem leftSplash;
     [SerializeField] private ParticleSystem rightSplash;
     [SerializeField] private ParticleSystem speedParticle;
-    private float currentSpeedDuration;
     
     private PlayerHealth playerHealth;
+    public int ActiveSpeedBoosts { get; set; }
+
     private void Start()
     {
         playerHealth = new PlayerHealth(GameManager.Instance.GetCurrentGameData().MaxHealth, GameManager.Instance.GetCurrentGameData().Armor);

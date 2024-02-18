@@ -224,7 +224,7 @@ public class AudioManager : MonoBehaviour
         BoostSource.Play();
     }
 
-    public void PlayCoinstAudio()
+    public void PlayCoinAudio()
     {
         if (!CoinsCollectedAudio)
         {

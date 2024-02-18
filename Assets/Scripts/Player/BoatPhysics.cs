@@ -71,12 +71,11 @@ public class BoatPhysics : MonoBehaviour
         splinePositions = SplineManager.Instance.Positions;
         splineDirections = SplineManager.Instance.Directions;
     }
-    public void AddMovementForces(float newWaterForce, float newRowForce)
+    public void AddMovementForces(float waterForceChange, float rowForceChange)
     {
-        waterFlowForce += newWaterForce;
-        baseRowForce += newRowForce;
+        waterFlowForce += waterForceChange;
+        baseRowForce += rowForceChange;
     }
-
     public void AddSpeedPaddle(int speedPaddle)
     {
         baseRowForce += speedPaddle;

@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     private const string UI = "UIScene";
     private SO_GameData currentGameData;
-    private readonly List<IInteractable> interactableObjects = new();
+    private readonly List<Interactable> interactableObjects = new();
 
     private Vector3 playerSpawnPosition;
     private Quaternion playerSpawnRotation;
@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
         boatPhysics = player.GetComponent<BoatPhysics>();
         playerInput = player.GetComponent<PlayerInput>();
     }
-    public void CacheInteractable(IInteractable interactableObject)
+    public void CacheInteractable(Interactable interactableObject)
     {
         interactableObjects.Add(interactableObject);
     }
@@ -287,9 +287,9 @@ public class GameManager : MonoBehaviour
     }
     private void ResetInteractableObjects()
     {
-        foreach (IInteractable interactable in interactableObjects)
+        foreach (Interactable interactable in interactableObjects)
         {
-            interactable.Reset();
+            interactable.ResetInteractable();
         }
     }
     public SO_GameData GetCurrentGameData()

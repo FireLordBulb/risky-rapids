@@ -1,22 +1,12 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
-public class FinishLine : InteractableClass, IInteractable
+[RequireComponent(typeof(Collider))]
+public class FinishLine : Interactable
 {
-    public override void OnCollisionDetected()
+    protected override void Interact(Collider other)
     {
+        AudioManager.Instance.PlayCompletedLevelAudio();
         GameManager.Instance.EndGame();
-    }
-    public override void OnTriggerEnter(Collider other)
-    {
-        if (CheckIfCoinComponent(other)) return;
-        
-        var player = other.GetComponentInParent<Player>();
-        if (player)
-        {
-            AudioManager.Instance.PlayCompletedLevelAudio();
-            OnCollisionDetected();
-        }
     }
 }

@@ -238,9 +238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ba9ccd80905024cbde873916e8926b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDuration: 5
   boostWaterSpeed: 16
   boostRowSpeed: 18
-  duration: 5
 --- !u!65 &203636777454176643
 BoxCollider:
   m_ObjectHideFlags: 0

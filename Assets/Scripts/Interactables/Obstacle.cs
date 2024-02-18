@@ -3,15 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : InteractableClass
+public class Obstacle : Interactable
 {
     [SerializeField] private SO_ObstacleData obstacleData;
     [SerializeField] private long vibrateLenght;
     private BoatPhysics boat;
-    public override void OnTriggerEnter(Collider other)
+    protected override void Interact(Collider other)
     {
-        if (other.isTrigger) return;
-        
         boat = other.GetComponentInParent<BoatPhysics>();
         ApplyKnockbackToBoat();
         
@@ -37,11 +35,9 @@ public class Obstacle : InteractableClass
     {
         HapticFeedbackManager.CustomVibration(vibrateLenght);
     }
-
     private void PlayAudio()
     {
         AudioManager.Instance.PlayCollisionStoneAudio();
-        //If..
     }
     
 }

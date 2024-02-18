@@ -5,58 +5,50 @@ using Dreamteck;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class SpeedBoost : Powerup
+public class SpeedBoost : PowerUp
 {
     [SerializeField] private float boostWaterSpeed;
     [SerializeField] private float boostRowSpeed;
-    [SerializeField] private float duration;
 
     private Player player;
     private MeshRenderer[] meshes;
-    private bool activated;
-    private float maxDuration;
-
+    
     protected override void Start()
     {
         base.Start();
         meshes = GetComponentsInChildren<MeshRenderer>();
-        maxDuration = duration;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        player = Boat.GetComponent<Player>();
     }
-    
-    public void FixedUpdate()
+    public override void ResetInteractable()
     {
-        if (!activated)
-        {
-            return;
-        }
-        duration -= Time.fixedDeltaTime;
-        if (duration <= 0)
-        {
-            boat.ResetMovementForces();
-            activated = false;
-            player.StopSpeedVFX(false);
-            base.Deactivate();
-        }
+        base.ResetInteractable();
+        meshes.ForEach(mesh => mesh.enabled = true);
+        player.ActiveSpeedBoosts = 0;
+        Boat.ResetMovementForces();
+        player.StopSpeedVFX(true);
     }
-    
-    protected override void PowerupActivation()
+    protected override void Apply()
     {
+        base.Apply();
         meshes.ForEach(mesh => mesh.enabled = false);
-        boat.ResetMovementForces();
-        boat.AddMovementForces(boostWaterSpeed, boostRowSpeed);
-        activated = true;
-        duration = maxDuration;
-        player.StartSpeedVFX();
+        print($"ActiveSpeedBoosts: {player.ActiveSpeedBoosts}");
+        if (player.ActiveSpeedBoosts == 0)
+        {
+            Boat.AddMovementForces(boostWaterSpeed, boostRowSpeed);
+            player.StartSpeedVFX();
+            print("speed");
+        }
+        player.ActiveSpeedBoosts++;
         AudioManager.Instance.PlayBoostAudio();
     }
-
-    public override void Reset()
+    protected override void Unapply()
     {
-        base.Reset();
-        meshes.ForEach(mesh => mesh.enabled = true);
-        boat.ResetMovementForces();
-        activated = false;
-        player.StopSpeedVFX(true);
+        base.Unapply();
+        player.ActiveSpeedBoosts--;
+        if (player.ActiveSpeedBoosts == 0)
+        {
+            Boat.ResetMovementForces();
+            player.StopSpeedVFX(false);
+        }
     }
 }

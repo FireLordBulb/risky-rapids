@@ -2,25 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin : InteractableClass
+public class Coin : Interactable
 {
-    private Vector3 currentPos;
+    private Vector3 startPosition;
     protected override void Start()
     {
         base.Start();
-        currentPos = transform.position;
+        startPosition = transform.position;
     }
-
-    public override void OnCollisionDetected()
+    protected override void Interact(Collider other)
     {
         gameObject.SetActive(false);
         GameManager.Instance.Coins++;
-        AudioManager.Instance.PlayCoinstAudio();
+        AudioManager.Instance.PlayCoinAudio();
     }
 
-    public override void Reset()
+    public override void ResetInteractable()
     {
-        base.Reset();
-        transform.position = currentPos;
+        base.ResetInteractable();
+        transform.position = startPosition;
     }
 }
