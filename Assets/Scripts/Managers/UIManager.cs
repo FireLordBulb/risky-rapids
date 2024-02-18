@@ -65,6 +65,10 @@ public class UIManager : MonoBehaviour
     
     public void StartGame()
     {
+        if (GameManager.Instance.IsLoadingLevel)
+        {
+            return;
+        }
         OnGameStart?.Invoke();
         GameManager.Instance.StartCountdown();
         mainMenuPanel.SetActive(false);

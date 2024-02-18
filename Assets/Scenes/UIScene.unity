@@ -1763,15 +1763,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopObjects:
   - UpgradeType: 0
-    UpgradeObject: {fileID: 11400000, guid: 757cb5442d7806c49bc175cec15c2e77, type: 2}
+    upgradeObject: {fileID: 11400000, guid: 757cb5442d7806c49bc175cec15c2e77, type: 2}
   - UpgradeType: 2
-    UpgradeObject: {fileID: 11400000, guid: 872d4fed0e53fdf47ac7c1266faaec83, type: 2}
+    upgradeObject: {fileID: 11400000, guid: 872d4fed0e53fdf47ac7c1266faaec83, type: 2}
   - UpgradeType: 1
-    UpgradeObject: {fileID: 11400000, guid: b02d51349c748cc408dbc566a1aa1968, type: 2}
+    upgradeObject: {fileID: 11400000, guid: b02d51349c748cc408dbc566a1aa1968, type: 2}
   upgradeLevels: []
   boatSkins: []
   activeBoatSkin: {fileID: 0}
-  ActiveBoatItem: {fileID: 0}
+  activeBoatItem: {fileID: 0}
 --- !u!114 &1714775914
 MonoBehaviour:
   m_ObjectHideFlags: 0

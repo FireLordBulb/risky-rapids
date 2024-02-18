@@ -46,6 +46,11 @@ public class GameManager : MonoBehaviour
         get;
         private set;
     }
+    public bool IsLoadingLevel
+    {
+        get;
+        private set;
+    }
     private void Awake()
     {
         if (Instance != null && Instance != this) 
@@ -181,11 +186,13 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator LoadLevelCoroutine(Action postLoadAction)
     {
+        IsLoadingLevel = true;
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(currentLevel.name, LoadSceneMode.Additive);
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
+        IsLoadingLevel = false;
         Scene currentLevelScene = SceneManager.GetSceneByName(currentLevel.name);
         SceneManager.SetActiveScene(currentLevelScene);
         foreach (TerrainCollider terrainCollider in FindObjectsOfType<TerrainCollider>())
