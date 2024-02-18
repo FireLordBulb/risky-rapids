@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ba9ccd80905024cbde873916e8926b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDuration: 5
+  maxDuration: 3
   boostWaterSpeed: 16
   boostRowSpeed: 18
 --- !u!65 &203636777454176643
