@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class PlayerHealth
@@ -60,6 +61,7 @@ public class PlayerHealth
 
     public void UpgradeArmor()
     {
-        currentMaxArmor = UpgradeHolder.Instance.GetUpgradeValue(UpgradeType.Armor) * UpgradeHolder.Instance.GetUpgradeLevel(UpgradeType.Armor);
+        currentMaxArmor = UpgradeHolder.Instance.GetUpgradeValue(UpgradeType.Armor);
+        armor = currentMaxArmor;
     }
 }
