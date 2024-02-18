@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 1306583245846695597}
   - component: {fileID: 696104151333986253}
   m_Layer: 0
-  m_Name: MeshColliderTogge
+  m_Name: MeshColliderToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
