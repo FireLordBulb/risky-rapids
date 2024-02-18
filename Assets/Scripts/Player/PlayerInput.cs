@@ -71,7 +71,7 @@ public class PlayerInput : MonoBehaviour
     }
     private void Pause(InputAction.CallbackContext ctx)
     {
-        if (GameManager.Instance.CurrentGameState != GameStates.Playing)
+        if (GameManager.Instance.CurrentGameState != GameState.Playing)
         {
             return;
         }
@@ -116,7 +116,7 @@ public class PlayerInput : MonoBehaviour
         public void FixedUpdate()
         {
             int inputValue = (int)input.ReadValue<float>();
-            if (GameManager.Instance.CurrentGameState != GameStates.Playing)
+            if (GameManager.Instance.CurrentGameState != GameState.Playing)
             {
                 inputValue = 0;
             }

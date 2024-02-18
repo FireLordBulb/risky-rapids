@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.UpdateCoinTexts();
         }
     }
-    public GameStates CurrentGameState
+    public GameState CurrentGameState
     {
         get;
         private set;
@@ -73,10 +73,10 @@ public class GameManager : MonoBehaviour
         }
         if (currentSceneName.Equals(UI))
         {
-            CurrentGameState = GameStates.MainMenu;
+            CurrentGameState = GameState.MainMenu;
             LoadLevel(0);
         } else { 
-            CurrentGameState = GameStates.Playing;
+            CurrentGameState = GameState.Playing;
             SceneManager.LoadScene(UI, LoadSceneMode.Additive);
             if (currentLevel == null)
             {
@@ -90,17 +90,17 @@ public class GameManager : MonoBehaviour
         // Main menu and playing are the only two possible starting GameStates.
         switch(CurrentGameState)
         {
-            case GameStates.MainMenu:
+            case GameState.MainMenu:
                 UIManager.Instance.ReturnToMainMenu();
                 break;
-            case GameStates.Playing:
+            case GameState.Playing:
                 UIManager.Instance.StartGame();
                 break;
-            case GameStates.Paused:
-            case GameStates.EndGame:
-            case GameStates.GameOver:
-            case GameStates.CountDown:
-            case GameStates.Tutorial:
+            case GameState.Paused:
+            case GameState.EndGame:
+            case GameState.GameOver:
+            case GameState.CountDown:
+            case GameState.Tutorial:
             default:
                 Debug.LogError($"Invalid game start GameState: {CurrentGameState.ToString()}!!!");
                 throw new ArgumentOutOfRangeException();
@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
             if (countDownText.Equals("0"))
             {
                 countDownText = "GO!";
-                if (CurrentGameState == GameStates.CountDown)
+                if (CurrentGameState == GameState.CountDown)
                 {
                     UIManager.Instance.TogglePauseButton(true);
                     StartGame();
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
     }
     public void PauseGame()
     {
-        CurrentGameState = GameStates.Paused;
+        CurrentGameState = GameState.Paused;
         UIManager.Instance.OnGamePaused?.Invoke();
         Time.timeScale = 0;
     }
@@ -205,17 +205,17 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         if (currentLevelIndex == 0 && !tutorialIsOver)
         {
-            CurrentGameState = GameStates.Tutorial;
+            CurrentGameState = GameState.Tutorial;
             UIManager.Instance.StartTutorial();
             return;
         }
         UIManager.Instance.TogglePauseButton(false);
-        CurrentGameState = GameStates.CountDown;
+        CurrentGameState = GameState.CountDown;
         countDownLeft = countDownTime;
     }
     public void StartGame()
     {
-        CurrentGameState = GameStates.Playing;
+        CurrentGameState = GameState.Playing;
         Time.timeScale = 1;
         levelStartCoins = Coins;
     }
@@ -227,7 +227,7 @@ public class GameManager : MonoBehaviour
     }
     public void ReturnToMenu()
     {
-        CurrentGameState = GameStates.MainMenu;
+        CurrentGameState = GameState.MainMenu;
         Time.timeScale = 1;
         ResetLevel();
     }
@@ -239,7 +239,7 @@ public class GameManager : MonoBehaviour
     
     public void EndGame()
     {
-        CurrentGameState = GameStates.EndGame;
+        CurrentGameState = GameState.EndGame;
 
         int coinsCollected = Coins-levelStartCoins;
         float timeTaken = levelTimer.CurrentTime;
@@ -255,7 +255,7 @@ public class GameManager : MonoBehaviour
     }
     public void FailGame()
     {
-        CurrentGameState = GameStates.GameOver;
+        CurrentGameState = GameState.GameOver;
         Time.timeScale = 0;
         Coins = levelStartCoins;
         UIManager.Instance.ShowGameOverScreen();

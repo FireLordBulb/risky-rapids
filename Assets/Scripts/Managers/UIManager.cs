@@ -149,7 +149,7 @@ public class UIManager : MonoBehaviour
         gameEndPanel.SetActive(false);
         gameOverPanel.SetActive(false);
         pausePanel.SetActive(false);
-        if (GameManager.Instance.CurrentGameState == GameStates.EndGame)
+        if (GameManager.Instance.CurrentGameState == GameState.EndGame)
         {
             AudioManager.Instance.StopMenuAudio();
             AudioManager.Instance.PlayBackgroundAudio();

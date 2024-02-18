@@ -97,7 +97,7 @@ public class NPCBoatController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (GameManager.Instance.CurrentGameState != GameStates.Playing)
+        if (GameManager.Instance.CurrentGameState != GameState.Playing)
         {
             return;
         }

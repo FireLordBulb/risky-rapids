@@ -120,8 +120,8 @@ public class BoatPhysics : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (GameManager.Instance.CurrentGameState != GameStates.Playing &&
-            GameManager.Instance.CurrentGameState != GameStates.EndGame)
+        if (GameManager.Instance.CurrentGameState != GameState.Playing &&
+            GameManager.Instance.CurrentGameState != GameState.EndGame)
         {
             return;
         }
