@@ -76,9 +76,9 @@ public class BoatPhysics : MonoBehaviour
         waterFlowForce += waterForceChange;
         baseRowForce += rowForceChange;
     }
-    public void AddSpeedPaddle(int speedPaddle)
+    public void AddSpeedPaddle()
     {
-        baseRowForce += speedPaddle;
+        baseRowForce = physicsData.baseRowForce + UpgradeHolder.Instance.GetUpgradeValue(UpgradeType.Paddle);
     }
     public void ResetMovementForces()
     {

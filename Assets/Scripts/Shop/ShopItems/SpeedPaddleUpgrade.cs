@@ -11,6 +11,6 @@ public class SpeedPaddleUpgrade : Upgrades
         Debug.Log("Row Buy");
         PlayerUpgrades player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerUpgrades>();
         player.ActivateRow();
-        FindObjectOfType<BoatPhysics>().AddSpeedPaddle(valuePerLevel * UpgradeHolder.Instance.GetUpgradeLevel(UpgradeType.Paddle));
+        FindObjectOfType<BoatPhysics>().AddSpeedPaddle();
     }
 }
