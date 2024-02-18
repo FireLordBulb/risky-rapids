@@ -31,12 +31,10 @@ public class SpeedBoost : PowerUp
     {
         base.Apply();
         meshes.ForEach(mesh => mesh.enabled = false);
-        print($"ActiveSpeedBoosts: {player.ActiveSpeedBoosts}");
         if (player.ActiveSpeedBoosts == 0)
         {
             Boat.AddMovementForces(boostWaterSpeed, boostRowSpeed);
             player.StartSpeedVFX();
-            print("speed");
         }
         player.ActiveSpeedBoosts++;
         AudioManager.Instance.PlayBoostAudio();

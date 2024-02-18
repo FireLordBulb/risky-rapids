@@ -36,7 +36,6 @@ public abstract class PowerUp : Interactable
     }
     protected override void Interact(Collider other)
     {
-        print("apply");
         Apply();
     }
 
