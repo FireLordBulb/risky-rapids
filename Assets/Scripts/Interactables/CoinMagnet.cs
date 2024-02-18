@@ -70,7 +70,7 @@ public class CoinMagnet : MonoBehaviour
 
     public void AdjustSizeMagnet()
     {
-        magnetSize += magnetSizePerLevel * magnetLevel;
+        magnetSize = magnetSizePerLevel * magnetLevel;
         magnetCollider.radius = magnetSize;
     }
 
