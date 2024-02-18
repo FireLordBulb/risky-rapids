@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     private BoatPhysics boatPhysics;
     private PlayerInput playerInput;
     private LevelTimer levelTimer;
-    private UpgradeHolder upgradeHolder;
 
     private SO_LevelData currentLevel;
     private int currentLevelIndex = -1;
@@ -88,7 +87,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         levelTimer = FindObjectOfType<LevelTimer>(true);
-        upgradeHolder = FindObjectOfType<UpgradeHolder>();
         // Main menu and playing are the only two possible starting GameStates.
         switch(CurrentGameState)
         {
@@ -195,8 +193,8 @@ public class GameManager : MonoBehaviour
             terrainCollider.enabled = false;
         }
         player.InitalizePlayerModel();
-        upgradeHolder.FixUpgrades();
-        upgradeHolder.ApplyCurrentBoatSkin();
+        UpgradeHolder.Instance.FixUpgrades();
+        UpgradeHolder.Instance.ApplyCurrentBoatSkin();
         UIManager.Instance.ToggleMenuBackground(false);
         UIManager.Instance.ToggleLoadingScreen(false);
         postLoadAction();
