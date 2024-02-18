@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ShopItem", menuName = "ScriptableObjects/Shop/ShopItems/Upgrades/Row", order = 1)]
-public class SpeedPaddleUpgrade : Upgrades
+public class SpeedPaddleUpgrade : Upgrade
 {
     
     public override void Upgrade()

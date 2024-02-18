@@ -3,17 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [Serializable]
 public struct ShopUpgrades
 {
     public UpgradeType UpgradeType;
-    public Upgrades UpgradeObject;
+    public Upgrade upgradeObject;
 
-    public ShopUpgrades(UpgradeType UpgradeType, Upgrades upgrades)
+    public ShopUpgrades(UpgradeType UpgradeType, Upgrade upgrade)
     {
         this.UpgradeType = UpgradeType;
-        UpgradeObject = upgrades;
+        upgradeObject = upgrade;
     }
 }
 
@@ -23,7 +24,7 @@ public class UpgradeHolder : MonoBehaviour
     [SerializeField] private List<UpgradeLevel> upgradeLevels = new();
     [SerializeField] private List<BoatSkin> boatSkins = new();
     [SerializeField] private BoatSkin activeBoatSkin;
-    public ShopItemHolder ActiveBoatItem;
+    public ShopItemHolder activeBoatItem;
     public static UpgradeHolder Instance;
     
     private void Awake()
@@ -60,7 +61,7 @@ public class UpgradeHolder : MonoBehaviour
         if (upgradeLevels[index].Level < upgradeLevels[index].MaxLevel)
         {
             upgradeLevels[index].IncreaseLevel();
-            shopObjects.Find(x => x.UpgradeType == upgradeType).UpgradeObject.Upgrade();
+            shopObjects.Find(x => x.UpgradeType == upgradeType).upgradeObject.Upgrade();
             SaveManager.Instance.SaveUpgrades(upgradeLevels);
         }
     }
@@ -77,11 +78,11 @@ public class UpgradeHolder : MonoBehaviour
         {
             return;
         }
-        if (ActiveBoatItem != null)
+        if (activeBoatItem != null)
         {
-            ActiveBoatItem.DisableCheckMark();
+            activeBoatItem.DisableCheckMark();
         }
-        ActiveBoatItem = shopItemHolder;
+        activeBoatItem = shopItemHolder;
         MakeCurrentSkinSelected();
         if (shopItemHolder.GetItem() is BoatSkin boatSkin)
         {
@@ -105,14 +106,14 @@ public class UpgradeHolder : MonoBehaviour
             int index = GetUpgradeIndex(type);
             if (upgradeLevels[index].Level > 0)
             {
-                Upgrades upgrade = shopObjects.Find(x => x.UpgradeType == type).UpgradeObject;
+                Upgrade upgrade = shopObjects.Find(x => x.UpgradeType == type).upgradeObject;
                 upgrade.Upgrade();
             }
         }
     }
     public int GetUpgradeValue(UpgradeType upgradeType)
     {
-        Upgrades upgrade = shopObjects.Find(x => x.UpgradeType == upgradeType).UpgradeObject;
+        Upgrade upgrade = shopObjects.Find(x => x.UpgradeType == upgradeType).upgradeObject;
         return GetUpgradeLevel(upgradeType) * upgrade.valuePerLevel;
     }
 
@@ -146,7 +147,7 @@ public class UpgradeHolder : MonoBehaviour
     {
         if (holder.GetItem() == activeBoatSkin)
         {
-            ActiveBoatItem = holder;
+            activeBoatItem = holder;
             MakeCurrentSkinSelected();
         }
         else
@@ -156,7 +157,7 @@ public class UpgradeHolder : MonoBehaviour
     }
     private void MakeCurrentSkinSelected()
     {
-        ActiveBoatItem.ActivateCheckMark();
-        activeBoatSkin = ActiveBoatItem.GetItem() as BoatSkin;
+        activeBoatItem.ActivateCheckMark();
+        activeBoatSkin = activeBoatItem.GetItem() as BoatSkin;
     }
 }

@@ -52,7 +52,7 @@ public class ShopItemHolder : MonoBehaviour
         UpgradeHolder holder = UpgradeHolder.Instance;
         if (isUpgrade() != null)
         {
-            Upgrades upgrade = item as Upgrades;
+            Upgrade upgrade = item as Upgrade;
             holder.AddUpgrade(upgrade.UpgradeType);
         }
         else if (isBoatSkin())
@@ -61,11 +61,11 @@ public class ShopItemHolder : MonoBehaviour
         }
     }
 
-    private Upgrades isUpgrade()
+    private Upgrade isUpgrade()
     {
-        if (item is Upgrades)
+        if (item is Upgrade)
         {
-            return item as Upgrades;
+            return item as Upgrade;
         }
 
         return null;
@@ -81,7 +81,7 @@ public class ShopItemHolder : MonoBehaviour
         return null;
     }
 
-    private bool isRightlevel(Upgrades upgrade)
+    private bool isRightlevel(Upgrade upgrade)
     {
         if (UpgradeHolder.Instance.GetUpgradeLevel(upgrade.UpgradeType) >= 3)
         {
@@ -110,7 +110,7 @@ public class ShopItemHolder : MonoBehaviour
     {
         if (CanBuy())
         {
-            if (isUpgrade() != null && isRightlevel(item as Upgrades) == false)
+            if (isUpgrade() != null && isRightlevel(item as Upgrade) == false)
             {
                 return;
             }
@@ -135,10 +135,10 @@ public class ShopItemHolder : MonoBehaviour
         descriptionText.text = description;
         costText.text = cost.ToString();
         
-        if (item is Upgrades)
+        if (item is Upgrade)
         {
-            Upgrades upgrade = item as Upgrades;
-            if (CanBuy() && isRightlevel(item as Upgrades) == false)
+            Upgrade upgrade = item as Upgrade;
+            if (CanBuy() && isRightlevel(item as Upgrade) == false)
             {
                 buyButton.interactable = false;
             }
