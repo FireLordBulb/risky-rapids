@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
         GameManager.Instance.InitializePlayer(this);
     }
     
-    public void InitalizePlayerModel()
+    public void InitializePlayerModel()
     {
         int hairStylePlayerOne = PlayerPrefs.GetInt("PlayerOneHair");
         int hairStylePlayerTwo = PlayerPrefs.GetInt("PlayerTwoHair");

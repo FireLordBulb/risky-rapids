@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
         {
             terrainCollider.enabled = false;
         }
-        player.InitalizePlayerModel();
+        player.InitializePlayerModel();
         UpgradeHolder.Instance.FixUpgrades();
         UpgradeHolder.Instance.ApplyCurrentBoatSkin();
         UIManager.Instance.ToggleMenuBackground(false);
@@ -203,7 +203,6 @@ public class GameManager : MonoBehaviour
     public void StartCountdown(bool tutorialIsOver = false)
     {
         Time.timeScale = 1;
-        player.InitalizePlayerModel();
         if (currentLevelIndex == 0 && !tutorialIsOver)
         {
             CurrentGameState = GameStates.Tutorial;
