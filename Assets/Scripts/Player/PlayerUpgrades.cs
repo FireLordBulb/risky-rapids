@@ -22,13 +22,11 @@ public class PlayerUpgrades : MonoBehaviour
     {
         magnetObject.SetActive(true);
         magnet.LevelUpMagnet();
-        print("Leveled up");
     }
     
     public void ActivateArmor()
     {
         armorObject.SetActive(true);
-        print("Leveled up");
     }
     
     public void ActivateRow()

@@ -8,7 +8,6 @@ public class SpeedPaddleUpgrade : Upgrade
     
     public override void Upgrade()
     {
-        Debug.Log("Row Buy");
         PlayerUpgrades player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerUpgrades>();
         player.ActivateRow();
         FindObjectOfType<BoatPhysics>().AddSpeedPaddle();

@@ -8,6 +8,5 @@ public class BoatSkin : ShopItem
     
     public override void Upgrade()
     {
-        Debug.Log("I bought skin");
     }
 }

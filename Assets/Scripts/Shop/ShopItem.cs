@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ShopItem : ScriptableObject
+public abstract class ShopItem : ScriptableObject
 {
     public string Title;
     public string Description;
@@ -12,9 +12,6 @@ public class ShopItem : ScriptableObject
     public TMP_Sprite ItemPicture;
     public TMP_Sprite ItemTemplate;
 
-    public virtual void Upgrade()
-    {
-        Debug.Log("Base");
-    }
+    public abstract void Upgrade();
 
 }
