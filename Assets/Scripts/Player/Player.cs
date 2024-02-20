@@ -15,14 +15,26 @@ public class Player : MonoBehaviour
     
     private PlayerHealth playerHealth;
     public int ActiveSpeedBoosts { get; set; }
-
+    private void Awake()
+    {
+        InitializeHealth();
+    }
     private void Start()
     {
-        playerHealth = new PlayerHealth(GameManager.Instance.GetCurrentGameData().MaxHealth, GameManager.Instance.GetCurrentGameData().Armor);
+        InitializeHealth();
         playerHealth.ReplenishHealth();
         GameManager.Instance.InitializePlayer(this);
+        InitializePlayerModel();
     }
-    
+    private void InitializeHealth()
+    {
+        if (GameManager.Instance == null)
+        {
+            return;
+        }
+        SO_GameData currentGameData = GameManager.Instance.CurrentGameData;
+        playerHealth = new PlayerHealth(currentGameData.MaxHealth, currentGameData.Armor);
+    }
     public void InitializePlayerModel()
     {
         int hairStylePlayerOne = PlayerPrefs.GetInt("PlayerOneHair");

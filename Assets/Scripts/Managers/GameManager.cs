@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
         get;
         private set;
     }
+    public SO_GameData CurrentGameData => currentGameData;
     private void Awake()
     {
         if (Instance != null && Instance != this) 
@@ -312,9 +313,5 @@ public class GameManager : MonoBehaviour
         {
             interactable.ResetInteractable();
         }
-    }
-    public SO_GameData GetCurrentGameData()
-    {
-        return currentGameData;
     }
 }
