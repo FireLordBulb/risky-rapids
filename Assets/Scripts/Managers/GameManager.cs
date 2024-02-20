@@ -100,7 +100,8 @@ public class GameManager : MonoBehaviour
         switch(CurrentGameState)
         {
             case GameState.MainMenu:
-                UIManager.Instance.ReturnToMainMenu();
+                ReturnToMenu();
+                UIManager.Instance.ShowMainMenu();
                 break;
             case GameState.Playing:
                 UIManager.Instance.StartGame();
@@ -162,7 +163,8 @@ public class GameManager : MonoBehaviour
         int index = currentLevelIndex+1;
         if (levels.Length <= index)
         {
-            UIManager.Instance.ReturnToMainMenu();
+            ReturnToMenu();
+            UIManager.Instance.ShowMainMenu();
             return;
         }
         LoadLevel(index, () => StartCountdown());

@@ -929,7 +929,7 @@ GameObject:
   - component: {fileID: 1460972869329148118}
   - component: {fileID: 7840159814554250805}
   m_Layer: 5
-  m_Name: InGamePanel
+  m_Name: HudPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2406,7 +2406,7 @@ GameObject:
   - component: {fileID: 997095556172168000}
   - component: {fileID: 5118146431363224160}
   m_Layer: 5
-  m_Name: QuitGameButton
+  m_Name: MainMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

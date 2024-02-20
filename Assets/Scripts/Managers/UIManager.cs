@@ -51,13 +51,6 @@ public class UIManager : MonoBehaviour
     {
         uiCamera.gameObject.SetActive(toggle);
     }
-    public void LoadSpecificLevel(int index)
-    {
-        MakeActivePanel(characterSelectionPanel);
-        ToggleMenuBackground(true);
-        GameManager.Instance.LoadLevel(index);
-    }
-    
     public void StartGame()
     {
         if (GameManager.Instance.IsLoadingLevel)
@@ -66,17 +59,6 @@ public class UIManager : MonoBehaviour
         }
         GameManager.Instance.StartCountdown();
         MakeActivePanel(hudPanel);
-    }
-
-    public void ResumeGame()
-    {
-        GameManager.Instance.ResumeGame();
-        MakeActivePanel(hudPanel);
-    }
-    public void OpenShopFromGame()
-    {
-        GameManager.Instance.ReturnToMenu();
-        MakeActivePanel(shopPanel);
     }
     public void TogglePauseButton(bool toggle)
     {
@@ -110,19 +92,28 @@ public class UIManager : MonoBehaviour
     {
         MakeActivePanel(gameOverPanel);
     }
-    public void RestartGame()
+    public void ShowMainMenu()
     {
-        MakeActivePanel(hudPanel);
-        GameManager.Instance.RestartGame();
-    }
-    public void ReturnToMainMenu()
-    {
-        GameManager.Instance.ReturnToMenu();
         MakeActivePanel(mainMenuPanel);
     }
-    public void LoadNextScene()
+    public void GameManagerLoadLevel(int index)
     {
-        MakeActivePanel(hudPanel);
+        GameManager.Instance.LoadLevel(index);
+    }
+    public void GameManagerResumeGame()
+    {
+        GameManager.Instance.ResumeGame();
+    }
+    public void GameManagerReturnToMenu()
+    {
+        GameManager.Instance.ReturnToMenu();
+    }
+    public void GameManagerRestartGame()
+    {
+        GameManager.Instance.RestartGame();
+    }
+    public void GameManagerLoadNextLevel()
+    {
         GameManager.Instance.LoadNextLevel();
     }
     public void ActivatePausePanel()
@@ -142,8 +133,8 @@ public class UIManager : MonoBehaviour
     }
     public void EndTutorial()
     {
-        tutorialPanel2.SetActive(false);
         GameManager.Instance.StartCountdown(true);
+        tutorialPanel2.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
     }
     public void MakeActivePanel(GameObject panel)
@@ -174,8 +165,6 @@ public class UIManager : MonoBehaviour
     {
         foreach (TextMeshProUGUI coinText in coinTexts)
         {
-            if (coinText == null) continue;
-                
             coinText.text = GameManager.Instance.Coins.ToString();
         }
     }

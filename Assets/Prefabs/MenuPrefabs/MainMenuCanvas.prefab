@@ -5574,7 +5574,6 @@ GameObject:
   - component: {fileID: 9219212219814992497}
   - component: {fileID: 5477277335512882539}
   - component: {fileID: 705172130569668043}
-  - component: {fileID: 2932275742567293235}
   m_Layer: 5
   m_Name: LevelSelectPanel
   m_TagString: Untagged
@@ -5627,15 +5626,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.37647063, g: 0.6666667, b: 0.9294118, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5644,20 +5643,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2932275742567293235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7608629939965887825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 628c20a0b1198494987ecd702f7cbc12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  atlas: {fileID: 100100200, guid: 612ecf670f9361d408356026e114c1bf, type: 3}
-  spriteName: CreditsBackground
 --- !u!1 &7720179365189895831
 GameObject:
   m_ObjectHideFlags: 0
