@@ -86,15 +86,6 @@ public class AudioManager : MonoBehaviour
     }
     
 
-    void Start()
-    {
-        UIManager.Instance.OnGameStart += StopMenuAudio;
-
-        UIManager.Instance.OnGameStart += PlayBackgroundAudio;
-
-        UIManager.Instance.OnGameStart += PlayRiverAudio;
-    }
-
     //Play audio methods (first a general that can be used for everynone and then all specifics)//
     public void PlayAudio(AudioSource source, AudioClip clip, float volume)
     {

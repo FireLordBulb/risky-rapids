@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         CurrentGameState = GameState.Paused;
-        UIManager.Instance.OnGamePaused?.Invoke();
+        UIManager.Instance.ActivatePausePanel();
         Time.timeScale = 0;
     }
     public void LoadNextLevel()

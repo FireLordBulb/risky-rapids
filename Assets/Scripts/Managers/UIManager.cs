@@ -36,9 +36,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI endTime;
     [SerializeField] private TextMeshProUGUI endCoinsFromTime;
     [SerializeField] private TextMeshProUGUI endCoinsCollected;
-
-    public Action OnGameStart;
-    public Action OnGamePaused;
     
     private void Awake()
     {
@@ -68,7 +65,9 @@ public class UIManager : MonoBehaviour
         {
             return;
         }
-        OnGameStart?.Invoke();
+        AudioManager.Instance.StopMenuAudio();
+        AudioManager.Instance.PlayBackgroundAudio();
+        AudioManager.Instance.PlayRiverAudio();
         GameManager.Instance.StartCountdown();
         mainMenuPanel.SetActive(false);
         characterSelectionPanel.SetActive(false);
@@ -197,7 +196,7 @@ public class UIManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
     }
 
-    private void ActivatePausePanel()
+    public void ActivatePausePanel()
     {
         hudPanel.SetActive(false);
         wrongWayPanel.SetActive(false);
@@ -254,9 +253,5 @@ public class UIManager : MonoBehaviour
         endTime.text = $"TIME : {time}";
         endCoinsFromTime.text = $"COINS FROM TIME : +{coinsFromTime}";
         endCoinsCollected.text = $"COINS COLLECTED : +{coinsCollected}";
-    }
-    private void OnEnable()
-    {
-        OnGamePaused += ActivatePausePanel;
     }
 }
