@@ -213,6 +213,7 @@ public class GameManager : MonoBehaviour
     public void StartCountdown(bool tutorialIsOver = false)
     {
         Time.timeScale = 1;
+        UIManager.Instance.WrongWayPanelSetActive(false);
         if (currentLevelIndex == 0 && !tutorialIsOver)
         {
             CurrentGameState = GameState.Tutorial;
@@ -229,6 +230,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         levelTimer.Reset();
         levelStartCoins = Coins;
+        UIManager.Instance.WrongWayPanelSetActive(false);
     }
     public void ResumeGame()
     {

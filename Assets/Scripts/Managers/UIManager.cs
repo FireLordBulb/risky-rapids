@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,14 +10,12 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject gameEndPanel;
     [SerializeField] private GameObject characterSelectionPanel;
-    [SerializeField] private GameObject levelSelectPanel;
     [SerializeField] private GameObject hudPanel;
     [SerializeField] private GameObject wrongWayPanel;
     [SerializeField] private GameObject mainMenuPanel;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject shopPanel;
-    [SerializeField] private GameObject creditsPanel;
     [SerializeField] private GameObject tutorialPanel1;
     [SerializeField] private GameObject tutorialPanel2;
     [SerializeField] private GameObject pauseButton;
@@ -36,7 +33,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI endTime;
     [SerializeField] private TextMeshProUGUI endCoinsFromTime;
     [SerializeField] private TextMeshProUGUI endCoinsCollected;
-    
+
+    private GameObject activePanel;
     private void Awake()
     {
         if (Instance != null && Instance != this) 
@@ -46,6 +44,7 @@ public class UIManager : MonoBehaviour
         } 
         Instance = this;
 
+        activePanel = mainMenuPanel;
         ToggleUICamera(false);
     }
     public void ToggleUICamera(bool toggle)
@@ -54,7 +53,7 @@ public class UIManager : MonoBehaviour
     }
     public void LoadSpecificLevel(int index)
     {
-        ToggleCharacterSelect(true);
+        MakeActivePanel(characterSelectionPanel);
         ToggleMenuBackground(true);
         GameManager.Instance.LoadLevel(index);
     }
@@ -69,51 +68,18 @@ public class UIManager : MonoBehaviour
         AudioManager.Instance.PlayBackgroundAudio();
         AudioManager.Instance.PlayRiverAudio();
         GameManager.Instance.StartCountdown();
-        mainMenuPanel.SetActive(false);
-        characterSelectionPanel.SetActive(false);
-        hudPanel.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
+        MakeActivePanel(hudPanel);
     }
 
     public void ResumeGame()
     {
         GameManager.Instance.ResumeGame();
-        pausePanel.SetActive(false);
-        hudPanel.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
+        MakeActivePanel(hudPanel);
     }
     public void OpenShopFromGame()
     {
         GameManager.Instance.ReturnToMenu();
-        shopPanel.SetActive(true);
-        hudPanel.SetActive(false);
-        gameEndPanel.SetActive(false);
-        gameOverPanel.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(null);
-    }
-    public void ToggleLevelSelect(bool toggle)
-    {
-        levelSelectPanel.SetActive(toggle);
-        mainMenuPanel.SetActive(!toggle);
-        EventSystem.current.SetSelectedGameObject(null);
-    }
-    public void ToggleCharacterSelect(bool toggle)
-    {
-        characterSelectionPanel.SetActive(toggle);
-        levelSelectPanel.SetActive(!toggle);
-        EventSystem.current.SetSelectedGameObject(null);
-    }
-    public void ToggleShop(bool toggle)
-    {
-        shopPanel.SetActive(toggle);
-        mainMenuPanel.SetActive(!toggle);
-        EventSystem.current.SetSelectedGameObject(null);
-    }
-    public void ToggleCredits(bool toggle)
-    {
-        creditsPanel.SetActive(toggle);
-        mainMenuPanel.SetActive(!toggle);
-        EventSystem.current.SetSelectedGameObject(null);
+        MakeActivePanel(shopPanel);
     }
     public void TogglePauseButton(bool toggle)
     {
@@ -141,73 +107,45 @@ public class UIManager : MonoBehaviour
     }
     public void ShowEndScreen()
     {
-        gameEndPanel.SetActive(true);
-        hudPanel.SetActive(false);
-        wrongWayPanel.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(null);
+        MakeActivePanel(gameEndPanel);
         AudioManager.Instance.StopBackgroundAudio();
         AudioManager.Instance.PlayMenuAudio();
     }
     public void ShowGameOverScreen()
     {
-        hudPanel.SetActive(false);
-        wrongWayPanel.SetActive(false);
-        gameOverPanel.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
-
+        MakeActivePanel(gameOverPanel);
     }
     public void RestartGame()
     {
-        hudPanel.SetActive(true);
-        gameEndPanel.SetActive(false);
-        gameOverPanel.SetActive(false);
-        pausePanel.SetActive(false);
+        MakeActivePanel(hudPanel);
         if (GameManager.Instance.CurrentGameState == GameState.EndGame)
         {
             AudioManager.Instance.StopMenuAudio();
             AudioManager.Instance.PlayBackgroundAudio();
         }
         GameManager.Instance.RestartGame();
-        EventSystem.current.SetSelectedGameObject(null);
     }
-
     public void ReturnToMainMenu()
     {
         GameManager.Instance.ReturnToMenu();
-        hudPanel.SetActive(false);
-        wrongWayPanel.SetActive(false);
-        gameEndPanel.SetActive(false);
-        gameOverPanel.SetActive(false);
-        pausePanel.SetActive(false);
-        mainMenuPanel.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
+        MakeActivePanel(mainMenuPanel);
         AudioManager.Instance.PlayMenuAudio2();
         AudioManager.Instance.StopBackgroundAudio();
         AudioManager.Instance.StopRiverAudio();
     }
-
     public void LoadNextScene()
     {
-        hudPanel.SetActive(true);
-        gameEndPanel.SetActive(false);
-        gameOverPanel.SetActive(false);
-        pausePanel.SetActive(false);
+        MakeActivePanel(hudPanel);
         GameManager.Instance.LoadNextLevel();
-        EventSystem.current.SetSelectedGameObject(null);
     }
-
     public void ActivatePausePanel()
     {
-        hudPanel.SetActive(false);
-        wrongWayPanel.SetActive(false);
-        pausePanel.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
+        MakeActivePanel(pausePanel);
     }
     public void StartTutorial()
     {
         tutorialPanel1.SetActive(true);
         TogglePauseButton(false);
-        EventSystem.current.SetSelectedGameObject(null);
     }
     public void ContinueTutorial()
     {
@@ -221,6 +159,13 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.StartCountdown(true);
         EventSystem.current.SetSelectedGameObject(null);
     }
+    public void MakeActivePanel(GameObject panel)
+    {
+        activePanel.SetActive(false);
+        activePanel = panel;
+        activePanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+    }
     public void QuitGame()
     {
         Application.Quit();
@@ -229,7 +174,6 @@ public class UIManager : MonoBehaviour
     {
         wrongWayPanel.SetActive(isActive);
     }
-
     public void UpdateHealthText(float health)
     {
         if (Instance == null) return;
