@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -16,9 +17,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject wrongWayPanel;
     [SerializeField] private GameObject mainMenuPanel;
     [SerializeField] private GameObject pausePanel;
-    [SerializeField] private GameObject gameOverPanel;
-    [SerializeField] private GameObject tutorialPanel1;
-    [SerializeField] private GameObject tutorialPanel2;
+    [SerializeField] private GameObject gameOverPanel; 
+    [SerializeField] private GameObject controlsTutorialPanel;
+    [SerializeField] private GameObject goalTutorialPanel;
     [SerializeField] private GameObject pauseButton;
     
     [Space] [Space] 
@@ -112,19 +113,19 @@ public class UIManager : MonoBehaviour
     }
     public void StartTutorial()
     {
-        tutorialPanel1.SetActive(true);
+        controlsTutorialPanel.SetActive(true);
         PauseButtonSetActive(false);
     }
     public void ContinueTutorial()
     {
-        tutorialPanel1.SetActive(false);
-        tutorialPanel2.SetActive(true);
+        controlsTutorialPanel.SetActive(false);
+        goalTutorialPanel.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
     }
     public void EndTutorial()
     {
         GameManager.Instance.StartCountdown(true);
-        tutorialPanel2.SetActive(false);
+        goalTutorialPanel.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
     }
     public void QuitGame()

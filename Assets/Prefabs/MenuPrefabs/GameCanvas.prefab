@@ -4189,7 +4189,7 @@ PrefabInstance:
     - target: {fileID: 3947902728822768579, guid: 7156846b0e3a4c0408f14b3d2a87201d,
         type: 3}
       propertyPath: m_Name
-      value: TutorialPanel1
+      value: ControlsTutorialPanel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4338,7 +4338,7 @@ PrefabInstance:
     - target: {fileID: 3947902728822768579, guid: 7156846b0e3a4c0408f14b3d2a87201d,
         type: 3}
       propertyPath: m_Name
-      value: TutorialPanel2
+      value: GoalTutorialPanel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
