@@ -86,10 +86,7 @@ public class PlayerInput : MonoBehaviour
     }
     private void PlayAudio()
     {
-        if (!AudioManager.Instance.RowingSource.isPlaying)
-        {
-            AudioManager.Instance.PlayRowingAudio();
-        }
+        AudioManager.Instance.PlayRowingAudio();
     }
     // NESTED CLASS START |-----------------------------------------------------------------------------------------------------------------------------
     private class InputMemory

@@ -40,7 +40,6 @@ public class SaveManager : MonoBehaviour
     public static SaveManager Instance;
     [SerializeField] private string fileName = "Save";
     
-    private UpgradeHolder upgradeHolder;
     private SavedStats savedStats;
     private string saveDirectoryPath;
     private string saveFilePath;
@@ -54,7 +53,6 @@ public class SaveManager : MonoBehaviour
         }
         Instance = this;
 
-        upgradeHolder = UpgradeHolder.Instance;
         saveDirectoryPath = Application.persistentDataPath + "/Saves/";
         saveFilePath = saveDirectoryPath + fileName + ".json";
     }
@@ -74,7 +72,7 @@ public class SaveManager : MonoBehaviour
             savedStats = JsonUtility.FromJson<SavedStats>(saveDataJson);
             
             GameManager.Instance.Coins = savedStats.Coins;
-            upgradeHolder.AddFromSave(savedStats.UpgradeLevels, savedStats.SkinsUnlocked, savedStats.EquippedBoat);
+            UpgradeHolder.Instance.AddFromSave(savedStats.UpgradeLevels, savedStats.SkinsUnlocked, savedStats.EquippedBoat);
         }
         catch (Exception e)
         {
@@ -98,7 +96,7 @@ public class SaveManager : MonoBehaviour
             savedStats.UpgradeLevels.Add(new UpgradeLevel(UpgradeType.Magnet));
             savedStats.UpgradeLevels.Add(new UpgradeLevel(UpgradeType.Paddle));
             savedStats.UpgradeLevels.Add(new UpgradeLevel(UpgradeType.Armor));
-            upgradeHolder.AddFromSave(savedStats.UpgradeLevels, savedStats.SkinsUnlocked, null);
+            UpgradeHolder.Instance.AddFromSave(savedStats.UpgradeLevels, savedStats.SkinsUnlocked, null);
             SaveToFile();
         }
         catch (Exception e)

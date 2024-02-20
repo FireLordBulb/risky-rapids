@@ -64,9 +64,6 @@ public class UIManager : MonoBehaviour
         {
             return;
         }
-        AudioManager.Instance.StopMenuAudio();
-        AudioManager.Instance.PlayBackgroundAudio();
-        AudioManager.Instance.PlayRiverAudio();
         GameManager.Instance.StartCountdown();
         MakeActivePanel(hudPanel);
     }
@@ -108,8 +105,6 @@ public class UIManager : MonoBehaviour
     public void ShowEndScreen()
     {
         MakeActivePanel(gameEndPanel);
-        AudioManager.Instance.StopBackgroundAudio();
-        AudioManager.Instance.PlayMenuAudio();
     }
     public void ShowGameOverScreen()
     {
@@ -118,20 +113,12 @@ public class UIManager : MonoBehaviour
     public void RestartGame()
     {
         MakeActivePanel(hudPanel);
-        if (GameManager.Instance.CurrentGameState == GameState.EndGame)
-        {
-            AudioManager.Instance.StopMenuAudio();
-            AudioManager.Instance.PlayBackgroundAudio();
-        }
         GameManager.Instance.RestartGame();
     }
     public void ReturnToMainMenu()
     {
         GameManager.Instance.ReturnToMenu();
         MakeActivePanel(mainMenuPanel);
-        AudioManager.Instance.PlayMenuAudio2();
-        AudioManager.Instance.StopBackgroundAudio();
-        AudioManager.Instance.StopRiverAudio();
     }
     public void LoadNextScene()
     {

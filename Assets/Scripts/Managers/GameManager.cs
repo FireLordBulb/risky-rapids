@@ -152,11 +152,11 @@ public class GameManager : MonoBehaviour
         CurrentGameState = GameState.Paused;
         UIManager.Instance.ActivatePausePanel();
         Time.timeScale = 0;
+        AudioManager.Instance.StopRiverAudio();
     }
     public void LoadNextLevel()
     {
-        AudioManager.Instance.StopMenuAudio();
-        AudioManager.Instance.PlayBackgroundAudio();
+        AudioManager.Instance.PlayGameplayMusic();
         UIManager.Instance.ToggleLoadingScreen(true);
         int index = currentLevelIndex+1;
         if (levels.Length <= index)
@@ -213,6 +213,8 @@ public class GameManager : MonoBehaviour
     public void StartCountdown(bool tutorialIsOver = false)
     {
         Time.timeScale = 1;
+        AudioManager.Instance.PlayRiverAudio();
+        AudioManager.Instance.PlayGameplayMusic();
         UIManager.Instance.WrongWayPanelSetActive(false);
         if (currentLevelIndex == 0 && !tutorialIsOver)
         {
@@ -228,6 +230,8 @@ public class GameManager : MonoBehaviour
     {
         CurrentGameState = GameState.Playing;
         Time.timeScale = 1;
+        AudioManager.Instance.PlayGameplayMusic();
+        AudioManager.Instance.PlayRiverAudio();
         levelTimer.Reset();
         levelStartCoins = Coins;
         UIManager.Instance.WrongWayPanelSetActive(false);
@@ -236,6 +240,7 @@ public class GameManager : MonoBehaviour
     {
         CurrentGameState = GameState.Playing;
         Time.timeScale = 1;
+        AudioManager.Instance.PlayRiverAudio();
     }
     public void RestartGame()
     {
@@ -247,16 +252,12 @@ public class GameManager : MonoBehaviour
     {
         CurrentGameState = GameState.MainMenu;
         Time.timeScale = 1;
+        AudioManager.Instance.StopRiverAudio();
+        AudioManager.Instance.PlayMenuMusic();
         levelTimer.Reset();
         Coins = levelStartCoins;
         ResetLevel();
     }
-
-    private void ResetCoins()
-    {
-        Coins = 0;
-    }
-    
     public void EndGame()
     {
         CurrentGameState = GameState.EndGame;
@@ -272,12 +273,14 @@ public class GameManager : MonoBehaviour
         levelTimer.Reset();
         
         UIManager.Instance.ShowEndScreen();
+        AudioManager.Instance.PlayMenuMusic();
         SaveManager.Instance.SaveCoins(Coins);
     }
     public void FailGame()
     {
         CurrentGameState = GameState.GameOver;
         Time.timeScale = 0;
+        AudioManager.Instance.StopRiverAudio();
         Coins = levelStartCoins;
         UIManager.Instance.ShowGameOverScreen();
     }

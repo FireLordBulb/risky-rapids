@@ -1,388 +1,101 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Windows;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
-
-    public AudioSource BackgroundSource;
-    public AudioSource MenuSource;
-    public AudioSource BoostSource;
-    public AudioSource CoinSource;
-    public AudioSource RiverSource;
-    public AudioSource CollisionStoneSource;
-    //public AudioSource CollisionLogSource;
-    //public AudioSource AmbientEnviromentSource;
-    //public AudioSource CountdownSource;
-    public AudioSource CompletedLevelSource;
-    public AudioSource RowingSource;
-
-    //in game location
-    public AudioSource BirdsSource;
-    public AudioSource WaterfallSource;
     
-    public float InGameVolume, MenuVolume, BoostVolume, CoinsVolumme, RiverVolume, CollisionVolume, OarVolumme;
+    public AudioClip gameplayMusic;
+    public AudioClip menuMusic;
+    public AudioClip riverAudio; 
+    public AudioClip boostAudio;
+    public AudioClip coinAudio;
+    public AudioClip collisionAudio; 
+    public AudioClip levelCompletedAudio;    
+    public AudioClip[] rowingAudios;
+    public float rowingVolume;
     
-    [Space(25)]
-    public AudioClip BackgroundMusic;
-    public AudioClip MenuAudio;
-    public AudioClip BoostSoundAudio;
-    public AudioClip CoinsCollectedAudio;
-    
-    //special
-    public AudioClip RiverAudio; 
-    public AudioClip CollisionStonAudio; 
-    //public AudioClip ColisionLogAudio;
-    
-    //public AudioClip AmbientEnviromentAudio; 
-    
-    //special
-    //public AudioClip CountdownAudio; 
-    
-    public AudioClip CompletedLevelAudio;    
-    public AudioClip RowingAudio1, RowingAudio2, RowingAudio3, RowingAudio4, RowingAudio5, RowingAudio6 ;
-    
-    //same place as background
-    //public AudioClip BirdsAudio;
-    //public AudioClip WaterfallAudio;
-    
-
+    private AudioSource gameplaySource;
+    private AudioSource menuSource;
+    private AudioSource riverSource;
+    private AudioSource boostSource;
+    private AudioSource coinSource;
+    private AudioSource collisionSource;
+    private AudioSource levelCompletedSource;
+    private AudioSource rowingSource;
     private void Awake()
     {
-        if (Instance != null)
-        {
+        if (Instance != null && Instance != this) 
+        { 
             Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
-    
-    bool play = false;
-    public void Update()
-    {
-        /*
-        if (Time.time > 3 && play == false )
-        {
-            
-            StopBackgroundAudio2(1);
-            //PlayCoinstAudio();
-            play = true;
-            Debug.Log("playerfwre");
-        }
+            return;
+        } 
+        Instance = this;
+
+        gameplaySource = gameObject.AddComponent<AudioSource>();
+        menuSource = gameObject.AddComponent<AudioSource>();
+        riverSource = gameObject.AddComponent<AudioSource>();
+        boostSource = gameObject.AddComponent<AudioSource>();
+        coinSource = gameObject.AddComponent<AudioSource>();
+        collisionSource = gameObject.AddComponent<AudioSource>();
+        levelCompletedSource = gameObject.AddComponent<AudioSource>();
+        rowingSource = gameObject.AddComponent<AudioSource>();
         
-
-        if (UnityEngine.Input.GetKeyDown(KeyCode.L))
-        {
-            PlayMenuAudio();
-        }
-        */
+        rowingSource.volume = rowingVolume;
     }
-    
-
-    //Play audio methods (first a general that can be used for everynone and then all specifics)//
-    public void PlayAudio(AudioSource source, AudioClip clip, float volume)
+    public void PlayGameplayMusic()
     {
-        if (source.isPlaying)
-        {
-            source.Stop();
-        }
-        source.clip = clip;
-        source.volume = volume;
-        source.Play();
-        
-        Debug.Log("Custom Sound plays");
+        menuSource.Stop();
+        PlayAudio(gameplaySource, gameplayMusic, true);
     }
-    public void PlayBackgroundAudio()
+    public void PlayMenuMusic()
     {
-        if (!BackgroundMusic)
-        {
-            Debug.Log("No Soundclip");
-            return;
-        }
-
-        BackgroundSource.volume = InGameVolume;
-        BackgroundSource.clip = BackgroundMusic;
-        BackgroundSource.loop = true;
-        BackgroundSource.Play();
-        
-        //Debug.Log("background");
-        //Debug.Log("ingame volume is: " + InGameVolume);
-    }
-
-    
-    public void PlayBackgroundAudio2()
-    {
-        if (!BackgroundMusic)
-        {
-            Debug.Log("No Soundclip");
-            return;
-        }
-        BackgroundSource.volume = InGameVolume;
-        BackgroundSource.clip = BackgroundMusic;
-        BackgroundSource.loop = true;
-        BackgroundSource.Play();
-    }
-    
-    public void PlayMenuAudio()
-    {
-        if (!MenuAudio)
-        {
-            Debug.Log("No Soundclip");
-            return;
-        }
-        MenuSource.volume = MenuVolume;
-        MenuSource.clip = MenuAudio;
-        MenuSource.loop = true;
-        MenuSource.Play();
-        Debug.Log(MenuSource.clip);
-    }
-    
-    public void PlayMenuAudio2()
-    {
-        if (!MenuAudio)
-        {
-            Debug.Log("No Soundclip");
-            return;
-        }
-
-        MenuSource.volume = MenuVolume;
-        MenuSource.clip = MenuAudio;
-        MenuSource.loop = true;
-        MenuSource.Play();
-    }
-    public void StopBackgroundAudio()
-    {
-        BackgroundSource.Stop();
-    }
-    public void StopBackgroundAudio2()
-    {
-        Debug.Log("ongemaended?");
-        BackgroundSource.Stop();
-    }
-    public void StopMenuAudio()
-    {
-        MenuSource.Stop();
-    } 
-    public void StopMenuAudio2()
-    {
-        MenuSource.Stop();
-    }
-    public void StopRiverAudio()
-    {
-        RiverSource.Stop();
-    }
-    public void StopRiverAudio2()
-    {
-        RiverSource.Stop();
-    }
-    public void PlayBoostAudio()
-    {
-        if (!BoostSoundAudio)
-        {
-            Debug.Log("No Soundclip");
-            return;
-        }
-
-        BoostSource.volume = BoostVolume;
-        BoostSource.clip = BoostSoundAudio;
-        BoostSource.Play();
-    }
-
-    public void PlayCoinAudio()
-    {
-        if (!CoinsCollectedAudio)
-        {
-            Debug.Log("No Soundclip");
-            return;
-        }
-
-        CoinSource.volume = CoinsVolumme;
-        CoinSource.clip = CoinsCollectedAudio;
-        CoinSource.Play();
+        gameplaySource.Stop();
+        PlayAudio(menuSource, menuMusic, true);
     }
     public void PlayRiverAudio()
     {
-        if (!RiverAudio)
-        {
-            Debug.Log("No Soundclip");
-            return;
-        }
-
-        RiverSource.volume = RiverVolume;
-        RiverSource.clip = RiverAudio;
-        RiverSource.loop = true;
-        RiverSource.Play();
+        PlayAudio(riverSource, riverAudio, true);
+    }
+    public void StopRiverAudio()
+    {
+        riverSource.Stop();
+    }
+    public void PlayBoostAudio()
+    {
+        PlayAudio(boostSource, boostAudio, false);
+    }
+    public void PlayCoinAudio()
+    {
+        PlayAudio(coinSource, coinAudio, false);
     }
     public void PlayCollisionStoneAudio()
     {
-        if (!CollisionStonAudio)
-        {
-            Debug.Log("No Soundclip");
-            return;
-        }
-
-        CollisionStoneSource.volume = CollisionVolume;
-        CollisionStoneSource.clip = CollisionStonAudio;
-        CollisionStoneSource.Play();
+        PlayAudio(collisionSource, collisionAudio, false);
     }
-    /*
-    public void PlayCollisionLogAudio()
-    {
-        if (!ColisionLogAudio)
-        {
-            Debug.Log("No Soundclip");
-            return;
-        }
-        CollisionLogSource.clip = ColisionLogAudio;
-        CollisionLogSource.Play();
-    }
-    */
-    /*
-    public void PlayAmbientEnviromentAudio()
-    {
-        if (!AmbientEnviromentAudio)
-        {
-            Debug.Log("No Soundclip");
-            return;
-        }
-        AmbientEnviromentSource.clip = AmbientEnviromentAudio;
-        AmbientEnviromentSource.loop = true;
-        AmbientEnviromentSource.Play();
-    }
-    */
-    /*
-    public void PlayCountdownAudio()
-    {
-        if (!CountdownAudio)
-        {
-            Debug.Log("No Soundclip");
-            return;
-        }
-        CountdownSource.clip = CountdownAudio;
-        CountdownSource.Play();
-    }
-    */
-    
     public void PlayCompletedLevelAudio()
     {
-        if (!CompletedLevelAudio)
-        {
-            Debug.Log("No Soundclip");
-            return;
-        }
-        CompletedLevelSource.clip = CompletedLevelAudio;
-        CompletedLevelSource.Play();
+        PlayAudio(levelCompletedSource, levelCompletedAudio, false);
     }
-    
     public void PlayRowingAudio()
     {
-        
-        if (!RowingAudio1)
+        PlayAudio(rowingSource, rowingAudios[Random.Range(0, rowingAudios.Length)],false);
+    }
+    public void PlayAudio(AudioSource source, AudioClip clip, bool loop)
+    {
+        if (!clip)
         {
-            Debug.Log("No Soundclip");
+            Debug.Log($"Missing AudioClip for {source}");
             return;
         }
-        RowingSource.volume = OarVolumme;
-        float random;
-        random = UnityEngine.Random.Range(0.0f, 12.0f);
-        if (random < 2 )
+        if (source.isPlaying)
         {
-            RowingSource.clip = RowingAudio1;
-            RowingSource.Play();
-        }
-        else if(random < 4 && random > 2 )
-        {
-            RowingSource.clip = RowingAudio2;
-            RowingSource.Play();
-        }
-        else if (random < 6 && random > 4 )
-        {
-            RowingSource.clip = RowingAudio3;
-            RowingSource.Play();
-        }
-        else if (random < 8 && random > 6)
-        {
-            RowingSource.clip = RowingAudio4;
-            RowingSource.Play();
-        }
-        else if (random < 10 && random > 8)
-        {
-            RowingSource.clip = RowingAudio5;
-            RowingSource.Play();
-        }
-        else if (random < 12 && random > 10)
-        {
-            RowingSource.clip = RowingAudio6;
-            RowingSource.Play();
-        }
-    }
-    /*
-    public void PlayBirdsAudio()
-    {
-        if (!BirdsAudio)
-        {
-            Debug.Log("No Soundclip");
             return;
         }
-
-        BirdsSource.clip = BirdsAudio;
-        BirdsSource.Play();
-    }
-    */
-    /*
-    public void PlayWaterfallAudio()
-    {
-        WaterfallSource.clip = WaterfallAudio;
-        WaterfallSource.loop = true;
-        WaterfallSource.Play();
-    }
-    */
-    //Other settings
-    public void SetVloume(AudioSource source, AudioClip clip, float volume)
-    {
         source.clip = clip;
-        source.volume = volume;
+        source.loop = loop;
         source.Play();
     }
-
-
 }
-
-/*
-    //Probably not used sice all buttons are triggered differently
-    public void PlayButtonPressedAudio()
-    {
-        effectsSource.clip = ButtonPressedClip;
-        effectsSource.Play();
-    }
-
-    //Stop audio methods//
-
-    public void StopBackgroundAudio()
-    {
-        BackgroundSource.Stop();
-    }
-    public void StopMenuAudio()
-    {
-        BackgroundSource.Stop();
-    }
-    public void StopWaterAudio()
-    {
-        MenuSource.Stop();
-    }
-    public void StopObstacleAudio()
-    {
-        MenuSource.Stop();
-    }
-    public void StopButtonPressedAudio()
-    {
-        MenuSource.Stop();
-    }
-    */
