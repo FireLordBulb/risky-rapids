@@ -53,9 +53,12 @@ public class UIManager : MonoBehaviour
         } 
         Instance = this;
 
-        uiCamera.gameObject.SetActive(false);
+        ToggleUICamera(false);
     }
-  
+    public void ToggleUICamera(bool toggle)
+    {
+        uiCamera.gameObject.SetActive(toggle);
+    }
     public void LoadSpecificLevel(int index)
     {
         ToggleCharacterSelect(true);

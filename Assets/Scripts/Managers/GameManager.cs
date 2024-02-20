@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
         if (currentSceneName.Equals(UI))
         {
             CurrentGameState = GameState.MainMenu;
+            UIManager.Instance.ToggleUICamera(true);
             LoadLevel(0);
         } else
         { 

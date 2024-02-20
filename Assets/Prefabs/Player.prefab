@@ -374,6 +374,7 @@ GameObject:
   - component: {fileID: 6785663865971173536}
   - component: {fileID: 5254817541316943053}
   - component: {fileID: 2964795292573824396}
+  - component: {fileID: 811938190438217013}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -513,6 +514,18 @@ WindZone:
   m_WindTurbulence: 1
   m_WindPulseMagnitude: 0.5
   m_WindPulseFrequency: 0.01
+--- !u!114 &811938190438217013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7537782776027969749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5583401dab5ac24fa7dcc983340d2d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &648540282643537085
 PrefabInstance:
   m_ObjectHideFlags: 0
