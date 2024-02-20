@@ -214,7 +214,7 @@ PrefabInstance:
     - target: {fileID: 4272519841383852439, guid: 6a3581350dd8c3f4585c2e162786dbae,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GameManagerResumeGame
+      value: GameManagerRestartGame
       objectReference: {fileID: 0}
     - target: {fileID: 4272519841383852439, guid: 6a3581350dd8c3f4585c2e162786dbae,
         type: 3}
@@ -2440,19 +2440,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7afda0d3b92794b9231122d71961ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuBackgroundPanel: {fileID: 156308668}
+  loadingScreenPanel: {fileID: 793388000}
   gameEndPanel: {fileID: 1119252304}
-  characterSelectionPanel: {fileID: 1664344360}
   hudPanel: {fileID: 1119252303}
   wrongWayPanel: {fileID: 1033185751}
   mainMenuPanel: {fileID: 1664344361}
   pausePanel: {fileID: 48315239}
   gameOverPanel: {fileID: 1108417381}
-  shopPanel: {fileID: 1498888878115006947}
-  tutorialPanel1: {fileID: 1293730854}
-  tutorialPanel2: {fileID: 2005828904}
+  controlsTutorialPanel: {fileID: 1293730854}
+  goalTutorialPanel: {fileID: 2005828904}
   pauseButton: {fileID: 887450349}
-  menuBackgroundPanel: {fileID: 156308668}
-  loadingScreenPanel: {fileID: 793388000}
   healthSlider: {fileID: 1119252301}
   countDownText: {fileID: 1293730855}
   coinTexts:
