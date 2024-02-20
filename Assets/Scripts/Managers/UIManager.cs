@@ -37,11 +37,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI endCoinsFromTime;
     [SerializeField] private TextMeshProUGUI endCoinsCollected;
 
-    public Action<float> OnHealthUpdated;
     public Action OnGameEnded;
     public Action OnGameStart;
     public Action OnGamePaused;
-    public Action OnGameResume;
     public Action OnGameReturnToMenu;
     
     private void Awake()
@@ -82,8 +80,7 @@ public class UIManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        OnGameResume?.Invoke();
-        GameManager.Instance.StartGame();
+        GameManager.Instance.ResumeGame();
         pausePanel.SetActive(false);
         hudPanel.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
@@ -234,7 +231,7 @@ public class UIManager : MonoBehaviour
         wrongWayPanel.SetActive(isActive);
     }
 
-    private void UpdateHealthText(float health)
+    public void UpdateHealthText(float health)
     {
         if (Instance == null) return;
         healthSlider.value = health;
@@ -261,16 +258,8 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         OnGameEnded += ShowEndScreen;
-        OnHealthUpdated += UpdateHealthText;
         OnGamePaused += ActivatePausePanel;
         
         OnGameEnded += UpdateCoinTexts;
-    }
-
-    private void OnDisable()
-    {
-        OnHealthUpdated -= UpdateHealthText;
-        OnGameEnded -= ShowEndScreen;
-        OnGamePaused -= ActivatePausePanel;
     }
 }

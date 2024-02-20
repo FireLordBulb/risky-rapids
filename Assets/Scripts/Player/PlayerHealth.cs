@@ -1,6 +1,4 @@
 using System;
-using Unity.VisualScripting.FullSerializer;
-using UnityEngine;
 
 public class PlayerHealth
 {
@@ -31,7 +29,7 @@ public class PlayerHealth
     {
         currentHealth = maxHealth;
         armor = currentMaxArmor;
-        UIManager.Instance.OnHealthUpdated?.Invoke(currentHealth);
+        UIManager.Instance.UpdateHealthText(currentHealth);
     }
 
     private void TakeDamage(float damage)
@@ -50,7 +48,7 @@ public class PlayerHealth
         }
         
         currentHealth -= damage;
-        UIManager.Instance.OnHealthUpdated?.Invoke(currentHealth);
+        UIManager.Instance.UpdateHealthText(currentHealth);
         
         if (currentHealth <= 0)
         {

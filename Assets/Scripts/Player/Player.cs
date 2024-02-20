@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         playerHealth = new PlayerHealth(GameManager.Instance.GetCurrentGameData().MaxHealth, GameManager.Instance.GetCurrentGameData().Armor);
+        playerHealth.OnReplenishHealth?.Invoke();
         GameManager.Instance.InitializePlayer(this);
     }
     

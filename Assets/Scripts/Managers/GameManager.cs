@@ -227,7 +227,13 @@ public class GameManager : MonoBehaviour
     {
         CurrentGameState = GameState.Playing;
         Time.timeScale = 1;
+        levelTimer.Reset();
         levelStartCoins = Coins;
+    }
+    public void ResumeGame()
+    {
+        CurrentGameState = GameState.Playing;
+        Time.timeScale = 1;
     }
     public void RestartGame()
     {
@@ -239,6 +245,8 @@ public class GameManager : MonoBehaviour
     {
         CurrentGameState = GameState.MainMenu;
         Time.timeScale = 1;
+        levelTimer.Reset();
+        Coins = levelStartCoins;
         ResetLevel();
     }
 
@@ -260,7 +268,7 @@ public class GameManager : MonoBehaviour
         levelStartCoins = Coins;
         UIManager.Instance.SetEndPanelValues(levelTimer.CurrentTimeString, coinsFromTime, coinsCollected);
         levelTimer.Reset();
-
+        
         UIManager.Instance.OnGameEnded?.Invoke();
         SaveManager.Instance.SaveCoins(Coins);
     }
@@ -303,22 +311,5 @@ public class GameManager : MonoBehaviour
     public SO_GameData GetCurrentGameData()
     {
         return currentGameData;
-    }
-    
-    private void OnSceneLoaded(Scene sceneToLoad, LoadSceneMode sceneLoadMode)
-    {
-        if(!UIManager.Instance) return;
-        UIManager.Instance.OnHealthUpdated?.Invoke(gameDatas[0].MaxHealth);
-    }
-
-    private void OnEnable()
-    {
-        
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;  
     }
 }
