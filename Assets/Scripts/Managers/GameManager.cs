@@ -81,7 +81,8 @@ public class GameManager : MonoBehaviour
         {
             CurrentGameState = GameState.MainMenu;
             LoadLevel(0);
-        } else { 
+        } else
+        { 
             CurrentGameState = GameState.Playing;
             SceneManager.LoadScene(UI, LoadSceneMode.Additive);
             if (currentLevel == null)
