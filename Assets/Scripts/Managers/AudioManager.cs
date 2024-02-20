@@ -88,31 +88,11 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        //PlayMenuAudio();
-        if (!MenuSource.isPlaying)
-        {
-            //PlayMenuAudio();
-        }
-        
         UIManager.Instance.OnGameStart += StopMenuAudio;
-        //UIManager.Instance.OnGamePaused += PlayMenuAudio2;
-        //UIManager.Instance.OnGameResume += StopMenuAudio2;
-        UIManager.Instance.OnGameEnded += PlayMenuAudio;
-        UIManager.Instance.OnGameReturnToMenu += PlayMenuAudio2;
-        
 
         UIManager.Instance.OnGameStart += PlayBackgroundAudio;
-        //UIManager.Instance.OnGamePaused += StopBackgroundAudio;
-        ////UIManager.Instance.OnGameResume += PlayBackgroundAudio;
-        UIManager.Instance.OnGameEnded += StopBackgroundAudio2;
-        UIManager.Instance.OnGameReturnToMenu += StopBackgroundAudio;
 
         UIManager.Instance.OnGameStart += PlayRiverAudio;
-        //UIManager.Instance.OnGamePaused += StopRiverAudio;
-        //UIManager.Instance.OnGameResume += PlayRiverAudio;
-        //UIManager.Instance.OnGameEnded += StopRiverAudio2;
-        UIManager.Instance.OnGameReturnToMenu += StopRiverAudio;
-
     }
 
     //Play audio methods (first a general that can be used for everynone and then all specifics)//

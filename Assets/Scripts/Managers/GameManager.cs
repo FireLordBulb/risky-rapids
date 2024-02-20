@@ -269,7 +269,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.SetEndPanelValues(levelTimer.CurrentTimeString, coinsFromTime, coinsCollected);
         levelTimer.Reset();
         
-        UIManager.Instance.OnGameEnded?.Invoke();
+        UIManager.Instance.ShowEndScreen();
         SaveManager.Instance.SaveCoins(Coins);
     }
     public void FailGame()
