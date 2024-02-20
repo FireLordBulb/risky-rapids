@@ -289,6 +289,7 @@ GameObject:
   - component: {fileID: 156308667}
   - component: {fileID: 156308666}
   - component: {fileID: 156308665}
+  - component: {fileID: 156308668}
   m_Layer: 6
   m_Name: MenuBackgroundPanel
   m_TagString: Untagged
@@ -353,6 +354,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &156308668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156308664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 810b6f671c2168142b4223ea1d8821e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeTime: 0.3
 --- !u!114 &296478969 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6208782364452247389, guid: cc7346816b474364a9355eac748e99e6,
@@ -1759,7 +1773,7 @@ MonoBehaviour:
   tutorialPanel1: {fileID: 1293730854}
   tutorialPanel2: {fileID: 2005828904}
   pauseButton: {fileID: 887450349}
-  menuBackgroundPanel: {fileID: 156308664}
+  menuBackgroundPanel: {fileID: 156308668}
   loadingScreenPanel: {fileID: 793388000}
   healthSlider: {fileID: 1119252301}
   countDownText: {fileID: 1293730855}
