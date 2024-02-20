@@ -615,6 +615,7 @@ GameObject:
   - component: {fileID: 793387997}
   - component: {fileID: 793387999}
   - component: {fileID: 793387998}
+  - component: {fileID: 793388000}
   m_Layer: 6
   m_Name: LoadingScreenPanel
   m_TagString: Untagged
@@ -679,6 +680,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 793387996}
   m_CullTransparentMesh: 1
+--- !u!114 &793388000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793387996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 810b6f671c2168142b4223ea1d8821e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &808654143 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8723447517837020380, guid: 2b653ce697b1a494fab40a4903c6c7d9,
