@@ -19,7 +19,7 @@ public class PlayerHealth
     {
         currentHealth = maxHealth;
         armor = currentMaxArmor;
-        UIManager.Instance.UpdateHealthText(currentHealth);
+        UIManager.Instance.UpdateHealthSlider(currentHealth);
     }
 
     public void TakeDamage(float damage)
@@ -38,7 +38,7 @@ public class PlayerHealth
         }
         
         currentHealth -= damage;
-        UIManager.Instance.UpdateHealthText(currentHealth);
+        UIManager.Instance.UpdateHealthSlider(currentHealth);
         
         if (currentHealth <= 0)
         {

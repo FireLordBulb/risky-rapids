@@ -9,11 +9,11 @@ public class CameraToggler : MonoBehaviour
     {
         if (UIManager.Instance != null)
         {
-            UIManager.Instance.ToggleUICamera(false);
+            UIManager.Instance.UICameraSetActive(false);
         }
     }
     private void OnDestroy()
     {
-        UIManager.Instance.ToggleUICamera(true);
+        UIManager.Instance.UICameraSetActive(true);
     }
 }

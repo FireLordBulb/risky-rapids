@@ -8,20 +8,18 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
+    public LoadingScreenFade menuBackgroundPanel;
+    public LoadingScreenFade loadingScreenPanel;
+    
     [SerializeField] private GameObject gameEndPanel;
-    [SerializeField] private GameObject characterSelectionPanel;
     [SerializeField] private GameObject hudPanel;
     [SerializeField] private GameObject wrongWayPanel;
     [SerializeField] private GameObject mainMenuPanel;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject gameOverPanel;
-    [SerializeField] private GameObject shopPanel;
     [SerializeField] private GameObject tutorialPanel1;
     [SerializeField] private GameObject tutorialPanel2;
     [SerializeField] private GameObject pauseButton;
-    // An opaque panel to be behind the transparent menu panel during level loading.
-    [SerializeField] private LoadingScreenFade menuBackgroundPanel;
-    [SerializeField] private LoadingScreenFade loadingScreenPanel;
     
     [Space] [Space] 
     
@@ -45,11 +43,7 @@ public class UIManager : MonoBehaviour
         Instance = this;
 
         activePanel = mainMenuPanel;
-        ToggleUICamera(false);
-    }
-    public void ToggleUICamera(bool toggle)
-    {
-        uiCamera.gameObject.SetActive(toggle);
+        UICameraSetActive(false);
     }
     public void StartGame()
     {
@@ -60,70 +54,66 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.StartCountdown();
         MakeActivePanel(hudPanel);
     }
-    public void TogglePauseButton(bool toggle)
+    public void UpdateEndPanelText(string time, int coinsFromTime, int coinsCollected)
     {
-        pauseButton.SetActive(toggle);
+        endTime.text = $"TIME : {time}";
+        endCoinsFromTime.text = $"COINS FROM TIME : +{coinsFromTime}";
+        endCoinsCollected.text = $"COINS COLLECTED : +{coinsCollected}";
     }
-    public void ToggleMenuBackground(bool toggle)
+    public void UpdateCoinTexts()
     {
-        if (toggle)
+        foreach (TextMeshProUGUI coinText in coinTexts)
         {
-            menuBackgroundPanel.MakeSolid();
-        } else
-        {
-            menuBackgroundPanel.FadeOut();
+            coinText.text = GameManager.Instance.Coins.ToString();
         }
     }
-    public void ToggleLoadingScreen(bool toggle)
+    public void UpdateCountDownText(string text)
     {
-        if (toggle)
-        {
-            loadingScreenPanel.MakeSolid();
-        } else
-        {
-            loadingScreenPanel.FadeOut();
-        }
+        countDownText.text = text;
     }
-    public void ShowEndScreen()
+    public void UpdateHealthSlider(float health)
     {
-        MakeActivePanel(gameEndPanel);
+        healthSlider.value = health;
     }
-    public void ShowGameOverScreen()
+    public void UICameraSetActive(bool isActive)
     {
-        MakeActivePanel(gameOverPanel);
+        uiCamera.gameObject.SetActive(isActive);
     }
-    public void ShowMainMenu()
+    public void WrongWayPanelSetActive(bool isActive)
+    {
+        wrongWayPanel.SetActive(isActive);
+    }
+    public void PauseButtonSetActive(bool isActive)
+    {
+        pauseButton.SetActive(isActive);
+    }
+    public void ShowMainMenuPanel()
     {
         MakeActivePanel(mainMenuPanel);
     }
-    public void GameManagerLoadLevel(int index)
+    public void ShowGameEndPanel()
     {
-        GameManager.Instance.LoadLevel(index);
+        MakeActivePanel(gameEndPanel);
     }
-    public void GameManagerResumeGame()
+    public void ShowGameOverPanel()
     {
-        GameManager.Instance.ResumeGame();
+        MakeActivePanel(gameOverPanel);
     }
-    public void GameManagerReturnToMenu()
-    {
-        GameManager.Instance.ReturnToMenu();
-    }
-    public void GameManagerRestartGame()
-    {
-        GameManager.Instance.RestartGame();
-    }
-    public void GameManagerLoadNextLevel()
-    {
-        GameManager.Instance.LoadNextLevel();
-    }
-    public void ActivatePausePanel()
+    public void ShowPausePanel()
     {
         MakeActivePanel(pausePanel);
+    }
+    public void MakeActivePanel(GameObject panel)
+    {
+        activePanel.SetActive(false);
+        activePanel = panel;
+        activePanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
     }
     public void StartTutorial()
     {
         tutorialPanel1.SetActive(true);
-        TogglePauseButton(false);
+        PauseButtonSetActive(false);
     }
     public void ContinueTutorial()
     {
@@ -137,41 +127,29 @@ public class UIManager : MonoBehaviour
         tutorialPanel2.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
     }
-    public void MakeActivePanel(GameObject panel)
-    {
-        activePanel.SetActive(false);
-        activePanel = panel;
-        activePanel.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
-    }
     public void QuitGame()
     {
         Application.Quit();
     }
-    public void WrongWayPanelSetActive(bool isActive)
+    // GameManager method relays |>----------------------------------------------------------------------------------------
+    public void GameManagerLoadLevel(int index)
     {
-        wrongWayPanel.SetActive(isActive);
+        GameManager.Instance.LoadLevelInMenu(index);
     }
-    public void UpdateHealthText(float health)
+    public void GameManagerLoadNextLevel()
     {
-        if (Instance == null) return;
-        healthSlider.value = health;
+        GameManager.Instance.LoadNextLevel();
     }
-    public void UpdateCountDownText(string text)
+    public void GameManagerReturnToMenu()
     {
-        countDownText.text = text;
+        GameManager.Instance.ReturnToMenu();
     }
-    public void UpdateCoinTexts()
+    public void GameManagerRestartGame()
     {
-        foreach (TextMeshProUGUI coinText in coinTexts)
-        {
-            coinText.text = GameManager.Instance.Coins.ToString();
-        }
+        GameManager.Instance.RestartGame();
     }
-    public void SetEndPanelValues(string time, int coinsFromTime, int coinsCollected)
+    public void GameManagerResumeGame()
     {
-        endTime.text = $"TIME : {time}";
-        endCoinsFromTime.text = $"COINS FROM TIME : +{coinsFromTime}";
-        endCoinsCollected.text = $"COINS COLLECTED : +{coinsCollected}";
+        GameManager.Instance.ResumeGame();
     }
 }

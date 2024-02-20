@@ -33,8 +33,7 @@ public class LoadingScreenFade : MonoBehaviour
         Color newColor = new Color(baseColor.r, baseColor.g, baseColor.b, opacity);
         image.color = newColor;
     }
-
-    public void MakeSolid()
+    public void MakeOpaque()
     {
         gameObject.SetActive(true);
         image.color = baseColor;

@@ -81,8 +81,8 @@ public class GameManager : MonoBehaviour
         if (currentSceneName.Equals(UI))
         {
             CurrentGameState = GameState.MainMenu;
-            UIManager.Instance.ToggleUICamera(true);
-            LoadLevel(0);
+            UIManager.Instance.UICameraSetActive(true);
+            LoadLevel(0, () => {});
         } else
         { 
             CurrentGameState = GameState.Playing;
@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.MainMenu:
                 ReturnToMenu();
-                UIManager.Instance.ShowMainMenu();
+                UIManager.Instance.ShowMainMenuPanel();
                 break;
             case GameState.Playing:
                 UIManager.Instance.StartGame();
@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
                 countDownText = "GO!";
                 if (CurrentGameState == GameState.CountDown)
                 {
-                    UIManager.Instance.TogglePauseButton(true);
+                    UIManager.Instance.PauseButtonSetActive(true);
                     StartGame();
                 }
             }
@@ -152,33 +152,34 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         CurrentGameState = GameState.Paused;
-        UIManager.Instance.ActivatePausePanel();
+        UIManager.Instance.ShowPausePanel();
         Time.timeScale = 0;
         AudioManager.Instance.StopRiverAudio();
     }
     public void LoadNextLevel()
     {
         AudioManager.Instance.PlayGameplayMusic();
-        UIManager.Instance.ToggleLoadingScreen(true);
+        UIManager.Instance.loadingScreenPanel.MakeOpaque();
         int index = currentLevelIndex+1;
         if (levels.Length <= index)
         {
             ReturnToMenu();
-            UIManager.Instance.ShowMainMenu();
+            UIManager.Instance.ShowMainMenuPanel();
             return;
         }
         LoadLevel(index, () => StartCountdown());
     }
-    public void LoadLevel(int index)
+    public void LoadLevelInMenu(int index)
     {
-        LoadLevel(index, () => { });
+        UIManager.Instance.menuBackgroundPanel.MakeOpaque();
+        LoadLevel(index, () => {});
     }
     public void LoadLevel(int index, Action postLoadAction)
     {
         if (index == currentLevelIndex)
         {
-            UIManager.Instance.ToggleMenuBackground(false);
-            UIManager.Instance.ToggleLoadingScreen(false);
+            UIManager.Instance.menuBackgroundPanel.FadeOut();
+            UIManager.Instance.loadingScreenPanel.FadeOut();
             return;
         }
         if (currentLevel != null)
@@ -208,8 +209,8 @@ public class GameManager : MonoBehaviour
         player.InitializePlayerModel();
         UpgradeHolder.Instance.FixUpgrades();
         UpgradeHolder.Instance.ApplyCurrentBoatSkin();
-        UIManager.Instance.ToggleMenuBackground(false);
-        UIManager.Instance.ToggleLoadingScreen(false);
+        UIManager.Instance.menuBackgroundPanel.FadeOut();
+        UIManager.Instance.loadingScreenPanel.FadeOut();
         postLoadAction();
     }
 
@@ -225,7 +226,7 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.StartTutorial();
             return;
         }
-        UIManager.Instance.TogglePauseButton(false);
+        UIManager.Instance.PauseButtonSetActive(false);
         CurrentGameState = GameState.CountDown;
         countDownLeft = countDownTime;
     }
@@ -272,10 +273,10 @@ public class GameManager : MonoBehaviour
         int coinsFromTime = Math.Max((int)(coinsPerSecond*timeDifference), 0);
         Coins += coinsFromTime;
         levelStartCoins = Coins;
-        UIManager.Instance.SetEndPanelValues(levelTimer.CurrentTimeString, coinsFromTime, coinsCollected);
+        UIManager.Instance.UpdateEndPanelText(levelTimer.CurrentTimeString, coinsFromTime, coinsCollected);
         levelTimer.Reset();
         
-        UIManager.Instance.ShowEndScreen();
+        UIManager.Instance.ShowGameEndPanel();
         AudioManager.Instance.PlayMenuMusic();
         SaveManager.Instance.SaveCoins(Coins);
     }
@@ -285,7 +286,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         AudioManager.Instance.StopRiverAudio();
         Coins = levelStartCoins;
-        UIManager.Instance.ShowGameOverScreen();
+        UIManager.Instance.ShowGameOverPanel();
     }
     private void ResetLevel()
     {
