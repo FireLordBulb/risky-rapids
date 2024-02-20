@@ -23,15 +23,22 @@ public class LoadingScreenFade : MonoBehaviour
             return;
         }
         timeLeft -= Time.deltaTime;
-        float opacity = timeLeft / fadeTime;
         if (timeLeft < 0)
         {
             gameObject.SetActive(false);
             isFading = false;
-            opacity = 1;
+            return;
         }
+        float opacity = timeLeft / fadeTime;
         Color newColor = new Color(baseColor.r, baseColor.g, baseColor.b, opacity);
         image.color = newColor;
+    }
+
+    public void MakeSolid()
+    {
+        gameObject.SetActive(true);
+        image.color = baseColor;
+        isFading = false;
     }
     public void FadeOut()
     {

@@ -129,7 +129,7 @@ public class UIManager : MonoBehaviour
     {
         if (toggle)
         {
-            menuBackgroundPanel.gameObject.SetActive(true);
+            menuBackgroundPanel.MakeSolid();
         } else
         {
             menuBackgroundPanel.FadeOut();
@@ -139,7 +139,7 @@ public class UIManager : MonoBehaviour
     {
         if (toggle)
         {
-            loadingScreenPanel.gameObject.SetActive(true);
+            loadingScreenPanel.MakeSolid();
         } else
         {
             loadingScreenPanel.FadeOut();
