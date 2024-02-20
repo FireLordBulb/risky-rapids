@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,7 +19,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         playerHealth = new PlayerHealth(GameManager.Instance.GetCurrentGameData().MaxHealth, GameManager.Instance.GetCurrentGameData().Armor);
-        playerHealth.OnReplenishHealth?.Invoke();
+        playerHealth.ReplenishHealth();
         GameManager.Instance.InitializePlayer(this);
     }
     
@@ -72,14 +70,14 @@ public class Player : MonoBehaviour
     }
     public void DecreaseHealth(float damage)
     {
-        playerHealth.OnDamageTaken?.Invoke(damage);
+        playerHealth.TakeDamage(damage);
     }
 
     public void RestoreHealth()
     {
         if (playerHealth != null)
         {
-            playerHealth.OnReplenishHealth?.Invoke();
+            playerHealth.ReplenishHealth();
         }
     }
 

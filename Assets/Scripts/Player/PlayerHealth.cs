@@ -7,32 +7,22 @@ public class PlayerHealth
     private float armor;
     private float currentMaxArmor;
     
-    public Action OnReplenishHealth;
-    public Action<float> OnDamageTaken;
-    
     public PlayerHealth(float maxHealth, float armor)
     {
         this.maxHealth = maxHealth;
         currentHealth = this.maxHealth;
         this.armor = armor;
         currentMaxArmor = armor;
-        OnReplenishHealth += ReplenishHealth;
-        OnDamageTaken += TakeDamage;
-    }
-    ~PlayerHealth()
-    {
-        OnReplenishHealth -= ReplenishHealth;
-        OnDamageTaken -= TakeDamage;
     }
 
-    private void ReplenishHealth()
+    public void ReplenishHealth()
     {
         currentHealth = maxHealth;
         armor = currentMaxArmor;
         UIManager.Instance.UpdateHealthText(currentHealth);
     }
 
-    private void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         if (armor > 0)
         {
