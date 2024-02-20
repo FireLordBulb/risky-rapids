@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseButton;
     // An opaque panel to be behind the transparent menu panel during level loading.
     [SerializeField] private GameObject menuBackgroundPanel;
-    [SerializeField] private GameObject loadingScreenPanel;
+    [SerializeField] private LoadingScreenFade loadingScreenPanel;
     
     [Space] [Space] 
     
@@ -128,7 +128,13 @@ public class UIManager : MonoBehaviour
     }
     public void ToggleLoadingScreen(bool toggle)
     {
-        loadingScreenPanel.SetActive(toggle);
+        if (toggle)
+        {
+            loadingScreenPanel.gameObject.SetActive(true);
+        } else
+        {
+            loadingScreenPanel.FadeOut();
+        }
     }
     private void ShowEndScreen()
     {
