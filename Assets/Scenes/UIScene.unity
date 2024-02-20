@@ -692,7 +692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 810b6f671c2168142b4223ea1d8821e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeTime: 0.2
+  fadeTime: 0.5
 --- !u!114 &808654143 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8723447517837020380, guid: 2b653ce697b1a494fab40a4903c6c7d9,
