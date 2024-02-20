@@ -44,11 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d237bc9013c08e941a6598e719527d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finishLinePrefab: {fileID: 8313998372643413673, guid: 67971589544289649a240dab274a426d,
-    type: 3}
   gameDatas:
   - {fileID: 11400000, guid: 947909780fd52324dafe3e5899e6a00e, type: 2}
   levelDataList: {fileID: 11400000, guid: bbfc50ebc6dc3ff46955d3feb8eb61bc, type: 2}
+  gameEndDragScale: 1.3
   coinsPerSecond: 2
   countDownTime: 4
-  Coins: 0

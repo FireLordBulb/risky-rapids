@@ -85,7 +85,14 @@ public class BoatPhysics : MonoBehaviour
         waterFlowForce = physicsData.waterFlowForce;
         baseRowForce = physicsData.baseRowForce + UpgradeHolder.Instance.GetUpgradeValue(UpgradeType.Paddle);
     }
-    
+    public void ScaleLinearDrag(float scale)
+    {
+        Rigidbody.drag *= scale;
+    }
+    public void ResetLinearDrag()
+    {
+        Rigidbody.drag = physicsData.linearDrag;
+    }
     public void AddKnockBack(float force, Vector3 normal, float minSpeedScalar)
     {
         if (hasBeenKnockedBack)

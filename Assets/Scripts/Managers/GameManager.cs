@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private List<SO_GameData> gameDatas;
     [SerializeField] private SO_LevelDataList levelDataList;
+    [SerializeField] private float gameEndDragScale;
     [SerializeField] private float coinsPerSecond;
     [SerializeField] private int countDownTime;
     private SO_LevelData[] levels;
@@ -247,7 +248,8 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         CurrentGameState = GameState.EndGame;
-
+        boatPhysics.ScaleLinearDrag(gameEndDragScale);
+        
         int coinsCollected = Coins-levelStartCoins;
         float timeTaken = levelTimer.CurrentTime;
         float timeDifference = currentLevel.baseTime - timeTaken;
@@ -275,10 +277,10 @@ public class GameManager : MonoBehaviour
     private void ResetPlayer()
     {
         if (!boatPhysics) return;
+        boatPhysics.ResetLinearDrag();
+
         Rigidbody rb = boatPhysics.Rigidbody;
-        boatPhysics.transform.position = playerSpawnPosition;
         rb.position = playerSpawnPosition;
-        boatPhysics.transform.rotation = playerSpawnRotation;
         rb.rotation = playerSpawnRotation;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
