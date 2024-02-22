@@ -48,11 +48,13 @@ public class UpgradeHolder : MonoBehaviour
         boatSkins = saveData.OwnedSkins;
         activeBoatSkin = saveData.EquippedSkin;
         characterAppearances = saveData.CharacterAppearances;
-
-        player = FindObjectOfType<Player>();
+    }
+    public void InitializePlayer(Player newPlayer)
+    {
+        player = newPlayer;
         playerUpgrades = player.GetComponent<PlayerUpgrades>();
         FixUpgrades();
-        playerUpgrades.ApplyBoatMaterial(activeBoatSkin == null ? null : activeBoatSkin.BoatMaterial);
+        ApplyCurrentBoatSkin();
         InitializePlayerModel();
     }
     public void InitializePlayerModel()
@@ -73,13 +75,14 @@ public class UpgradeHolder : MonoBehaviour
     }
     public void AddUpgrade(UpgradeType upgradeType)
     {
-        int index = GetUpgradeIndex(upgradeType);
-        if (upgradeLevels[index].Level < Upgrade.MaxLevel)
+        UpgradeLevel upgradeLevel = upgradeLevels[GetUpgradeIndex(upgradeType)];
+        if (Upgrade.MaxLevel <= upgradeLevel.Level)
         {
-            upgradeLevels[index].IncreaseLevel();
-            shopObjects.Find(x => x.UpgradeType == upgradeType).upgradeObject.Upgrade();
-            SaveManager.Instance.SaveUpgrades(upgradeLevels);
+            return;
         }
+        upgradeLevel.IncreaseLevel();
+        shopObjects.Find(x => x.UpgradeType == upgradeType).upgradeObject.Upgrade();
+        SaveManager.Instance.SaveUpgrades(upgradeLevels);
     }
     public void ApplyCurrentBoatSkin()
     {
@@ -135,17 +138,7 @@ public class UpgradeHolder : MonoBehaviour
 
     private int GetUpgradeIndex(UpgradeType type)
     {
-        for (var index = 0; index < upgradeLevels.Length; index++)
-        {
-            var upgrade = upgradeLevels[index];
-            if (upgrade.UpgradeType == type)
-            {
-                return index;
-            }
-        }
-
-        Debug.LogError("Error: Did not find upgrade");
-        return -1;
+        return (int)type;
     }
     
     public int GetUpgradeLevel(UpgradeType type)

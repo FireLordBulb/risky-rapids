@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
         InitializeHealth();
         playerHealth.ReplenishHealth();
         GameManager.Instance.InitializePlayer(this);
+        UpgradeHolder.Instance.InitializePlayer(this);
     }
     private void InitializeHealth()
     {
