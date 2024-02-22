@@ -21,8 +21,8 @@ public struct ShopUpgrades
 public class UpgradeHolder : MonoBehaviour
 {
     [SerializeField] private List<ShopUpgrades> shopObjects;
-    [SerializeField] private List<UpgradeLevel> upgradeLevels = new();
-    [SerializeField] private List<BoatSkin> boatSkins = new();
+    [SerializeField] private UpgradeLevel[] upgradeLevels;
+    [SerializeField] private List<BoatSkin> boatSkins;
     [SerializeField] private BoatSkin activeBoatSkin;
     public ShopItemHolder activeBoatItem;
     public static UpgradeHolder Instance;
@@ -39,10 +39,11 @@ public class UpgradeHolder : MonoBehaviour
             Destroy(this);
         }
     }
-    public void AddFromSave(List<UpgradeLevel> levels, List<BoatSkin> savedBoatSkins, BoatSkin equippedSkin)
+    public void AddFromSave(SaveData saveData)
     {
-        upgradeLevels.AddRange(levels);
-        boatSkins.AddRange(savedBoatSkins);
+        upgradeLevels = saveData.UpgradeLevels;
+        boatSkins = saveData.OwnedSkins;
+        var equippedSkin = saveData.EquippedSkin;
         PlayerUpgrades playerUpgrades = FindObjectOfType<PlayerUpgrades>();
         if (equippedSkin != null)
         {
@@ -119,7 +120,7 @@ public class UpgradeHolder : MonoBehaviour
 
     private int GetUpgradeIndex(UpgradeType type)
     {
-        for (var index = 0; index < upgradeLevels.Count; index++)
+        for (var index = 0; index < upgradeLevels.Length; index++)
         {
             var upgrade = upgradeLevels[index];
             if (upgrade.UpgradeType == type)

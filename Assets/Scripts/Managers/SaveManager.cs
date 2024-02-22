@@ -3,20 +3,37 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class SavedStats
+public class SaveData
 {
+    private const int RowerCount = 2;
     public int Coins;
-    
-    // Upgrades and skins
-    public List<UpgradeLevel> UpgradeLevels;
-    public List<BoatSkin> SkinsUnlocked;
-    public BoatSkin EquippedBoat;
+    public UpgradeLevel[] UpgradeLevels;
+    public List<BoatSkin> OwnedSkins;
+    public BoatSkin EquippedSkin;
+    public CharacterAppearance[] CharacterAppearances;
+    public SaveData()
+    {
+        Coins = 0;
+        UpgradeLevels = new UpgradeLevel[] { new(UpgradeType.Magnet), new(UpgradeType.Paddle), new(UpgradeType.Armor) };
+        OwnedSkins = new List<BoatSkin>();
+        CharacterAppearances = new CharacterAppearance[RowerCount];
+        for (int i = 0; i < CharacterAppearances.Length; i++)
+        {
+            CharacterAppearances[i] = new CharacterAppearance(i);
+        }
+    }
 }
 
 [Serializable]
 public class CharacterAppearance
 {
-    //public 
+    public CharacterColor color;
+    public CharacterMesh mesh;
+    public CharacterAppearance(int rowerIndex)
+    {
+        color = (CharacterColor)rowerIndex;
+        mesh = (CharacterMesh)rowerIndex;
+    }
 }
 [Serializable]
 public class UpgradeLevel
@@ -41,7 +58,7 @@ public class SaveManager : MonoBehaviour
     public static SaveManager Instance;
     [SerializeField] private string fileName = "Save";
     
-    private SavedStats savedStats;
+    private SaveData saveData = new();
     private string saveDirectoryPath;
     private string saveFilePath;
 
@@ -70,10 +87,10 @@ public class SaveManager : MonoBehaviour
         try
         {
             string saveDataJson = File.ReadAllText(saveFilePath);
-            savedStats = JsonUtility.FromJson<SavedStats>(saveDataJson);
+            saveData = JsonUtility.FromJson<SaveData>(saveDataJson);
             
-            GameManager.Instance.SetStartCoins(savedStats.Coins);
-            UpgradeHolder.Instance.AddFromSave(savedStats.UpgradeLevels, savedStats.SkinsUnlocked, savedStats.EquippedBoat);
+            GameManager.Instance.SetStartCoins(saveData.Coins);
+            UpgradeHolder.Instance.AddFromSave(saveData);
         }
         catch (Exception e)
         {
@@ -88,17 +105,8 @@ public class SaveManager : MonoBehaviour
             {
                 Directory.CreateDirectory(saveDirectoryPath);
             }
-            savedStats = new SavedStats
-            {
-                Coins = 0,
-                UpgradeLevels = new List<UpgradeLevel>(),
-                SkinsUnlocked = new List<BoatSkin>()
-            };
-            savedStats.UpgradeLevels.Add(new UpgradeLevel(UpgradeType.Magnet));
-            savedStats.UpgradeLevels.Add(new UpgradeLevel(UpgradeType.Paddle));
-            savedStats.UpgradeLevels.Add(new UpgradeLevel(UpgradeType.Armor));
-            UpgradeHolder.Instance.AddFromSave(savedStats.UpgradeLevels, savedStats.SkinsUnlocked, null);
             SaveToFile();
+            UpgradeHolder.Instance.AddFromSave(saveData);
         }
         catch (Exception e)
         {
@@ -106,29 +114,29 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public void SaveUpgrades(List<UpgradeLevel> list)
+    public void SaveUpgrades(UpgradeLevel[] levels)
     {
-        savedStats.Coins = GameManager.Instance.Coins;
-        savedStats.UpgradeLevels = list;
+        saveData.Coins = GameManager.Instance.Coins;
+        saveData.UpgradeLevels = levels;
         SaveToFile();
     }
     
     public void SaveSkins(List<BoatSkin> list)
     {
-        savedStats.Coins = GameManager.Instance.Coins;
-        savedStats.SkinsUnlocked = list;
+        saveData.Coins = GameManager.Instance.Coins;
+        saveData.OwnedSkins = list;
         SaveToFile();
     }
 
     public void SaveEquippedSkin(BoatSkin boatSkin)
     {
-        savedStats.EquippedBoat = boatSkin;
+        saveData.EquippedSkin = boatSkin;
         SaveToFile();
     }
     
     public void SaveCoins(int coins)
     {
-        savedStats.Coins = coins;
+        saveData.Coins = coins;
         SaveToFile();
     }
 
@@ -136,7 +144,7 @@ public class SaveManager : MonoBehaviour
     {
         try
         {
-            string saveDataJson = JsonUtility.ToJson(savedStats);
+            string saveDataJson = JsonUtility.ToJson(saveData);
             File.WriteAllText(saveFilePath, saveDataJson);
         }
         catch (Exception e)
