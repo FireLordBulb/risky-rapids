@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3290774947829543852}
   - component: {fileID: 618291573153014083}
   - component: {fileID: 381610971788897598}
+  - component: {fileID: 7965950024760992653}
   m_Layer: 5
   m_Name: ItemBuy
   m_TagString: Untagged
@@ -66,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -132,6 +133,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7965950024760992653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306622472182054189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 628c20a0b1198494987ecd702f7cbc12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atlas: {fileID: 100100200, guid: b42ced7897a02b2478bd2d8286ec3819, type: 3}
+  spriteName: ItemTemplate
 --- !u!1 &4953096598831678043
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,13 +519,13 @@ MonoBehaviour:
   title: 
   description: 
   cost: 0
-  isBought: 0
   titleText: {fileID: 7250525684167009785}
   descriptionText: {fileID: 5020366975092723898}
   costText: {fileID: 2439724019531633872}
   upgradeLevelNumber: {fileID: 5503015749735187519}
   shopItemPicture: {fileID: 5467697687168701209}
   shopItemTemplate: {fileID: 1224871461983738605}
+  checkMark: {fileID: 0}
 --- !u!114 &1224871461983738605
 MonoBehaviour:
   m_ObjectHideFlags: 0
