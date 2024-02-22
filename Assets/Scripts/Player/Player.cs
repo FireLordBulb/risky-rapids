@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
@@ -17,13 +14,16 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         InitializeHealth();
+        foreach (Rower rower in rowers)
+        {
+            rower.Initialize(playerData);
+        }
     }
     private void Start()
     {
         InitializeHealth();
         playerHealth.ReplenishHealth();
         GameManager.Instance.InitializePlayer(this);
-        InitializePlayerModel();
     }
     private void InitializeHealth()
     {
@@ -34,21 +34,26 @@ public class Player : MonoBehaviour
         SO_GameData currentGameData = GameManager.Instance.CurrentGameData;
         playerHealth = new PlayerHealth(currentGameData.MaxHealth, currentGameData.Armor);
     }
-    public void InitializePlayerModel()
+    public void InitializeModel(CharacterAppearance[] characterAppearances)
     {
-        CharacterMesh hairStyle = (CharacterMesh)PlayerPrefs.GetInt("PlayerOneHair");
-        CharacterColor hairColor = (CharacterColor)PlayerPrefs.GetInt("PlayerOneColor");
-        foreach (Rower rower in rowers)
+        for (int i = 0; i < rowers.Length; i++)
         {
-            rower.SetActiveHairStyle(hairStyle);
-            rower.SetMaterial(playerData.GetMaterial(hairStyle, hairColor));
-            
-            hairStyle = (CharacterMesh)PlayerPrefs.GetInt("PlayerTwoHair");
-            hairColor = (CharacterColor)PlayerPrefs.GetInt("PlayerTwoColor");
+            var rower = rowers[i];
+            var characterAppearance = characterAppearances[i];
+            rower.SetColor(characterAppearance.color);
+            rower.SetMesh(characterAppearance.mesh);
         }
-        
+
         rightSplash.Stop();
         leftSplash.Stop();
+    }
+    public void SetRowerColor(int rowerIndex, CharacterColor color)
+    {
+        rowers[rowerIndex].SetColor(color);
+    }
+    public void SetRowerMesh(int rowerIndex, CharacterMesh mesh)
+    {
+        rowers[rowerIndex].SetMesh(mesh);
     }
     public void PlaySplashVFX(bool leftOar, bool rightOar)
     {

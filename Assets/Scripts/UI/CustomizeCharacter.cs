@@ -4,39 +4,28 @@ using UnityEngine;
 
 public class CustomizeCharacter : MonoBehaviour
 {
-    private Player player;
     public void SetColorForPlayerOne(CharacterColorBehavior color)
     {
-        SetColorForPlayer(0, color);
+        SetRowerColor(0, color);
     }
     public void SetColorForPlayerTwo(CharacterColorBehavior color)
     {
-        SetColorForPlayer(1, color);
+        SetRowerColor(1, color);
     }
-    public void SetMeshForPlayerOne(CharacterMeshBehavior hair)
+    public void SetMeshForPlayerOne(CharacterMeshBehavior mesh)
     {
-        SetMeshForPlayer(0, hair);
+        SetRowerMesh(0, mesh);
     }
-    public void SetMeshForPlayerTwo(CharacterMeshBehavior hair)
+    public void SetMeshForPlayerTwo(CharacterMeshBehavior mesh)
     {
-        SetMeshForPlayer(1, hair);
+        SetRowerMesh(1, mesh);
     }
-    private void SetColorForPlayer(int playerIndex, CharacterColorBehavior color)
+    private void SetRowerColor(int playerIndex, CharacterColorBehavior color)
     {
-        PlayerPrefs.SetInt(playerIndex == 0 ? "PlayerOneColor" : "PlayerTwoColor", (int)color.characterColor);
-        UpdatePlayer();
+        UpgradeHolder.Instance.SetRowerColor(playerIndex, color.characterColor);
     }
-    private void SetMeshForPlayer(int playerIndex, CharacterMeshBehavior hair)
+    private void SetRowerMesh(int playerIndex, CharacterMeshBehavior mesh)
     {
-        PlayerPrefs.SetInt(playerIndex == 0 ? "PlayerOneHair" : "PlayerTwoHair", (int)hair.characterMesh);
-        UpdatePlayer();
-    }
-    private void UpdatePlayer()
-    {
-        if (player == null)
-        {
-            player = FindObjectOfType<Player>();
-        }
-        player.InitializePlayerModel();
+        UpgradeHolder.Instance.SetRowerMesh(playerIndex, mesh.characterMesh);
     }
 }

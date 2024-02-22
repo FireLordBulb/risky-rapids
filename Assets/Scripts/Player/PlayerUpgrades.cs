@@ -28,34 +28,27 @@ public class PlayerUpgrades : MonoBehaviour
     {
         armorObject.SetActive(true);
     }
-    
-    public void ActivateRow()
-    {
-        ApplyBoatMaterial();
-    }
-
-    public void ApplyBoatMaterial()
-    {
-        ApplyBoatMaterial(currentBoatMaterial);
-    }
-
     public void ApplyBoatMaterial(Material material)
     {
-        currentBoatMaterial = material;
+      
+        
+        currentBoatMaterial = material == null ? defaultBoatMaterial : material;
         foreach (MeshRenderer boatMesh in boatMaterials)
         {
             boatMesh.material = currentBoatMaterial;
         }
-
-        if (UpgradeHolder.Instance.GetUpgradeLevel(UpgradeType.Paddle) > 0)
-        {
-            foreach (MeshRenderer oarMesh in oarMaterials)
-            {
-                oarMesh.material = speedPaddleMaterial;
-            }
-        }
+        UpdatePaddleMaterial();
     }
-    
+
+    public void UpdatePaddleMaterial()
+    {
+        Material material = UpgradeHolder.Instance.GetUpgradeLevel(UpgradeType.Paddle) == 0 ? defaultBoatMaterial : speedPaddleMaterial;
+        foreach (MeshRenderer oarMesh in oarMaterials)
+        {
+            oarMesh.material = material;
+        }
+        
+    }
     private void OnApplicationQuit()
     {
         foreach (MeshRenderer mesh in boatMaterials)

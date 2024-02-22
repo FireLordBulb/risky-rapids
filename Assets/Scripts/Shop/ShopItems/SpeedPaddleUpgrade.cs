@@ -9,7 +9,7 @@ public class SpeedPaddleUpgrade : Upgrade
     public override void Upgrade()
     {
         PlayerUpgrades player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerUpgrades>();
-        player.ActivateRow();
+        player.UpdatePaddleMaterial();
         FindObjectOfType<BoatPhysics>().AddSpeedPaddle();
     }
 }

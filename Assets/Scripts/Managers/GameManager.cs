@@ -215,7 +215,7 @@ public class GameManager : MonoBehaviour
         {
             terrainCollider.enabled = false;
         }
-        player.InitializePlayerModel();
+        UpgradeHolder.Instance.InitializePlayerModel();
         UpgradeHolder.Instance.FixUpgrades();
         UpgradeHolder.Instance.ApplyCurrentBoatSkin();
         UIManager.Instance.menuBackgroundPanel.FadeOut();

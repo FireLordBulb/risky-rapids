@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1052829807577258814}
   - component: {fileID: 322837189719559729}
   - component: {fileID: 8802966736512582536}
-  - component: {fileID: 412080717200441561}
+  - component: {fileID: 3148473220327112837}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -127,7 +127,7 @@ MonoBehaviour:
         m_MethodName: SetColorForPlayerOne
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 412080717200441561}
+          m_ObjectArgument: {fileID: 3148473220327112837}
           m_ObjectArgumentAssemblyTypeName: CharacterColorBehavior, Assembly-CSharp
           m_IntArgument: 2
           m_FloatArgument: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: 795f8ffc1a0bd694d85286f6a9e4e332, type: 3}
   spriteName: Pink
---- !u!114 &412080717200441561
+--- !u!114 &3148473220327112837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 174881012100820403}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b01323be6e8662141863a7e5108979db, type: 3}
+  m_Script: {fileID: 11500000, guid: adca20f6f3ef4c7a866bd5235770a41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   characterColor: 2
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 4464883175585972138}
   - component: {fileID: 5404098138926836234}
   - component: {fileID: 4293473942870558721}
-  - component: {fileID: 4433945266749701782}
+  - component: {fileID: 198325565158557522}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -354,7 +354,7 @@ MonoBehaviour:
         m_MethodName: SetColorForPlayerOne
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 4433945266749701782}
+          m_ObjectArgument: {fileID: 198325565158557522}
           m_ObjectArgumentAssemblyTypeName: CharacterColorBehavior, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -375,7 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: 795f8ffc1a0bd694d85286f6a9e4e332, type: 3}
   spriteName: Green
---- !u!114 &4433945266749701782
+--- !u!114 &198325565158557522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1287817183535720498}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b01323be6e8662141863a7e5108979db, type: 3}
+  m_Script: {fileID: 11500000, guid: adca20f6f3ef4c7a866bd5235770a41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   characterColor: 0
@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 5187889957002025381}
   - component: {fileID: 3998095161529976506}
   - component: {fileID: 4247472919016053313}
-  - component: {fileID: 3160399590387404973}
+  - component: {fileID: 4452606716206134184}
   m_Layer: 5
   m_Name: Button (3)
   m_TagString: Untagged
@@ -515,7 +515,7 @@ MonoBehaviour:
         m_MethodName: SetColorForPlayerOne
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 3160399590387404973}
+          m_ObjectArgument: {fileID: 4452606716206134184}
           m_ObjectArgumentAssemblyTypeName: CharacterColorBehavior, Assembly-CSharp
           m_IntArgument: 3
           m_FloatArgument: 0
@@ -536,7 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: 795f8ffc1a0bd694d85286f6a9e4e332, type: 3}
   spriteName: Purple
---- !u!114 &3160399590387404973
+--- !u!114 &4452606716206134184
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -545,7 +545,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5840856707872757582}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b01323be6e8662141863a7e5108979db, type: 3}
+  m_Script: {fileID: 11500000, guid: adca20f6f3ef4c7a866bd5235770a41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   characterColor: 3
@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 7093442812132935574}
   - component: {fileID: 3178421546354342074}
   - component: {fileID: 621412541867257915}
-  - component: {fileID: 2127389631185121659}
+  - component: {fileID: 2535117385819976436}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -676,7 +676,7 @@ MonoBehaviour:
         m_MethodName: SetColorForPlayerOne
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2127389631185121659}
+          m_ObjectArgument: {fileID: 2535117385819976436}
           m_ObjectArgumentAssemblyTypeName: CharacterColorBehavior, Assembly-CSharp
           m_IntArgument: 1
           m_FloatArgument: 0
@@ -697,7 +697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: 795f8ffc1a0bd694d85286f6a9e4e332, type: 3}
   spriteName: Yellow
---- !u!114 &2127389631185121659
+--- !u!114 &2535117385819976436
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -706,7 +706,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8104005120682102866}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b01323be6e8662141863a7e5108979db, type: 3}
+  m_Script: {fileID: 11500000, guid: adca20f6f3ef4c7a866bd5235770a41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   characterColor: 1

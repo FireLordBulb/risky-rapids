@@ -20,41 +20,56 @@ public struct ShopUpgrades
 
 public class UpgradeHolder : MonoBehaviour
 {
-    [SerializeField] private List<ShopUpgrades> shopObjects;
-    [SerializeField] private UpgradeLevel[] upgradeLevels;
-    [SerializeField] private List<BoatSkin> boatSkins;
-    [SerializeField] private BoatSkin activeBoatSkin;
-    public ShopItemHolder activeBoatItem;
     public static UpgradeHolder Instance;
+
+    [SerializeField] private List<ShopUpgrades> shopObjects;
+    
+    private UpgradeLevel[] upgradeLevels;
+    private List<BoatSkin> boatSkins;
+    private BoatSkin activeBoatSkin;
+    private CharacterAppearance[] characterAppearances;
+
+    private Player player;
+    private PlayerUpgrades playerUpgrades;
+    private ShopItemHolder activeBoatItem;
     
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null)
         {
-            Instance = this;
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Debug.LogError("Multiple Upgrade Holders");
-            Destroy(this);
-        }
+        Instance = this;
     }
     public void AddFromSave(SaveData saveData)
     {
         upgradeLevels = saveData.UpgradeLevels;
         boatSkins = saveData.OwnedSkins;
-        var equippedSkin = saveData.EquippedSkin;
-        PlayerUpgrades playerUpgrades = FindObjectOfType<PlayerUpgrades>();
-        if (equippedSkin != null)
-        {
-            playerUpgrades.ApplyBoatMaterial(equippedSkin.BoatMaterial);
-        }
-        else
-        {
-            playerUpgrades.ApplyBoatMaterial();
-        }
-        activeBoatSkin = equippedSkin;
+        activeBoatSkin = saveData.EquippedSkin;
+        characterAppearances = saveData.CharacterAppearances;
+
+        player = FindObjectOfType<Player>();
+        playerUpgrades = player.GetComponent<PlayerUpgrades>();
         FixUpgrades();
+        playerUpgrades.ApplyBoatMaterial(activeBoatSkin == null ? null : activeBoatSkin.BoatMaterial);
+        InitializePlayerModel();
+    }
+    public void InitializePlayerModel()
+    {
+        player.InitializeModel(characterAppearances);
+    }
+    public void SetRowerColor(int rowerIndex, CharacterColor color)
+    {
+        characterAppearances[rowerIndex].color = color;
+        player.SetRowerColor(rowerIndex, color);
+        SaveManager.Instance.SaveToFile();
+    }
+    public void SetRowerMesh(int rowerIndex, CharacterMesh mesh)
+    {
+        characterAppearances[rowerIndex].mesh = mesh;
+        player.SetRowerMesh(rowerIndex, mesh);
+        SaveManager.Instance.SaveToFile();
     }
     public void AddUpgrade(UpgradeType upgradeType)
     {

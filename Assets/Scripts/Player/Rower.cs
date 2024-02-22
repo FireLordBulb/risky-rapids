@@ -6,18 +6,33 @@ public class Rower
 {
     [SerializeField] private Renderer bodyMesh;
     [SerializeField] private Renderer[] hairStyleMeshes;
+    private PlayerData materialData;
     private Renderer activeHairStyle;
-    public void SetActiveHairStyle(CharacterMesh mesh)
+    private CharacterMesh currentMesh;
+    private CharacterColor currentColor;
+
+    public void Initialize(PlayerData data)
     {
+        materialData = data;
+        activeHairStyle = hairStyleMeshes[0];
+        currentMesh = 0;
+        currentColor = 0;
+    }
+    public void SetMesh(CharacterMesh mesh)
+    {
+        currentMesh = mesh;
         if (activeHairStyle != null)
         {
             activeHairStyle.gameObject.SetActive(false);
         }
-        activeHairStyle = hairStyleMeshes[(int)mesh];
+        activeHairStyle = hairStyleMeshes[(int)currentMesh];
         activeHairStyle.gameObject.SetActive(true);
+        SetColor(currentColor);
     }
-    public void SetMaterial(Material material)
+    public void SetColor(CharacterColor color)
     {
+        currentColor = color;
+        Material material = materialData.GetMaterial(currentMesh, currentColor);
         activeHairStyle.material = material;
         bodyMesh.material = material;
     }
