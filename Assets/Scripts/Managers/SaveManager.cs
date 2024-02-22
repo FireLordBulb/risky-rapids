@@ -113,33 +113,28 @@ public class SaveManager : MonoBehaviour
             Debug.LogError(e);
         }
     }
-
     public void SaveUpgrades(UpgradeLevel[] levels)
     {
         saveData.Coins = GameManager.Instance.Coins;
         saveData.UpgradeLevels = levels;
         SaveToFile();
     }
-    
     public void SaveSkins(List<BoatSkin> list)
     {
         saveData.Coins = GameManager.Instance.Coins;
         saveData.OwnedSkins = list;
         SaveToFile();
     }
-
     public void SaveEquippedSkin(BoatSkin boatSkin)
     {
         saveData.EquippedSkin = boatSkin;
         SaveToFile();
     }
-    
     public void SaveCoins(int coins)
     {
         saveData.Coins = coins;
         SaveToFile();
     }
-
     public void SaveToFile()
     {
         try
