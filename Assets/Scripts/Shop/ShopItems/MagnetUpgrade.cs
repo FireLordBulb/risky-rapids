@@ -7,7 +7,6 @@ public class MagnetUpgrade : Upgrade
 {
     public override void Upgrade()
     {
-        PlayerUpgrades player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerUpgrades>();
-        player.ActivateMagnet();
+        UpgradeHolder.Instance.PlayerUpgrades.ActivateMagnet();
     }
 }

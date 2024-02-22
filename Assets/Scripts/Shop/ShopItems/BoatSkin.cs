@@ -6,7 +6,5 @@ public class BoatSkin : ShopItem
 {
     public Material BoatMaterial;
     
-    public override void Upgrade()
-    {
-    }
+    public override void Upgrade(){}
 }

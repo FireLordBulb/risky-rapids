@@ -37,15 +37,12 @@ public class PlayerUpgrades : MonoBehaviour
         {
             boatMesh.material = currentBoatMaterial;
         }
-        UpdatePaddleMaterial();
     }
-
     public void UpdatePaddleMaterial()
     {
-        Material material = UpgradeHolder.Instance.GetUpgradeLevel(UpgradeType.Paddle) == 0 ? defaultBoatMaterial : speedPaddleMaterial;
         foreach (MeshRenderer oarMesh in oarMaterials)
         {
-            oarMesh.material = material;
+            oarMesh.material = speedPaddleMaterial;
         }
         
     }

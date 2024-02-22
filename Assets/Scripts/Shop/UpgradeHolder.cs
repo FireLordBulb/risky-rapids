@@ -34,6 +34,7 @@ public class UpgradeHolder : MonoBehaviour
     private ShopItemHolder activeBoatItem;
     
     public BoatSkin ActiveBoatSkin => activeBoatSkin;
+    public PlayerUpgrades PlayerUpgrades => playerUpgrades;
 
     private void Awake()
     {
@@ -56,11 +57,10 @@ public class UpgradeHolder : MonoBehaviour
         player = newPlayer;
         playerUpgrades = player.GetComponent<PlayerUpgrades>();
         FixUpgrades();
-        ApplyCurrentBoatSkin();
-        InitializePlayerModel();
-    }
-    public void InitializePlayerModel()
-    {
+        if (activeBoatSkin != null)
+        {
+            ApplyBoatSkin(activeBoatSkin);
+        }
         player.InitializeModel(characterAppearances);
     }
     public void SetRowerColor(int rowerIndex, RowerColor color)
@@ -77,21 +77,15 @@ public class UpgradeHolder : MonoBehaviour
     }
     public void AddUpgrade(UpgradeType upgradeType)
     {
-        UpgradeLevel upgradeLevel = upgradeLevels[GetUpgradeIndex(upgradeType)];
+        UpgradeLevel upgradeLevel = upgradeLevels[(int)upgradeType];
         if (Upgrade.MaxLevel <= upgradeLevel.Level)
         {
             return;
         }
         upgradeLevel.IncreaseLevel();
-        shopObjects.Find(x => x.UpgradeType == upgradeType).upgradeObject.Upgrade();
+        shopObjects[(int)upgradeType].upgradeObject.Upgrade();
     }
-    public void ApplyCurrentBoatSkin()
-    {
-        if (activeBoatSkin != null)
-        {
-            ApplyBoatSkin(activeBoatSkin);
-        }
-    }
+
     public void ApplyBoatShopItem(ShopItemHolder shopItemHolder)
     {
         if (shopItemHolder == null)
@@ -117,40 +111,31 @@ public class UpgradeHolder : MonoBehaviour
         }
         playerUpgrades.ApplyBoatMaterial(boatSkin.BoatMaterial);
     }
-    public void FixUpgrades()
+
+    private void FixUpgrades()
     {
-        foreach (UpgradeType type in (UpgradeType[]) Enum.GetValues(typeof(UpgradeType)))
+        foreach (UpgradeLevel upgradeLevel in upgradeLevels)
         {
-            int index = GetUpgradeIndex(type);
-            if (upgradeLevels[index].Level > 0)
+            if (upgradeLevel.Level > 0)
             {
-                Upgrade upgrade = shopObjects.Find(x => x.UpgradeType == type).upgradeObject;
+                Upgrade upgrade = shopObjects[(int)upgradeLevel.UpgradeType].upgradeObject;
                 upgrade.Upgrade();
             }
         }
     }
     public int GetUpgradeValue(UpgradeType upgradeType)
     {
-        Upgrade upgrade = shopObjects.Find(x => x.UpgradeType == upgradeType).upgradeObject;
+        Upgrade upgrade = shopObjects[(int)upgradeType].upgradeObject;
         return GetUpgradeLevel(upgradeType) * upgrade.valuePerLevel;
     }
-
-    private int GetUpgradeIndex(UpgradeType type)
-    {
-        return (int)type;
-    }
-    
     public int GetUpgradeLevel(UpgradeType type)
     {
-        int index = GetUpgradeIndex(type);
-        return upgradeLevels[index].Level;
+        return upgradeLevels[(int)type].Level;
     }
-    
     public bool HasBoatSkin(BoatSkin skin)
     {
         return boatSkins.Contains(skin);
     }
-
     public void SelectIfCurrentSkin(ShopItemHolder holder)
     {
         if (holder.Item == activeBoatSkin)

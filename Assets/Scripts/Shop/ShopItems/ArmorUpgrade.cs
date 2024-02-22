@@ -8,8 +8,7 @@ public class ArmorUpgrade : Upgrade
     public PlayerHealth health;
     public override void Upgrade()
     {
-        PlayerUpgrades player = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerUpgrades>();
-        player.ActivateArmor();
-        FindObjectOfType<Player>().UpgradePlayerArmor();
+        PlayerUpgrades.ActivateArmor();
+        PlayerUpgrades.GetComponent<Player>().UpgradePlayerArmor();
     }
 }
