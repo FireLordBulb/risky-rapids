@@ -23,10 +23,10 @@ public class CustomizeCharacter : MonoBehaviour
     }
     private void SetRowerColor(int player, CharacterColorBehavior color)
     {
-        UpgradeHolder.Instance.SetRowerColor(player, color.characterColor);
+        UpgradeHolder.Instance.SetRowerColor(player, color.rowerColor);
     }
     private void SetRowerMesh(int player, CharacterMeshBehavior mesh)
     {
-        UpgradeHolder.Instance.SetRowerMesh(player, mesh.characterMesh);
+        UpgradeHolder.Instance.SetRowerMesh(player, mesh.rowerMesh);
     }
 }

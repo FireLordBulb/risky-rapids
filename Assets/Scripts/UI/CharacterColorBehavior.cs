@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CharacterColorBehavior : MonoBehaviour
 {
-    public CharacterColor characterColor;
+    [FormerlySerializedAs("characterColor")] public RowerColor rowerColor;
 }

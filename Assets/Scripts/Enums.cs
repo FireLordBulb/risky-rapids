@@ -19,7 +19,7 @@ public enum UpgradeType
     Armor
 }
 [Serializable]
-public enum CharacterColor
+public enum RowerColor
 {
     Green,
     Yellow,
@@ -27,7 +27,7 @@ public enum CharacterColor
     Purple
 }
 [Serializable]
-public enum CharacterMesh
+public enum RowerMesh
 {
     Boy,
     Girl,

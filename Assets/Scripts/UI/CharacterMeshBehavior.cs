@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CharacterMeshBehavior : MonoBehaviour
 {
-    public CharacterMesh characterMesh;
+    [FormerlySerializedAs("characterMesh")] public RowerMesh rowerMesh;
 }

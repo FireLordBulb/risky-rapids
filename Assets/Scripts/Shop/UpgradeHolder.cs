@@ -59,13 +59,13 @@ public class UpgradeHolder : MonoBehaviour
     {
         player.InitializeModel(characterAppearances);
     }
-    public void SetRowerColor(int rowerIndex, CharacterColor color)
+    public void SetRowerColor(int rowerIndex, RowerColor color)
     {
         characterAppearances[rowerIndex].color = color;
         player.SetRowerColor(rowerIndex, color);
         SaveManager.Instance.SaveToFile();
     }
-    public void SetRowerMesh(int rowerIndex, CharacterMesh mesh)
+    public void SetRowerMesh(int rowerIndex, RowerMesh mesh)
     {
         characterAppearances[rowerIndex].mesh = mesh;
         player.SetRowerMesh(rowerIndex, mesh);

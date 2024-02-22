@@ -8,8 +8,8 @@ public class Rower
     [SerializeField] private Renderer[] hairStyleMeshes;
     private MaterialData materialData;
     private Renderer activeHairStyle;
-    private CharacterMesh currentMesh;
-    private CharacterColor currentColor;
+    private RowerMesh currentMesh;
+    private RowerColor currentColor;
 
     public void Initialize(MaterialData data)
     {
@@ -18,7 +18,7 @@ public class Rower
         currentMesh = 0;
         currentColor = 0;
     }
-    public void SetMesh(CharacterMesh mesh)
+    public void SetMesh(RowerMesh mesh)
     {
         currentMesh = mesh;
         if (activeHairStyle != null)
@@ -29,7 +29,7 @@ public class Rower
         activeHairStyle.gameObject.SetActive(true);
         SetColor(currentColor);
     }
-    public void SetColor(CharacterColor color)
+    public void SetColor(RowerColor color)
     {
         currentColor = color;
         Material material = materialData.GetMaterial(currentMesh, currentColor);

@@ -7,7 +7,7 @@ public class MaterialData : ScriptableObject
 {
     [SerializeField] private MaterialArray[] materialArrays;
 
-    public Material GetMaterial(CharacterMesh mesh, CharacterColor color)
+    public Material GetMaterial(RowerMesh mesh, RowerColor color)
     {
         return materialArrays[(int)mesh].materials[(int)color];
     }

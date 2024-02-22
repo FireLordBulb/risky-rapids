@@ -48,11 +48,11 @@ public class Player : MonoBehaviour
         rightSplash.Stop();
         leftSplash.Stop();
     }
-    public void SetRowerColor(int rowerIndex, CharacterColor color)
+    public void SetRowerColor(int rowerIndex, RowerColor color)
     {
         rowers[rowerIndex].SetColor(color);
     }
-    public void SetRowerMesh(int rowerIndex, CharacterMesh mesh)
+    public void SetRowerMesh(int rowerIndex, RowerMesh mesh)
     {
         rowers[rowerIndex].SetMesh(mesh);
     }

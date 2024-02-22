@@ -27,12 +27,12 @@ public class SaveData
 [Serializable]
 public class CharacterAppearance
 {
-    public CharacterColor color;
-    public CharacterMesh mesh;
+    public RowerColor color;
+    public RowerMesh mesh;
     public CharacterAppearance(int rowerIndex)
     {
-        color = (CharacterColor)rowerIndex;
-        mesh = (CharacterMesh)rowerIndex;
+        color = (RowerColor)rowerIndex;
+        mesh = (RowerMesh)rowerIndex;
     }
 }
 [Serializable]
