@@ -10,6 +10,7 @@ public class BoatPhysics : MonoBehaviour
     [Header("River shape values")]
     [SerializeField] private float riverRadius;
     [SerializeField] private float waterSurfaceMargin;
+    private new Rigidbody Rigidbody;
     // Continuous forces
     private float forceScalar;
     private float gravity;
@@ -37,11 +38,11 @@ public class BoatPhysics : MonoBehaviour
     private Vector3 localNormal;
     private Vector3 nextSplinePosition;
     // Update loop booleans
-    private bool isFalling;
     private bool hasBeenKnockedBack;
+    public bool IsFalling { get; private set; }
+    // Speeds
     public float TopSpeed {get; private set;}
-    public Rigidbody Rigidbody {get; private set;}
-    public bool IsFalling => isFalling;
+    public float Speed => Rigidbody.velocity.magnitude;
     private void Awake()
     {
         Rigidbody = GetComponent<Rigidbody>();
@@ -79,6 +80,18 @@ public class BoatPhysics : MonoBehaviour
     public void AddSpeedPaddle()
     {
         baseRowForce = physicsData.baseRowForce + UpgradeHolder.Instance.GetUpgradeValue(UpgradeType.Paddle);
+    }
+
+    public void ResetTo(Vector3 position, Quaternion rotation)
+    {
+        ResetLinearDrag();
+        Rigidbody.position = transform.position = position;
+        Rigidbody.rotation = transform.rotation = rotation;
+        Rigidbody.velocity = Vector3.zero;
+        Rigidbody.angularVelocity = Vector3.zero;
+        // Resets force and torque to zero.
+        Rigidbody.AddForce(-Rigidbody.GetAccumulatedForce());
+        Rigidbody.AddTorque(-Rigidbody.GetAccumulatedTorque());
     }
     public void ResetMovementForces()
     {
@@ -143,7 +156,7 @@ public class BoatPhysics : MonoBehaviour
         }
         AddContinuousForce(waterFlowForce*(isTooDeep ? ProjectOnXZPlane(localFlowDirection).normalized : localFlowDirection));
         MakeFall(isTooDeep);
-        if (!isFalling)
+        if (!IsFalling)
         {
             float angleDifference = Mathf.Deg2Rad * Vector3.SignedAngle(transform.forward, localFlowDirection, localNormal);
             AddContinuousAxialTorque(Mathf.Sin(angleDifference) * waterTorque);
@@ -192,7 +205,7 @@ public class BoatPhysics : MonoBehaviour
     }
     private void MakeFall(bool isTooDeep)
     {
-        isFalling = false;
+        IsFalling = false;
         Vector3 fromPointToBoat = transform.position-localSplinePosition;
         Vector3 heightOverRiverPlane = GetDifferenceToPlane(fromPointToBoat);
         if (heightOverRiverPlane.magnitude < waterSurfaceMargin)
@@ -204,7 +217,7 @@ public class BoatPhysics : MonoBehaviour
         {
             
             AddContinuousForce(gravity*Vector3.up);
-            isFalling = true;
+            IsFalling = true;
         } else
         {
             float depthInWater = Mathf.Max(heightOverRiverPlane.magnitude, minBuoyancyScalar);

@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     private SO_LevelData[] levels;
 
     private const string UI = "UIScene";
-    private SO_GameData currentGameData;
     private readonly List<Interactable> interactableObjects = new();
 
     private Vector3 playerSpawnPosition;
@@ -52,7 +51,11 @@ public class GameManager : MonoBehaviour
         get;
         private set;
     }
-    public SO_GameData CurrentGameData => currentGameData;
+    public SO_GameData CurrentGameData
+    {
+        get;
+        private set;
+    }
     private void Awake()
     {
         if (Instance != null && Instance != this) 
@@ -64,7 +67,7 @@ public class GameManager : MonoBehaviour
 #if UNITY_STANDALONE_WIN
         Screen.SetResolution(1920, 1080, FullScreenMode.ExclusiveFullScreen);
 #endif
-        currentGameData = gameDatas[0];
+        CurrentGameData = gameDatas[0];
         levels = levelDataList.levels;
         
         string currentSceneName = SceneManager.GetActiveScene().name;
@@ -301,17 +304,7 @@ public class GameManager : MonoBehaviour
     private void ResetPlayer()
     {
         if (!boatPhysics) return;
-        boatPhysics.ResetLinearDrag();
-
-        Rigidbody rb = boatPhysics.Rigidbody;
-        rb.position = playerSpawnPosition;
-        rb.rotation = playerSpawnRotation;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-        // Resets force and torque to zero.
-        rb.AddForce(-rb.GetAccumulatedForce());
-        rb.AddTorque(-rb.GetAccumulatedTorque());
-        
+        boatPhysics.ResetTo(playerSpawnPosition, playerSpawnRotation);
         player.RestoreHealth();
         playerInput.SetIdle();
     }

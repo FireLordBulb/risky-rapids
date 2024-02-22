@@ -13,7 +13,7 @@ public class Obstacle : Interactable
         boat = other.GetComponentInParent<BoatPhysics>();
         ApplyKnockbackToBoat();
         
-        float collisionIntensity = boat.Rigidbody.velocity.magnitude/boat.TopSpeed;
+        float collisionIntensity = boat.Speed/boat.TopSpeed;
         float damage = Mathf.Lerp(obstacleData.minimumDamage, obstacleData.maximumDamage, collisionIntensity);
         damage = Mathf.Round(damage);
         boat.GetComponent<Player>().DecreaseHealth(damage);
