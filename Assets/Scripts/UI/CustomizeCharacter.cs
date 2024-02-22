@@ -4,28 +4,29 @@ using UnityEngine;
 
 public class CustomizeCharacter : MonoBehaviour
 {
+    private const int PlayerOne = 0, PlayerTwo = 1;
     public void SetColorForPlayerOne(CharacterColorBehavior color)
     {
-        SetRowerColor(0, color);
+        SetRowerColor(PlayerOne, color);
     }
     public void SetColorForPlayerTwo(CharacterColorBehavior color)
     {
-        SetRowerColor(1, color);
+        SetRowerColor(PlayerTwo, color);
     }
     public void SetMeshForPlayerOne(CharacterMeshBehavior mesh)
     {
-        SetRowerMesh(0, mesh);
+        SetRowerMesh(PlayerOne, mesh);
     }
     public void SetMeshForPlayerTwo(CharacterMeshBehavior mesh)
     {
-        SetRowerMesh(1, mesh);
+        SetRowerMesh(PlayerTwo, mesh);
     }
-    private void SetRowerColor(int playerIndex, CharacterColorBehavior color)
+    private void SetRowerColor(int player, CharacterColorBehavior color)
     {
-        UpgradeHolder.Instance.SetRowerColor(playerIndex, color.characterColor);
+        UpgradeHolder.Instance.SetRowerColor(player, color.characterColor);
     }
-    private void SetRowerMesh(int playerIndex, CharacterMeshBehavior mesh)
+    private void SetRowerMesh(int player, CharacterMeshBehavior mesh)
     {
-        UpgradeHolder.Instance.SetRowerMesh(playerIndex, mesh.characterMesh);
+        UpgradeHolder.Instance.SetRowerMesh(player, mesh.characterMesh);
     }
 }
