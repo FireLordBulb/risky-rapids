@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "Boat Physics Data", menuName = "ScriptableObjects/Boat Physics Data" )]
-public class SO_PhysicsData : ScriptableObject
+public class PhysicsData : ScriptableObject
 {
 	[Header("Continuous forces")]
 	public float linearDrag;

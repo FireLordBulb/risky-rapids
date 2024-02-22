@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        SO_GameData currentGameData = GameManager.Instance.CurrentGameData;
+        GameData currentGameData = GameManager.Instance.CurrentGameData;
         playerHealth = new PlayerHealth(currentGameData.MaxHealth, currentGameData.Armor);
     }
     public void InitializeModel(CharacterAppearance[] characterAppearances)

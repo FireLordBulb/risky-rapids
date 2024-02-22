@@ -8,12 +8,12 @@ public class GameManager : MonoBehaviour
 { 
     public static GameManager Instance;
     
-    [SerializeField] private List<SO_GameData> gameDatas;
-    [SerializeField] private SO_LevelDataList levelDataList;
+    [SerializeField] private List<GameData> gameDatas;
+    [SerializeField] private LevelDataList levelDataList;
     [SerializeField] private float gameEndDragScale;
     [SerializeField] private float coinsPerSecond;
     [SerializeField] private int countDownTime;
-    private SO_LevelData[] levels;
+    private LevelData[] levels;
 
     private const string UI = "UIScene";
     private readonly List<Interactable> interactableObjects = new();
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     private PlayerInput playerInput;
     private LevelTimer levelTimer;
 
-    private SO_LevelData currentLevel;
+    private LevelData currentLevel;
     private int currentLevelIndex = -1;
 
     private float countDownLeft;
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         get;
         private set;
     }
-    public SO_GameData CurrentGameData
+    public GameData CurrentGameData
     {
         get;
         private set;
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         string currentSceneName = SceneManager.GetActiveScene().name;
         for (int i = 0; i < levels.Length; i++)
         {
-            SO_LevelData level = levels[i];
+            LevelData level = levels[i];
             if (level.name.Equals(currentSceneName))
             {
                 currentLevel = level;

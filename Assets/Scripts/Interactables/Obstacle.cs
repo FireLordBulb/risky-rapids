@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Obstacle : Interactable
 {
-    [SerializeField] private SO_ObstacleData obstacleData;
+    [SerializeField] private ObstacleData obstacleData;
     [SerializeField] private long vibrateLenght;
     private BoatPhysics boat;
     protected override void Interact(Collider other)

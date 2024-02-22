@@ -6,7 +6,7 @@ public class BoatPhysics : MonoBehaviour
 {
     private const float MaxDepth = -1.5f;
     [SerializeField] private Transform bowSemicircleCenter;
-    [SerializeField] private SO_PhysicsData physicsData;
+    [SerializeField] private PhysicsData physicsData;
     [Header("River shape values")]
     [SerializeField] private float riverRadius;
     [SerializeField] private float waterSurfaceMargin;

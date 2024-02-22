@@ -8,7 +8,7 @@ public abstract class ShopItem : ScriptableObject
     public string Title;
     public string Description;
     public int Cost;
-    public SO_GameData GameData;
+    public GameData GameData;
     public TMP_Sprite ItemPicture;
     public TMP_Sprite ItemTemplate;
 
