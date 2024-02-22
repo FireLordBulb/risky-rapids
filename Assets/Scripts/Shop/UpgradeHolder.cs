@@ -1,28 +1,11 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
-
-[Serializable]
-public struct ShopUpgrades
-{
-    public UpgradeType UpgradeType;
-    public Upgrade upgradeObject;
-
-    public ShopUpgrades(UpgradeType UpgradeType, Upgrade upgrade)
-    {
-        this.UpgradeType = UpgradeType;
-        upgradeObject = upgrade;
-    }
-}
 
 public class UpgradeHolder : MonoBehaviour
 {
     public static UpgradeHolder Instance;
 
-    [SerializeField] private List<ShopUpgrades> shopObjects;
+    [SerializeField] private List<Upgrade> upgrades;
     
     private UpgradeLevel[] upgradeLevels;
     private List<BoatSkin> boatSkins;
@@ -79,9 +62,9 @@ public class UpgradeHolder : MonoBehaviour
     {
         foreach (UpgradeLevel upgradeLevel in upgradeLevels)
         {
-            if (upgradeLevel.Level > 0)
+            if (upgradeLevel.level > 0)
             {
-                Upgrade upgrade = shopObjects[(int)upgradeLevel.UpgradeType].upgradeObject;
+                Upgrade upgrade = upgrades[(int)upgradeLevel.upgradeType];
                 upgrade.Upgrade();
             }
         }
@@ -101,12 +84,12 @@ public class UpgradeHolder : MonoBehaviour
     public void AddUpgrade(UpgradeType upgradeType)
     {
         UpgradeLevel upgradeLevel = upgradeLevels[(int)upgradeType];
-        if (Upgrade.MaxLevel <= upgradeLevel.Level)
+        if (Upgrade.MaxLevel <= upgradeLevel.level)
         {
             return;
         }
         upgradeLevel.IncreaseLevel();
-        shopObjects[(int)upgradeType].upgradeObject.Upgrade();
+        upgrades[(int)upgradeType].Upgrade();
     }
 
     public void ApplyBoatShopItem(ShopItemHolder shopItemHolder)
@@ -136,12 +119,12 @@ public class UpgradeHolder : MonoBehaviour
     }
     public int GetUpgradeValue(UpgradeType upgradeType)
     {
-        Upgrade upgrade = shopObjects[(int)upgradeType].upgradeObject;
+        Upgrade upgrade = upgrades[(int)upgradeType];
         return GetUpgradeLevel(upgradeType) * upgrade.valuePerLevel;
     }
     public int GetUpgradeLevel(UpgradeType type)
     {
-        return upgradeLevels[(int)type].Level;
+        return upgradeLevels[(int)type].level;
     }
     public bool HasBoatSkin(BoatSkin skin)
     {

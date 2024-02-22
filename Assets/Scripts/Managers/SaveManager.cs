@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-
+using UnityEngine.Serialization;
 public class SaveData
 {
     private const int RowerCount = 2;
     public int Coins;
+    // ReSharper disable FieldCanBeMadeReadOnly.Global
+    // Don't make readonly! It breaks the JSON reading and writing.
     public UpgradeLevel[] UpgradeLevels;
     public List<BoatSkin> OwnedSkins;
     public BoatSkin EquippedSkin;
@@ -14,7 +16,7 @@ public class SaveData
     public SaveData()
     {
         Coins = 0;
-        UpgradeLevels = new UpgradeLevel[] { new(UpgradeType.Magnet), new(UpgradeType.Paddle), new(UpgradeType.Armor) };
+        UpgradeLevels = new UpgradeLevel[]{new(UpgradeType.Magnet), new(UpgradeType.Paddle), new(UpgradeType.Armor)};
         OwnedSkins = new List<BoatSkin>();
         CharacterAppearances = new CharacterAppearance[RowerCount];
         for (int i = 0; i < CharacterAppearances.Length; i++)
@@ -38,18 +40,18 @@ public class CharacterAppearance
 [Serializable]
 public class UpgradeLevel
 {
-    public UpgradeType UpgradeType;
-    public int Level;
+    public UpgradeType upgradeType;
+    public int level;
 
-    public UpgradeLevel(UpgradeType upgradeType)
+    public UpgradeLevel(UpgradeType type)
     {
-        UpgradeType = upgradeType;
-        Level = 0;
+        upgradeType = type;
+        level = 0;
     }
 
     public void IncreaseLevel()
     {
-        Level++;
+        level++;
     }
 }
 
