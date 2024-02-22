@@ -5,34 +5,31 @@ using UnityEngine;
 public class CustomizeCharacter : MonoBehaviour
 {
     private Player player;
-
-    private void SetColorForPlayer(int playerIndex, int color)
-    {
-        PlayerPrefs.SetInt(playerIndex == 0 ? "PlayerOneColor" : "PlayerTwoColor", color);
-        UpdatePlayer();
-    }
-    public void SetColorForPlayerOne(int color)
+    public void SetColorForPlayerOne(CharacterColorBehavior color)
     {
         SetColorForPlayer(0, color);
     }
-
-    public void SetColorForPlayerTwo(int color)
+    public void SetColorForPlayerTwo(CharacterColorBehavior color)
     {
         SetColorForPlayer(1, color);
     }
-    private void SetHairForPlayer(int playerIndex, int hair)
+    public void SetMeshForPlayerOne(CharacterMeshBehavior hair)
     {
-        PlayerPrefs.SetInt(playerIndex == 0 ? "PlayerOneHair" : "PlayerTwoHair", hair);
+        SetMeshForPlayer(0, hair);
+    }
+    public void SetMeshForPlayerTwo(CharacterMeshBehavior hair)
+    {
+        SetMeshForPlayer(1, hair);
+    }
+    private void SetColorForPlayer(int playerIndex, CharacterColorBehavior color)
+    {
+        PlayerPrefs.SetInt(playerIndex == 0 ? "PlayerOneColor" : "PlayerTwoColor", (int)color.characterColor);
         UpdatePlayer();
     }
-    public void SetHairForPlayerOne(int hair)
+    private void SetMeshForPlayer(int playerIndex, CharacterMeshBehavior hair)
     {
-        SetHairForPlayer(0, hair);
-    }
-
-    public void SetHairForPlayerTwo(int hair)
-    {
-        SetHairForPlayer(1, hair);
+        PlayerPrefs.SetInt(playerIndex == 0 ? "PlayerOneHair" : "PlayerTwoHair", (int)hair.characterMesh);
+        UpdatePlayer();
     }
     private void UpdatePlayer()
     {

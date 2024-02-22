@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1052829807577258814}
   - component: {fileID: 322837189719559729}
   - component: {fileID: 8802966736512582536}
+  - component: {fileID: 412080717200441561}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -30,7 +31,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8914510988055151248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -123,11 +124,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CustomizeCharacter, Assembly-CSharp
-        m_MethodName: SetColorForPlayerTwo
-        m_Mode: 3
+        m_MethodName: SetColorForPlayerOne
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 412080717200441561}
+          m_ObjectArgumentAssemblyTypeName: CharacterColorBehavior, Assembly-CSharp
           m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
@@ -147,6 +148,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: 795f8ffc1a0bd694d85286f6a9e4e332, type: 3}
   spriteName: Pink
+--- !u!114 &412080717200441561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174881012100820403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01323be6e8662141863a7e5108979db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterColor: 2
 --- !u!1 &533795870488016635
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,6 +240,7 @@ GameObject:
   - component: {fileID: 4464883175585972138}
   - component: {fileID: 5404098138926836234}
   - component: {fileID: 4293473942870558721}
+  - component: {fileID: 4433945266749701782}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -243,7 +258,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8914510988055151248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -336,11 +351,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CustomizeCharacter, Assembly-CSharp
-        m_MethodName: SetColorForPlayerTwo
-        m_Mode: 3
+        m_MethodName: SetColorForPlayerOne
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 4433945266749701782}
+          m_ObjectArgumentAssemblyTypeName: CharacterColorBehavior, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -360,6 +375,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: 795f8ffc1a0bd694d85286f6a9e4e332, type: 3}
   spriteName: Green
+--- !u!114 &4433945266749701782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287817183535720498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01323be6e8662141863a7e5108979db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterColor: 0
 --- !u!1 &5840856707872757582
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +401,7 @@ GameObject:
   - component: {fileID: 5187889957002025381}
   - component: {fileID: 3998095161529976506}
   - component: {fileID: 4247472919016053313}
+  - component: {fileID: 3160399590387404973}
   m_Layer: 5
   m_Name: Button (3)
   m_TagString: Untagged
@@ -390,7 +419,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8914510988055151248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -483,11 +512,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CustomizeCharacter, Assembly-CSharp
-        m_MethodName: SetColorForPlayerTwo
-        m_Mode: 3
+        m_MethodName: SetColorForPlayerOne
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 3160399590387404973}
+          m_ObjectArgumentAssemblyTypeName: CharacterColorBehavior, Assembly-CSharp
           m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
@@ -507,6 +536,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: 795f8ffc1a0bd694d85286f6a9e4e332, type: 3}
   spriteName: Purple
+--- !u!114 &3160399590387404973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5840856707872757582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01323be6e8662141863a7e5108979db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterColor: 3
 --- !u!1 &8104005120682102866
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +562,7 @@ GameObject:
   - component: {fileID: 7093442812132935574}
   - component: {fileID: 3178421546354342074}
   - component: {fileID: 621412541867257915}
+  - component: {fileID: 2127389631185121659}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -537,7 +580,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8914510988055151248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -630,11 +673,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CustomizeCharacter, Assembly-CSharp
-        m_MethodName: SetColorForPlayerTwo
-        m_Mode: 3
+        m_MethodName: SetColorForPlayerOne
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2127389631185121659}
+          m_ObjectArgumentAssemblyTypeName: CharacterColorBehavior, Assembly-CSharp
           m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
@@ -654,3 +697,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: 795f8ffc1a0bd694d85286f6a9e4e332, type: 3}
   spriteName: Yellow
+--- !u!114 &2127389631185121659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8104005120682102866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01323be6e8662141863a7e5108979db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterColor: 1

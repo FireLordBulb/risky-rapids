@@ -1,3 +1,6 @@
+using System;
+using Unity.VisualScripting;
+
 public enum GameState
 {
     Playing,
@@ -14,4 +17,19 @@ public enum UpgradeType
     Magnet,
     Paddle,
     Armor
+}
+[Serializable]
+public enum CharacterColor
+{
+    Green,
+    Yellow,
+    Pink,
+    Purple
+}
+[Serializable]
+public enum CharacterMesh
+{
+    Boy,
+    Girl,
+    Androgynous
 }

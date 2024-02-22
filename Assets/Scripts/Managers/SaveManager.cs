@@ -12,6 +12,12 @@ public class SavedStats
     public List<BoatSkin> SkinsUnlocked;
     public BoatSkin EquippedBoat;
 }
+
+[Serializable]
+public class CharacterAppearance
+{
+    //public 
+}
 [Serializable]
 public class UpgradeLevel
 {

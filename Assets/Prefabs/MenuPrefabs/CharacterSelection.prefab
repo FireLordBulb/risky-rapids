@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 2517745170553000869}
   - component: {fileID: 2995994724051690620}
   - component: {fileID: 8085742698071210108}
+  - component: {fileID: 1873874036953504081}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -125,9 +126,9 @@ RectTransform:
   - {fileID: 2766883876300202697}
   m_Father: {fileID: 4117992911952917938}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 268.04382, y: -273.0616}
   m_SizeDelta: {x: 120, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2267598957945458468
@@ -215,10 +216,10 @@ MonoBehaviour:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CustomizeCharacter, Assembly-CSharp
         m_MethodName: SetHairForPlayerOne
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1873874036953504081}
+          m_ObjectArgumentAssemblyTypeName: CharacterMeshBehavior, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -238,6 +239,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: 795f8ffc1a0bd694d85286f6a9e4e332, type: 3}
   spriteName: PurpleBox1
+--- !u!114 &1873874036953504081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976939373471637390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902d2ee4b4dd42aa9c0d9cb898fd9b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterMesh: 0
 --- !u!1 &2042343192953450651
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,6 +265,7 @@ GameObject:
   - component: {fileID: 5830121295128121780}
   - component: {fileID: 2440049743042426308}
   - component: {fileID: 5668080792177309821}
+  - component: {fileID: 2708264717492620959}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -273,9 +288,9 @@ RectTransform:
   - {fileID: 4235547655920864142}
   m_Father: {fileID: 4117992911952917938}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 629.81067, y: -273.0616}
   m_SizeDelta: {x: 131.3585, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2529395914327429608
@@ -363,10 +378,10 @@ MonoBehaviour:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CustomizeCharacter, Assembly-CSharp
         m_MethodName: SetHairForPlayerOne
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2708264717492620959}
+          m_ObjectArgumentAssemblyTypeName: CharacterMeshBehavior, Assembly-CSharp
           m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
@@ -386,6 +401,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: 795f8ffc1a0bd694d85286f6a9e4e332, type: 3}
   spriteName: PinkBox
+--- !u!114 &2708264717492620959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042343192953450651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902d2ee4b4dd42aa9c0d9cb898fd9b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterMesh: 1
 --- !u!1 &2364573064836081057
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +672,7 @@ GameObject:
   - component: {fileID: 347502653743554796}
   - component: {fileID: 7353686280319957165}
   - component: {fileID: 3028006427184010630}
+  - component: {fileID: 1730534974452945713}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -666,9 +695,9 @@ RectTransform:
   - {fileID: 1113348817043656511}
   m_Father: {fileID: 4117992911952917938}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 991.5776, y: -273.0616}
   m_SizeDelta: {x: 120, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3784803541195324706
@@ -756,10 +785,10 @@ MonoBehaviour:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CustomizeCharacter, Assembly-CSharp
         m_MethodName: SetHairForPlayerOne
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1730534974452945713}
+          m_ObjectArgumentAssemblyTypeName: CharacterMeshBehavior, Assembly-CSharp
           m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
@@ -779,3 +808,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: 795f8ffc1a0bd694d85286f6a9e4e332, type: 3}
   spriteName: GreenBox2
+--- !u!114 &1730534974452945713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957604191209901790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902d2ee4b4dd42aa9c0d9cb898fd9b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterMesh: 2
