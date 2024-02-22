@@ -90,8 +90,8 @@ public class ShopItemHolder : MonoBehaviour
             UpgradeHolder.Instance.ApplyBoatShopItem(this);
             return;
         }
-        GameManager.Instance.Coins -= cost;
         AddShopItem();
+        GameManager.Instance.Coins -= cost;
     }
     private bool CanPress()
     {
@@ -116,6 +116,9 @@ public class ShopItemHolder : MonoBehaviour
     }
     public void CheckMarkSetActivate(bool isActive)
     {
-        checkMark.SetActive(isActive);
+        if (checkMark != null)
+        {
+            checkMark.SetActive(isActive);
+        }
     }
 }
