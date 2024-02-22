@@ -17,7 +17,6 @@ public class UpgradeLevel
 {
     public UpgradeType UpgradeType;
     public int Level;
-    public int MaxLevel = 3; // Should not be changed, readonly does not work
 
     public UpgradeLevel(UpgradeType upgradeType)
     {
@@ -27,11 +26,7 @@ public class UpgradeLevel
 
     public void IncreaseLevel()
     {
-        if (Level < MaxLevel)
-        {
-            Debug.Log("Level up");
-            Level++;
-        }
+        Level++;
     }
 }
 

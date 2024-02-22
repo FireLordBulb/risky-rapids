@@ -12,10 +12,9 @@ public class ShopItemHolder : MonoBehaviour
     [SerializeField] private string title;
     [SerializeField] private string description;
     [SerializeField] private int cost;
-    [SerializeField] private bool isBought;
 
-    [Space] [Header("UI Elements")] [SerializeField]
-    private TMP_Text titleText;
+    [Space] [Header("UI Elements")]
+    [SerializeField] private TMP_Text titleText;
 
     [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private TMP_Text costText;
@@ -23,24 +22,31 @@ public class ShopItemHolder : MonoBehaviour
     [SerializeField] private SpriteFromAtlas shopItemPicture;
     [SerializeField] private SpriteFromAtlas shopItemTemplate;
     [SerializeField] private GameObject checkMark;
+
+    private static readonly List<ShopItemHolder> ShopItemHolders = new();
     private Button buyButton;
 
+    public void Awake()
+    {
+        ShopItemHolders.Add(this);
+    } 
     public void Start()
     {
         buyButton = GetComponentInChildren<Button>();
-        if (item != null)
+        
+        InstantiateShopItem();
+        if (item is BoatSkin)
         {
-            InstantiateShopItem(item);
-            if (item is BoatSkin)
-            {
-                UpgradeHolder.Instance.SelectIfCurrentSkin(this);
-            }
+            UpgradeHolder.Instance.SelectIfCurrentSkin(this);
         }
     }
 
-    public void InstantiateShopItem(ShopItem newItem)
+    private void InstantiateShopItem()
     {
-        item = newItem;
+        if (item == null)
+        {
+            return;
+        }
         title = item.Title;
         description = item.Description;
         cost = item.Cost;
@@ -49,84 +55,45 @@ public class ShopItemHolder : MonoBehaviour
 
     private void AddShopItem()
     {
-        UpgradeHolder holder = UpgradeHolder.Instance;
-        if (isUpgrade() != null)
+        if (item is Upgrade upgrade)
         {
-            Upgrade upgrade = item as Upgrade;
-            holder.AddUpgrade(upgrade.UpgradeType);
+            UpgradeHolder.Instance.AddUpgrade(upgrade.UpgradeType);
         }
-        else if (isBoatSkin())
+        else if (item is BoatSkin)
         {
-            holder.ApplyBoatShopItem(this);
+            UpgradeHolder.Instance.ApplyBoatShopItem(this);
         }
     }
-
-    private Upgrade isUpgrade()
+    private bool CanPress()
     {
-        if (item is Upgrade)
-        {
-            return item as Upgrade;
-        }
-
-        return null;
+        bool canAfford = cost <= GameManager.Instance.Coins;
+        bool isBelowMaxLevel = item is not Upgrade upgrade || UpgradeHolder.Instance.GetUpgradeLevel(upgrade.UpgradeType) < Upgrade.MaxLevel; return (canAfford && isBelowMaxLevel) || ItemIsOwnedSkin();
     }
-
-    private BoatSkin isBoatSkin()
+    private bool ItemIsOwnedSkin()
     {
-        if (item is BoatSkin)
-        {
-            return item as BoatSkin;
-        }
-
-        return null;
+        return item is BoatSkin skin && UpgradeHolder.Instance.HasBoatSkin(skin);
     }
-
-    private bool isRightlevel(Upgrade upgrade)
-    {
-        if (UpgradeHolder.Instance.GetUpgradeLevel(upgrade.UpgradeType) >= 3)
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    public bool CanBuy()
-    {
-        if (GameManager.Instance.Coins >= cost)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
     public ShopItem GetItem()
     {
         return item;
     }
-
     public void BuyItem()
     {
-        if (CanBuy())
+        if (!CanPress())
         {
-            if (isUpgrade() != null && isRightlevel(item as Upgrade) == false)
-            {
-                return;
-            }
-
-            if (isBoatSkin() != null && UpgradeHolder.Instance.HasBoatSkin(item as BoatSkin))
-            {
-                UpgradeHolder.Instance.ApplyBoatShopItem(this);
-                return;
-            }
-            GameManager.Instance.Coins -= cost;
-            AddShopItem();
-            RefreshUI();
+            return;
         }
+        if (ItemIsOwnedSkin())
+        {
+            UpgradeHolder.Instance.ApplyBoatShopItem(this);
+            return;
+        }
+        GameManager.Instance.Coins -= cost;
+        AddShopItem();
+        ShopItemHolders.ForEach(holder => holder.RefreshUI());
     }
 
-    public void RefreshUI()
+    private void RefreshUI()
     {
         if (item == null) return;
         shopItemPicture.ChangeSprite(item.ItemPicture.sprite.name);
@@ -135,17 +102,9 @@ public class ShopItemHolder : MonoBehaviour
         descriptionText.text = description;
         costText.text = cost.ToString();
         
-        if (item is Upgrade)
+        buyButton.interactable = CanPress();
+        if (item is Upgrade upgrade)
         {
-            Upgrade upgrade = item as Upgrade;
-            if (CanBuy() && isRightlevel(item as Upgrade) == false)
-            {
-                buyButton.interactable = false;
-            }
-            else
-            {
-                buyButton.interactable = true;
-            }
             upgradeLevelNumber.text = UpgradeHolder.Instance.GetUpgradeLevel(upgrade.UpgradeType).ToString();
         }
         else

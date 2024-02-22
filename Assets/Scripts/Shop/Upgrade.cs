@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Upgrade : ShopItem
 {
+    public static int MaxLevel = 3;
     public UpgradeType UpgradeType;
     public int valuePerLevel;
 }

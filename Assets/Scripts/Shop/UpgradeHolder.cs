@@ -58,7 +58,7 @@ public class UpgradeHolder : MonoBehaviour
     public void AddUpgrade(UpgradeType upgradeType)
     {
         int index = GetUpgradeIndex(upgradeType);
-        if (upgradeLevels[index].Level < upgradeLevels[index].MaxLevel)
+        if (upgradeLevels[index].Level < Upgrade.MaxLevel)
         {
             upgradeLevels[index].IncreaseLevel();
             shopObjects.Find(x => x.UpgradeType == upgradeType).upgradeObject.Upgrade();
