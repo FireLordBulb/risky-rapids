@@ -51,17 +51,40 @@ public class UpgradeHolder : MonoBehaviour
         boatSkins = saveData.OwnedSkins;
         activeBoatSkin = saveData.EquippedSkin;
         characterAppearances = saveData.CharacterAppearances;
+        if (player != null)
+        {
+            ApplySaveData();
+        }
     }
     public void InitializePlayer(Player newPlayer)
     {
         player = newPlayer;
         playerUpgrades = player.GetComponent<PlayerUpgrades>();
+        if (upgradeLevels != null)
+        {
+            ApplySaveData();
+        }
+    }
+
+    private void ApplySaveData()
+    {
         FixUpgrades();
         if (activeBoatSkin != null)
         {
             ApplyBoatSkin(activeBoatSkin);
         }
         player.InitializeModel(characterAppearances);
+    }
+    private void FixUpgrades()
+    {
+        foreach (UpgradeLevel upgradeLevel in upgradeLevels)
+        {
+            if (upgradeLevel.Level > 0)
+            {
+                Upgrade upgrade = shopObjects[(int)upgradeLevel.UpgradeType].upgradeObject;
+                upgrade.Upgrade();
+            }
+        }
     }
     public void SetRowerColor(int rowerIndex, RowerColor color)
     {
@@ -110,18 +133,6 @@ public class UpgradeHolder : MonoBehaviour
             boatSkins.Add(boatSkin);
         }
         playerUpgrades.ApplyBoatMaterial(boatSkin.BoatMaterial);
-    }
-
-    private void FixUpgrades()
-    {
-        foreach (UpgradeLevel upgradeLevel in upgradeLevels)
-        {
-            if (upgradeLevel.Level > 0)
-            {
-                Upgrade upgrade = shopObjects[(int)upgradeLevel.UpgradeType].upgradeObject;
-                upgrade.Upgrade();
-            }
-        }
     }
     public int GetUpgradeValue(UpgradeType upgradeType)
     {
