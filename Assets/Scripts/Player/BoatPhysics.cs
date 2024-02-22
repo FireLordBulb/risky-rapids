@@ -10,7 +10,7 @@ public class BoatPhysics : MonoBehaviour
     [Header("River shape values")]
     [SerializeField] private float riverRadius;
     [SerializeField] private float waterSurfaceMargin;
-    private new Rigidbody Rigidbody;
+    private new Rigidbody rigidbody;
     // Continuous forces
     private float forceScalar;
     private float gravity;
@@ -42,12 +42,12 @@ public class BoatPhysics : MonoBehaviour
     public bool IsFalling { get; private set; }
     // Speeds
     public float TopSpeed {get; private set;}
-    public float Speed => Rigidbody.velocity.magnitude;
+    public float Speed => rigidbody.velocity.magnitude;
     private void Awake()
     {
-        Rigidbody = GetComponent<Rigidbody>();
+        rigidbody = GetComponent<Rigidbody>();
         
-        Rigidbody.drag = physicsData.linearDrag;
+        rigidbody.drag = physicsData.linearDrag;
         forceScalar = physicsData.forceScalar;
         gravity = physicsData.gravity;
         buoyancy = physicsData.buoyancy;
@@ -57,7 +57,7 @@ public class BoatPhysics : MonoBehaviour
         singleOarSideScalar = physicsData.singleOarSideScalar;
         singleOarForwardsScalar = physicsData.singleOarForwardsScalar;
         twoOarsBackwardsScalar = physicsData.twoOarsBackwardsScalar;
-        Rigidbody.angularDrag = physicsData.angularDrag;
+        rigidbody.angularDrag = physicsData.angularDrag;
         torqueScalar = physicsData.torqueScalar;
         waterTorque = physicsData.waterTorque;
         rowTorque = physicsData.rowTorque;
@@ -65,7 +65,7 @@ public class BoatPhysics : MonoBehaviour
         riverbankSideForce = physicsData.riverbankSideForce;
         riverbankBackForce = physicsData.riverbankBackForce;
         riverbankMinScalar = physicsData.riverbankMinScalar;
-        TopSpeed = (waterFlowForce + baseRowForce) * forceScalar / Rigidbody.drag;
+        TopSpeed = (waterFlowForce + baseRowForce) * forceScalar / rigidbody.drag;
     }
     private void Start()
     {
@@ -85,13 +85,13 @@ public class BoatPhysics : MonoBehaviour
     public void ResetTo(Vector3 position, Quaternion rotation)
     {
         ResetLinearDrag();
-        Rigidbody.position = transform.position = position;
-        Rigidbody.rotation = transform.rotation = rotation;
-        Rigidbody.velocity = Vector3.zero;
-        Rigidbody.angularVelocity = Vector3.zero;
+        rigidbody.position = transform.position = position;
+        rigidbody.rotation = transform.rotation = rotation;
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
         // Resets force and torque to zero.
-        Rigidbody.AddForce(-Rigidbody.GetAccumulatedForce());
-        Rigidbody.AddTorque(-Rigidbody.GetAccumulatedTorque());
+        rigidbody.AddForce(-rigidbody.GetAccumulatedForce());
+        rigidbody.AddTorque(-rigidbody.GetAccumulatedTorque());
     }
     public void ResetMovementForces()
     {
@@ -100,11 +100,11 @@ public class BoatPhysics : MonoBehaviour
     }
     public void ScaleLinearDrag(float scale)
     {
-        Rigidbody.drag *= scale;
+        rigidbody.drag *= scale;
     }
     public void ResetLinearDrag()
     {
-        Rigidbody.drag = physicsData.linearDrag;
+        rigidbody.drag = physicsData.linearDrag;
     }
     public void AddKnockBack(float force, Vector3 normal, float minSpeedScalar)
     {
@@ -113,9 +113,9 @@ public class BoatPhysics : MonoBehaviour
             return;
         }
         Vector3 direction = ProjectOnRiverSurface(normal).normalized;
-        Vector3 velocityAlongDirection = Vector3.Project(Rigidbody.velocity, direction);
+        Vector3 velocityAlongDirection = Vector3.Project(rigidbody.velocity, direction);
         float speedScalar = Mathf.Max(velocityAlongDirection.magnitude, minSpeedScalar);
-        Rigidbody.AddForce(force * speedScalar * direction, ForceMode.Acceleration);
+        rigidbody.AddForce(force * speedScalar * direction, ForceMode.Acceleration);
         // Nullify the river flow when being knocked back. 
         AddContinuousForce(-1 * waterFlowForce * localFlowDirection);
         hasBeenKnockedBack = true;
@@ -152,7 +152,7 @@ public class BoatPhysics : MonoBehaviour
         if (isTooDeep)
         {
             // All downwards velocity is deleted.
-            Rigidbody.AddForce(new Vector3(0, Mathf.Max(-Rigidbody.velocity.y, 0), 0), ForceMode.Impulse);
+            rigidbody.AddForce(new Vector3(0, Mathf.Max(-rigidbody.velocity.y, 0), 0), ForceMode.Impulse);
         }
         AddContinuousForce(waterFlowForce*(isTooDeep ? ProjectOnXZPlane(localFlowDirection).normalized : localFlowDirection));
         MakeFall(isTooDeep);
@@ -201,7 +201,7 @@ public class BoatPhysics : MonoBehaviour
         localNormal = newLocalNormal == Vector3.zero ? Vector3.up : newLocalNormal;
         
         Vector3 axisScaledByError = Vector3.Cross(transform.up, localNormal);
-        Rigidbody.AddTorque(normalChangeTorque * torqueScalar * axisScaledByError, ForceMode.Acceleration);
+        rigidbody.AddTorque(normalChangeTorque * torqueScalar * axisScaledByError, ForceMode.Acceleration);
     }
     private void MakeFall(bool isTooDeep)
     {
@@ -240,8 +240,8 @@ public class BoatPhysics : MonoBehaviour
         }
         overlapWithWall = Mathf.Max(overlapWithWall, riverbankMinScalar);
         Vector3 sideForce = riverbankSideForce * overlapWithWall * shortestToSpline.normalized;
-        Vector3 backForce = riverbankBackForce * Rigidbody.velocity.normalized;
-        Rigidbody.AddForce(sideForce + backForce, ForceMode.Acceleration);
+        Vector3 backForce = riverbankBackForce * rigidbody.velocity.normalized;
+        rigidbody.AddForce(sideForce + backForce, ForceMode.Acceleration);
     }
     private Vector3 GetDifferenceToPlane(Vector3 vector)
     {
@@ -257,11 +257,11 @@ public class BoatPhysics : MonoBehaviour
     }
     private void AddContinuousForce(Vector3 force)
     {
-        Rigidbody.AddForce(forceScalar * force, ForceMode.Acceleration);
+        rigidbody.AddForce(forceScalar * force, ForceMode.Acceleration);
     }
     private void AddContinuousAxialTorque(float torque)
     {
-        Rigidbody.AddTorque(torque * torqueScalar * transform.up, ForceMode.Acceleration);
+        rigidbody.AddTorque(torque * torqueScalar * transform.up, ForceMode.Acceleration);
     }
     private void HandleWrongWayUI()
     {
