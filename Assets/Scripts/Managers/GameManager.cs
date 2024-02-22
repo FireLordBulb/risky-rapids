@@ -116,6 +116,11 @@ public class GameManager : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
     }
+    public void SetStartCoins(int amount)
+    {
+        Coins = amount;
+        levelStartCoins = amount;
+    }
     private void Update()
     {
         if (0 < countDownLeft)

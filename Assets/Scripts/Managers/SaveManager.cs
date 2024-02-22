@@ -71,7 +71,7 @@ public class SaveManager : MonoBehaviour
             string saveDataJson = File.ReadAllText(saveFilePath);
             savedStats = JsonUtility.FromJson<SavedStats>(saveDataJson);
             
-            GameManager.Instance.Coins = savedStats.Coins;
+            GameManager.Instance.SetStartCoins(savedStats.Coins);
             UpgradeHolder.Instance.AddFromSave(savedStats.UpgradeLevels, savedStats.SkinsUnlocked, savedStats.EquippedBoat);
         }
         catch (Exception e)
