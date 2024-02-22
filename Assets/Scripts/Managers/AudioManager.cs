@@ -42,22 +42,25 @@ public class AudioManager : MonoBehaviour
         collisionSource = gameObject.AddComponent<AudioSource>();
         levelCompletedSource = gameObject.AddComponent<AudioSource>();
         rowingSource = gameObject.AddComponent<AudioSource>();
-        
+
+        gameplaySource.loop = true;
+        menuSource.loop = true;
+        riverSource.loop = true;
         rowingSource.volume = rowingVolume;
     }
     public void PlayGameplayMusic()
     {
         menuSource.Stop();
-        PlayAudio(gameplaySource, gameplayMusic, true);
+        PlayAudio(gameplaySource, gameplayMusic);
     }
     public void PlayMenuMusic()
     {
         gameplaySource.Stop();
-        PlayAudio(menuSource, menuMusic, true);
+        PlayAudio(menuSource, menuMusic);
     }
     public void PlayRiverAudio()
     {
-        PlayAudio(riverSource, riverAudio, true);
+        PlayAudio(riverSource, riverAudio);
     }
     public void StopRiverAudio()
     {
@@ -65,37 +68,36 @@ public class AudioManager : MonoBehaviour
     }
     public void PlayBoostAudio()
     {
-        PlayAudio(boostSource, boostAudio, false);
+        PlayAudio(boostSource, boostAudio);
     }
     public void PlayCoinAudio()
     {
-        PlayAudio(coinSource, coinAudio, false);
+        PlayAudio(coinSource, coinAudio);
     }
     public void PlayCollisionStoneAudio()
     {
-        PlayAudio(collisionSource, collisionAudio, false);
+        PlayAudio(collisionSource, collisionAudio);
     }
     public void PlayCompletedLevelAudio()
     {
-        PlayAudio(levelCompletedSource, levelCompletedAudio, false);
+        PlayAudio(levelCompletedSource, levelCompletedAudio);
     }
     public void PlayRowingAudio()
     {
-        PlayAudio(rowingSource, rowingAudios[Random.Range(0, rowingAudios.Length)],false);
+        PlayAudio(rowingSource, rowingAudios[Random.Range(0, rowingAudios.Length)]);
     }
-    public void PlayAudio(AudioSource source, AudioClip clip, bool loop)
+    public void PlayAudio(AudioSource source, AudioClip clip)
     {
         if (!clip)
         {
             Debug.Log($"Missing AudioClip for {source}");
             return;
         }
+        source.clip = clip;
         if (source.isPlaying)
         {
             return;
         }
-        source.clip = clip;
-        source.loop = loop;
         source.Play();
     }
 }
