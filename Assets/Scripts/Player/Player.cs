@@ -41,8 +41,7 @@ public class Player : MonoBehaviour
         foreach (Rower rower in rowers)
         {
             rower.SetActiveHairStyle(hairStyle);
-            Material material = playerData.GetChosenHairStyleMaterials((int)hairStyle)[(int)hairColor];
-            rower.SetMaterial(material);
+            rower.SetMaterial(playerData.GetMaterial(hairStyle, hairColor));
             
             hairStyle = (CharacterMesh)PlayerPrefs.GetInt("PlayerTwoHair");
             hairColor = (CharacterColor)PlayerPrefs.GetInt("PlayerTwoColor");
