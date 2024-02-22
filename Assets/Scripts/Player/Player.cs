@@ -36,22 +36,16 @@ public class Player : MonoBehaviour
     }
     public void InitializePlayerModel()
     {
-        int hairStyle = PlayerPrefs.GetInt("PlayerOneHair");
-        int hairColor = PlayerPrefs.GetInt("PlayerOneColor");
+        CharacterMesh hairStyle = (CharacterMesh)PlayerPrefs.GetInt("PlayerOneHair");
+        CharacterColor hairColor = (CharacterColor)PlayerPrefs.GetInt("PlayerOneColor");
         foreach (Rower rower in rowers)
         {
-            foreach (Renderer hairStyleMesh in rower.hairStyleMeshes)
-            {
-                hairStyleMesh.gameObject.SetActive(false);
-            }
-            var activeHairStyle = rower.hairStyleMeshes[hairStyle];
-            activeHairStyle.gameObject.SetActive(true);
-            var material = playerData.GetChosenHairStyleMaterials(hairStyle)[hairColor];
-            activeHairStyle.material = material;
-            rower.bodyMesh.material = material;
+            rower.SetActiveHairStyle(hairStyle);
+            Material material = playerData.GetChosenHairStyleMaterials((int)hairStyle)[(int)hairColor];
+            rower.SetMaterial(material);
             
-            hairStyle = PlayerPrefs.GetInt("PlayerTwoHair");
-            hairColor = PlayerPrefs.GetInt("PlayerTwoColor");
+            hairStyle = (CharacterMesh)PlayerPrefs.GetInt("PlayerTwoHair");
+            hairColor = (CharacterColor)PlayerPrefs.GetInt("PlayerTwoColor");
         }
         
         rightSplash.Stop();
