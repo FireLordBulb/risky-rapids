@@ -26,6 +26,11 @@ public class ShopItemHolder : MonoBehaviour
     private static readonly List<ShopItemHolder> ShopItemHolders = new();
     private Button buyButton;
 
+    public static void RefreshShopUI()
+    {
+        ShopItemHolders.ForEach(holder => holder.RefreshUI());
+    }
+    
     public void Awake()
     {
         ShopItemHolders.Add(this);
@@ -67,7 +72,8 @@ public class ShopItemHolder : MonoBehaviour
     private bool CanPress()
     {
         bool canAfford = cost <= GameManager.Instance.Coins;
-        bool isBelowMaxLevel = item is not Upgrade upgrade || UpgradeHolder.Instance.GetUpgradeLevel(upgrade.UpgradeType) < Upgrade.MaxLevel; return (canAfford && isBelowMaxLevel) || ItemIsOwnedSkin();
+        bool isBelowMaxLevel = item is not Upgrade upgrade || UpgradeHolder.Instance.GetUpgradeLevel(upgrade.UpgradeType) < Upgrade.MaxLevel;
+        return (canAfford && isBelowMaxLevel) || ItemIsOwnedSkin();
     }
     private bool ItemIsOwnedSkin()
     {
@@ -90,7 +96,6 @@ public class ShopItemHolder : MonoBehaviour
         }
         GameManager.Instance.Coins -= cost;
         AddShopItem();
-        ShopItemHolders.ForEach(holder => holder.RefreshUI());
     }
 
     private void RefreshUI()

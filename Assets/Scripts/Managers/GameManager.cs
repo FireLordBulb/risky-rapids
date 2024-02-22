@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         {
             coins = value;
             UIManager.Instance.UpdateCoinTexts();
+            ShopItemHolder.RefreshShopUI();
         }
     }
     public GameState CurrentGameState
