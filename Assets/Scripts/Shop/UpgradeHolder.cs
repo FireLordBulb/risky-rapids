@@ -33,6 +33,8 @@ public class UpgradeHolder : MonoBehaviour
     private PlayerUpgrades playerUpgrades;
     private ShopItemHolder activeBoatItem;
     
+    public BoatSkin ActiveBoatSkin => activeBoatSkin;
+
     private void Awake()
     {
         if (Instance != null)
@@ -65,13 +67,13 @@ public class UpgradeHolder : MonoBehaviour
     {
         characterAppearances[rowerIndex].color = color;
         player.SetRowerColor(rowerIndex, color);
-        SaveManager.Instance.SaveToFile();
+        SaveManager.Instance.Save();
     }
     public void SetRowerMesh(int rowerIndex, RowerMesh mesh)
     {
         characterAppearances[rowerIndex].mesh = mesh;
         player.SetRowerMesh(rowerIndex, mesh);
-        SaveManager.Instance.SaveToFile();
+        SaveManager.Instance.Save();
     }
     public void AddUpgrade(UpgradeType upgradeType)
     {
@@ -82,7 +84,6 @@ public class UpgradeHolder : MonoBehaviour
         }
         upgradeLevel.IncreaseLevel();
         shopObjects.Find(x => x.UpgradeType == upgradeType).upgradeObject.Upgrade();
-        SaveManager.Instance.SaveUpgrades(upgradeLevels);
     }
     public void ApplyCurrentBoatSkin()
     {
@@ -113,10 +114,8 @@ public class UpgradeHolder : MonoBehaviour
         if (!boatSkins.Contains(boatSkin))
         {
             boatSkins.Add(boatSkin);
-            SaveManager.Instance.SaveSkins(boatSkins);
         }
-        FindObjectOfType<PlayerUpgrades>().ApplyBoatMaterial(boatSkin.BoatMaterial);
-        SaveManager.Instance.SaveEquippedSkin(boatSkin);
+        playerUpgrades.ApplyBoatMaterial(boatSkin.BoatMaterial);
     }
     public void FixUpgrades()
     {

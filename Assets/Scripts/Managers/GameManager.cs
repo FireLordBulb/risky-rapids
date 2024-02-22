@@ -284,7 +284,7 @@ public class GameManager : MonoBehaviour
         
         UIManager.Instance.ShowGameEndPanel();
         AudioManager.Instance.PlayMenuMusic();
-        SaveManager.Instance.SaveCoins(Coins);
+        SaveManager.Instance.Save();
     }
     public void FailGame()
     {

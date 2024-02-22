@@ -88,10 +88,13 @@ public class ShopItemHolder : MonoBehaviour
         if (ItemIsOwnedSkin())
         {
             UpgradeHolder.Instance.ApplyBoatShopItem(this);
-            return;
         }
-        AddShopItem();
-        GameManager.Instance.Coins -= cost;
+        else
+        {
+            AddShopItem();
+            GameManager.Instance.Coins -= cost;
+        }
+        SaveManager.Instance.Save();
     }
     private bool CanPress()
     {
