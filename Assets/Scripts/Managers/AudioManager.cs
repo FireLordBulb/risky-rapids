@@ -93,11 +93,11 @@ public class AudioManager : MonoBehaviour
             Debug.Log($"Missing AudioClip for {source}");
             return;
         }
-        source.clip = clip;
-        if (source.isPlaying)
+        if (source.isPlaying && source.clip != null)
         {
             return;
         }
+        source.clip = clip;
         source.Play();
     }
 }
