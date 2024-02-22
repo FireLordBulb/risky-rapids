@@ -117,7 +117,7 @@ public class UpgradeHolder : MonoBehaviour
         return GetUpgradeLevel(upgradeType) * upgrade.valuePerLevel;
     }
 
-    public int GetUpgradeIndex(UpgradeType type)
+    private int GetUpgradeIndex(UpgradeType type)
     {
         for (var index = 0; index < upgradeLevels.Count; index++)
         {
