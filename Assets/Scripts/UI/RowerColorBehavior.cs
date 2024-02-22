@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterColorBehavior : MonoBehaviour
+public class RowerColorBehavior : MonoBehaviour
 {
     public RowerColor rowerColor;
 }

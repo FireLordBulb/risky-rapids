@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterMeshBehavior : MonoBehaviour
+public class RowerMeshBehavior : MonoBehaviour
 {
     public RowerMesh rowerMesh;
 }
