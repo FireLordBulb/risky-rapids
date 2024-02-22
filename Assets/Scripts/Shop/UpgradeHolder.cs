@@ -80,11 +80,11 @@ public class UpgradeHolder : MonoBehaviour
         }
         if (activeBoatItem != null)
         {
-            activeBoatItem.DisableCheckMark();
+            activeBoatItem.CheckMarkSetActivate(false);
         }
         activeBoatItem = shopItemHolder;
         MakeCurrentSkinSelected();
-        if (shopItemHolder.GetItem() is BoatSkin boatSkin)
+        if (shopItemHolder.Item is BoatSkin boatSkin)
         {
             ApplyBoatSkin(boatSkin);
         }
@@ -145,19 +145,19 @@ public class UpgradeHolder : MonoBehaviour
 
     public void SelectIfCurrentSkin(ShopItemHolder holder)
     {
-        if (holder.GetItem() == activeBoatSkin)
+        if (holder.Item == activeBoatSkin)
         {
             activeBoatItem = holder;
             MakeCurrentSkinSelected();
         }
         else
         {
-            holder.DisableCheckMark();
+            holder.CheckMarkSetActivate(false);
         }
     }
     private void MakeCurrentSkinSelected()
     {
-        activeBoatItem.ActivateCheckMark();
-        activeBoatSkin = activeBoatItem.GetItem() as BoatSkin;
+        activeBoatItem.CheckMarkSetActivate(true);
+        activeBoatSkin = activeBoatItem.Item as BoatSkin;
     }
 }
