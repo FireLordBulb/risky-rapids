@@ -6,12 +6,12 @@ public class Rower
 {
     [SerializeField] private Renderer bodyMesh;
     [SerializeField] private Renderer[] hairStyleMeshes;
-    private PlayerData materialData;
+    private MaterialData materialData;
     private Renderer activeHairStyle;
     private CharacterMesh currentMesh;
     private CharacterColor currentColor;
 
-    public void Initialize(PlayerData data)
+    public void Initialize(MaterialData data)
     {
         materialData = data;
         activeHairStyle = hairStyleMeshes[0];

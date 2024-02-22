@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private PlayerData playerData;
+    [SerializeField] private MaterialData materialData;
     [SerializeField] private Rower[] rowers;
     [Space] 
     [SerializeField] private ParticleSystem leftSplash;
@@ -16,7 +17,7 @@ public class Player : MonoBehaviour
         InitializeHealth();
         foreach (Rower rower in rowers)
         {
-            rower.Initialize(playerData);
+            rower.Initialize(materialData);
         }
     }
     private void Start()

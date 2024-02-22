@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe44d8fcde1a9f47be0f04d0cbf2b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 7e5fd6dffbdcad746a7702d4ed346088, type: 2}
+  materialData: {fileID: 11400000, guid: 7e5fd6dffbdcad746a7702d4ed346088, type: 2}
   rowers:
   - bodyMesh: {fileID: 5896287797193393440}
     hairStyleMeshes:

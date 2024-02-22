@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Player Data", menuName = "ScriptableObjects/Player/Player Data", order = 1)]
-public class PlayerData : ScriptableObject
+public class MaterialData : ScriptableObject
 {
     [SerializeField] private MaterialArray[] materialArrays;
 
