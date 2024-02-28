@@ -770,6 +770,7 @@ GameObject:
   - component: {fileID: 3874968245118962172}
   - component: {fileID: 2961473780521146455}
   - component: {fileID: 8927962011872262988}
+  - component: {fileID: 426271906133068559}
   m_Layer: 5
   m_Name: MainMenuPanel
   m_TagString: Untagged
@@ -840,6 +841,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &426271906133068559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2537079095670430296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3267ed1ae166f247944370ce593b397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: 1ae48aaadad4f014f8ced410c0398d5e, type: 2}
 --- !u!1 &2558967837152147025
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,6 +1272,7 @@ GameObject:
   - component: {fileID: 4682764373146709332}
   - component: {fileID: 1759559497158138795}
   - component: {fileID: 4602732254297885763}
+  - component: {fileID: 373633253346622779}
   m_Layer: 5
   m_Name: CreditsPanel
   m_TagString: Untagged
@@ -1344,6 +1359,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: 612ecf670f9361d408356026e114c1bf, type: 3}
   spriteName: CreditsBackground
+--- !u!114 &373633253346622779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3793838255501530083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3267ed1ae166f247944370ce593b397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: e19b1673a9f42504ea3b28025e9d1cdb, type: 2}
 --- !u!1 &4051204023328514389
 GameObject:
   m_ObjectHideFlags: 0
@@ -2338,6 +2366,7 @@ GameObject:
   - component: {fileID: 5362418058589856677}
   - component: {fileID: 2482649106208925351}
   - component: {fileID: 5650032251532140102}
+  - component: {fileID: 3765126767854700372}
   - component: {fileID: 5205387734006431820}
   m_Layer: 5
   m_Name: CharacterSelection
@@ -2412,6 +2441,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3765126767854700372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5647090150012036039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3267ed1ae166f247944370ce593b397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: 0232daa6d7719544cabda9dd7ccac4cf, type: 2}
 --- !u!114 &5205387734006431820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3067,8 +3109,9 @@ GameObject:
   - component: {fileID: 9219212219814992497}
   - component: {fileID: 5477277335512882539}
   - component: {fileID: 705172130569668043}
+  - component: {fileID: 358310989510166461}
   m_Layer: 5
-  m_Name: LevelSelectPanel
+  m_Name: LevelSelectionPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3136,6 +3179,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &358310989510166461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608629939965887825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3267ed1ae166f247944370ce593b397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: fbee6dca315c42943908393ea025add5, type: 2}
 --- !u!1 &7720179365189895831
 GameObject:
   m_ObjectHideFlags: 0
