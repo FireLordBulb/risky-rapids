@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private List<GameData> gameDatas;
     [SerializeField] private LevelDataList levelDataList;
+    [SerializeField] private LoadingScreenFade menuBackgroundPanel;
     [SerializeField] private float gameEndDragScale;
     [SerializeField] private float coinsPerSecond;
     [SerializeField] private int countDownTime;
