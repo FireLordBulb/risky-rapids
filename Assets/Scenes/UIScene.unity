@@ -1842,11 +1842,6 @@ PrefabInstance:
       propertyPath: m_UiScaleMode
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 660110850569067522, guid: b2933137d6260894a91064e965097559,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1714775911}
     - target: {fileID: 1251245712840276290, guid: b2933137d6260894a91064e965097559,
         type: 3}
       propertyPath: m_Name
