@@ -1892,31 +1892,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 2076892629989156959, guid: b2933137d6260894a91064e965097559,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2076892629989156959, guid: b2933137d6260894a91064e965097559,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1714775911}
-    - target: {fileID: 2076892629989156959, guid: b2933137d6260894a91064e965097559,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MakeActivePanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 2076892629989156959, guid: b2933137d6260894a91064e965097559,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 1664344363}
-    - target: {fileID: 2076892629989156959, guid: b2933137d6260894a91064e965097559,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 2537079095670430296, guid: b2933137d6260894a91064e965097559,
         type: 3}
       propertyPath: m_IsActive
@@ -1936,12 +1911,6 @@ RectTransform:
 --- !u!1 &1664344361 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2537079095670430296, guid: b2933137d6260894a91064e965097559,
-    type: 3}
-  m_PrefabInstance: {fileID: 1664344358}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1664344363 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7608629939965887825, guid: b2933137d6260894a91064e965097559,
     type: 3}
   m_PrefabInstance: {fileID: 1664344358}
   m_PrefabAsset: {fileID: 0}

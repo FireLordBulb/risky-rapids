@@ -9,11 +9,12 @@ public class ActivePanelSwitcher : MonoBehaviour
 
     protected virtual void Awake()
     {
-        GetComponent<Button>().onClick.AddListener(() =>
-        {
-            parentPanel.SetActive(false);
-            linker.GameObject.SetActive(true);
-        });
+        GetComponent<Button>().onClick.AddListener(SwitchPanel);
+    }
+    protected void SwitchPanel()
+    {
+        parentPanel.SetActive(false);
+        linker.GameObject.SetActive(true);
     }
     public void SetParentPanel(GameObject panel)
     {
