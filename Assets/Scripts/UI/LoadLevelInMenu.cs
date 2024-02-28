@@ -8,12 +8,12 @@ public class LoadLevelInMenu : ActivePanelSwitcher
 {
     [SerializeField] private int levelIndex;
 
-    protected void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         GetComponent<Button>().onClick.AddListener(() =>
         {
             GameManager.Instance.LoadLevelInMenu(levelIndex);
         });
     }
-  
 }

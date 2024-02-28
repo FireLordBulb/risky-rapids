@@ -7,7 +7,7 @@ public class ActivePanelSwitcher : MonoBehaviour
     [SerializeField] private UIObjectLinker linker;
     private GameObject parentPanel;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         GetComponent<Button>().onClick.AddListener(() =>
         {
