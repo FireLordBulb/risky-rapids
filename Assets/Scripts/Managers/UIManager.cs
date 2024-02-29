@@ -109,7 +109,6 @@ public class UIManager : MonoBehaviour
         activePanel.SetActive(false);
         activePanel = panel;
         activePanel.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
     }
     public void StartTutorial()
     {
@@ -120,13 +119,11 @@ public class UIManager : MonoBehaviour
     {
         controlsTutorialPanel.SetActive(false);
         goalTutorialPanel.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
     }
     public void EndTutorial()
     {
         GameManager.Instance.StartCountdown(true);
         goalTutorialPanel.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(null);
     }
     public void QuitGame()
     {

@@ -18,7 +18,6 @@ public class ActivePanelSwitcher : MonoBehaviour
     {
         parentPanel.SetActive(false);
         linker.GameObject.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
     }
     public void SetParentPanel(GameObject panel)
     {

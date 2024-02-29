@@ -24,12 +24,10 @@ public class Tutorial : MonoBehaviour
     {
         controlsPanel.SetActive(false);
         goalPanel.SetActive(true);
-        //EventSystem.current.SetSelectedGameObject(null);
     }
     private void EndTutorial()
     {
         GameManager.Instance.StartCountdown(true);
         goalPanel.SetActive(false);
-        //EventSystem.current.SetSelectedGameObject(null);
     }
 }
