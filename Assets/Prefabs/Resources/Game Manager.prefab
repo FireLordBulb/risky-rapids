@@ -54,9 +54,13 @@ MonoBehaviour:
   gameOverLinker: {fileID: 11400000, guid: 63f0622c30076b140bb0e3b51a3c93ec, type: 2}
   levelCompleteLinker: {fileID: 11400000, guid: e067ce6699aa21c458fd0ed8174e8104,
     type: 2}
-  tutorialLinker: {fileID: 11400000, guid: e820fea07a5e73a4bb635cee3fc5178b, type: 2}
   wrongWayLinker: {fileID: 11400000, guid: 4d5e87c11ab89e34f9840316895095f1, type: 2}
   pauseButtonLinker: {fileID: 11400000, guid: 631af901de21318478ae3d905cfde51b, type: 2}
+  tutorialLinker: {fileID: 11400000, guid: e820fea07a5e73a4bb635cee3fc5178b, type: 2}
+  menuBackgroundLinker: {fileID: 11400000, guid: 3490285a3982b834ca135a25e73a75bd,
+    type: 2}
+  loadingScreenLinker: {fileID: 11400000, guid: b81a34e7d435c2a47b4b1b4c9fb7a011,
+    type: 2}
   gameEndDragScale: 1.3
   coinsPerSecond: 2
   countDownTime: 4

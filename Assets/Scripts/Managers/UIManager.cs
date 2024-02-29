@@ -7,9 +7,6 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    public LoadingScreenFade menuBackgroundPanel;
-    public LoadingScreenFade loadingScreenPanel;
-    
     [Space] [Space] 
     
     [SerializeField] private Slider healthSlider;

@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3267ed1ae166f247944370ce593b397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linker: {fileID: 11400000, guid: b81a34e7d435c2a47b4b1b4c9fb7a011, type: 2}
+  linker: {fileID: 11400000, guid: 3490285a3982b834ca135a25e73a75bd, type: 2}
 --- !u!114 &296478969 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6208782364452247389, guid: cc7346816b474364a9355eac748e99e6,
@@ -727,7 +727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3267ed1ae166f247944370ce593b397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linker: {fileID: 11400000, guid: 3490285a3982b834ca135a25e73a75bd, type: 2}
+  linker: {fileID: 11400000, guid: b81a34e7d435c2a47b4b1b4c9fb7a011, type: 2}
 --- !u!114 &808654143 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8723447517837020380, guid: 2b653ce697b1a494fab40a4903c6c7d9,
@@ -740,18 +740,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &887450349 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2045262825431152675, guid: 2b653ce697b1a494fab40a4903c6c7d9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1119252300}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1033185751 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4333937889899427957, guid: 2b653ce697b1a494fab40a4903c6c7d9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1119252300}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1119252300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1400,18 +1388,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e7afda0d3b92794b9231122d71961ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuBackgroundPanel: {fileID: 156308668}
-  loadingScreenPanel: {fileID: 793388000}
-  wrongWayPanel: {fileID: 1033185751}
-  mainMenuPanel: {fileID: 1664344361}
-  pauseButton: {fileID: 887450349}
   healthSlider: {fileID: 1119252301}
   countDownText: {fileID: 1293730855}
   coinTexts:
   - {fileID: 808654143}
   - {fileID: 296478969}
   - {fileID: 1564917227}
-  uiCamera: {fileID: 355707471}
   endTime: {fileID: 1206749009}
   endCoinsFromTime: {fileID: 1516031937}
   endCoinsCollected: {fileID: 1119252305}

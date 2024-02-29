@@ -18,9 +18,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIObjectLinker pauseMenuLinker;
     [SerializeField] private UIObjectLinker gameOverLinker;
     [SerializeField] private UIObjectLinker levelCompleteLinker;
-    [SerializeField] private UIObjectLinker tutorialLinker;
     [SerializeField] private UIObjectLinker wrongWayLinker;
     [SerializeField] private UIObjectLinker pauseButtonLinker;
+    [SerializeField] private UIObjectLinker tutorialLinker;
+    [SerializeField] private UIObjectLinker menuBackgroundLinker;
+    [SerializeField] private UIObjectLinker loadingScreenLinker;
+
     [SerializeField] private float gameEndDragScale;
     [SerializeField] private float coinsPerSecond;
     [SerializeField] private int countDownTime;
@@ -30,6 +33,8 @@ public class GameManager : MonoBehaviour
     private readonly List<Interactable> interactableObjects = new();
 
     private Tutorial tutorial;
+    private LoadingScreenFade menuBackground;
+    private LoadingScreenFade loadingScreen;
     
     private Vector3 playerSpawnPosition;
     private Quaternion playerSpawnRotation;
@@ -113,6 +118,8 @@ public class GameManager : MonoBehaviour
     {
         levelTimer = FindObjectOfType<LevelTimer>(true);
         tutorial = tutorialLinker.GameObject.GetComponent<Tutorial>();
+        menuBackground = menuBackgroundLinker.GameObject.GetComponent<LoadingScreenFade>();
+        loadingScreen = loadingScreenLinker.GameObject.GetComponent<LoadingScreenFade>();
         // Main menu and playing are the only two possible starting GameStates.
         switch(CurrentGameState)
         {
@@ -188,20 +195,20 @@ public class GameManager : MonoBehaviour
             ReturnToMenu();
             return;
         }
-        UIManager.Instance.loadingScreenPanel.MakeOpaque();
+        loadingScreen.MakeOpaque();
         LoadLevel(index, () => StartCountdown());
     }
     public void LoadLevelInMenu(int index)
     {
-        UIManager.Instance.menuBackgroundPanel.MakeOpaque();
+        menuBackground.MakeOpaque();
         LoadLevel(index, () => {});
     }
     public void LoadLevel(int index, Action postLoadAction)
     {
         if (index == currentLevelIndex)
         {
-            UIManager.Instance.menuBackgroundPanel.FadeOut();
-            UIManager.Instance.loadingScreenPanel.FadeOut();
+            menuBackground.FadeOut();
+            loadingScreen.FadeOut();
             return;
         }
         if (currentLevel != null)
@@ -228,8 +235,8 @@ public class GameManager : MonoBehaviour
         {
             terrainCollider.enabled = false;
         }
-        UIManager.Instance.menuBackgroundPanel.FadeOut();
-        UIManager.Instance.loadingScreenPanel.FadeOut();
+        menuBackground.FadeOut();
+        loadingScreen.FadeOut();
         postLoadAction();
     }
 
