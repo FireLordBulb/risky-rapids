@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UISystem;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private List<GameData> gameDatas;
     [SerializeField] private LevelDataList levelDataList;
+    [Header("UI Object Linkers")]
     [SerializeField] private UIObjectLinker uiCameraLinker;
     [SerializeField] private UIObjectLinker mainMenuLinker;
     [SerializeField] private UIObjectLinker hudLinker;
@@ -23,10 +24,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIObjectLinker tutorialLinker;
     [SerializeField] private UIObjectLinker menuBackgroundLinker;
     [SerializeField] private UIObjectLinker loadingScreenLinker;
-
+    [SerializeField] private UIObjectLinker countdownLinker;
+    [SerializeField] private UIObjectLinker levelTimerLinker;
+    [Space]
     [SerializeField] private float gameEndDragScale;
     [SerializeField] private float coinsPerSecond;
-    [SerializeField] private int countDownTime;
+    [SerializeField] private int countdownTime;
     private LevelData[] levels;
 
     private const string UI = "UIScene";
@@ -35,18 +38,19 @@ public class GameManager : MonoBehaviour
     private Tutorial tutorial;
     private LoadingScreenFade menuBackground;
     private LoadingScreenFade loadingScreen;
+    private TextMeshProUGUI countdown;
+    private LevelTimer levelTimer;
     
     private Vector3 playerSpawnPosition;
     private Quaternion playerSpawnRotation;
     private Player player;
     private BoatPhysics boatPhysics;
     private PlayerInput playerInput;
-    private LevelTimer levelTimer;
 
     private LevelData currentLevel;
     private int currentLevelIndex = -1;
 
-    private float countDownLeft;
+    private float countdownLeft;
 
     private int levelStartCoins;
     private int coins;
@@ -116,10 +120,11 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        levelTimer = FindObjectOfType<LevelTimer>(true);
         tutorial = tutorialLinker.GameObject.GetComponent<Tutorial>();
         menuBackground = menuBackgroundLinker.GameObject.GetComponent<LoadingScreenFade>();
         loadingScreen = loadingScreenLinker.GameObject.GetComponent<LoadingScreenFade>();
+        countdown = countdownLinker.GameObject.GetComponent<TextMeshProUGUI>();
+        levelTimer = levelTimerLinker.GameObject.GetComponent<LevelTimer>();
         // Main menu and playing are the only two possible starting GameStates.
         switch(CurrentGameState)
         {
@@ -132,9 +137,9 @@ public class GameManager : MonoBehaviour
                 StartCountdown();
                 break;
             case GameState.Paused:
-            case GameState.EndGame:
+            case GameState.LevelComplete:
             case GameState.GameOver:
-            case GameState.CountDown:
+            case GameState.Countdown:
             case GameState.Tutorial:
             default:
                 Debug.LogError($"Invalid game start GameState: {CurrentGameState.ToString()}!!!");
@@ -148,23 +153,23 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (0 < countDownLeft)
+        if (0 < countdownLeft)
         {
-            countDownLeft -= Time.deltaTime;
-            string countDownText = $"{(int)countDownLeft}";
+            countdownLeft -= Time.deltaTime;
+            string countDownText = $"{(int)countdownLeft}";
             if (countDownText.Equals("0"))
             {
                 countDownText = "GO!";
-                if (CurrentGameState == GameState.CountDown)
+                if (CurrentGameState == GameState.Countdown)
                 {
                     pauseButtonLinker.GameObject.SetActive(true);
                     StartGame();
                 }
             }
-            UIManager.Instance.UpdateCountDownText(countDownText);
+            countdown.text = countDownText;
         } else
         {
-            UIManager.Instance.UpdateCountDownText("");
+            countdown.text = "";
         }
     }
     public void InitializePlayer(Player newPlayer)
@@ -253,8 +258,8 @@ public class GameManager : MonoBehaviour
             tutorial.StartTutorial();
             return;
         }
-        CurrentGameState = GameState.CountDown;
-        countDownLeft = countDownTime;
+        CurrentGameState = GameState.Countdown;
+        countdownLeft = countdownTime;
     }
     public void StartGame()
     {
@@ -291,7 +296,7 @@ public class GameManager : MonoBehaviour
     }
     public void CompleteLevel()
     {
-        CurrentGameState = GameState.EndGame;
+        CurrentGameState = GameState.LevelComplete;
         boatPhysics.ScaleLinearDrag(gameEndDragScale);
         
         int coinsCollected = Coins-levelStartCoins;

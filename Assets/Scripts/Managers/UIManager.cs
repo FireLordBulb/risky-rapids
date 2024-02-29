@@ -39,10 +39,6 @@ public class UIManager : MonoBehaviour
             coinText.text = GameManager.Instance.Coins.ToString();
         }
     }
-    public void UpdateCountDownText(string text)
-    {
-        countDownText.text = text;
-    }
     public void UpdateHealthSlider(float health)
     {
         healthSlider.value = health;

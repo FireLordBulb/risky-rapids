@@ -1343,6 +1343,7 @@ GameObject:
   - component: {fileID: 4200147255392620133}
   - component: {fileID: 8176575066963682165}
   - component: {fileID: 3821081457602703205}
+  - component: {fileID: 3923733384273054357}
   m_Layer: 5
   m_Name: LevelTimer
   m_TagString: Untagged
@@ -1480,6 +1481,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3923733384273054357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2702110555689335246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3267ed1ae166f247944370ce593b397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: 26f46361398510d46b0f50911b3f9854, type: 2}
 --- !u!1 &2777504327315267451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1662,8 +1676,9 @@ GameObject:
   - component: {fileID: 3881791063073564971}
   - component: {fileID: 7536360891279827973}
   - component: {fileID: 2255885057609033855}
+  - component: {fileID: 5374788334492927341}
   m_Layer: 5
-  m_Name: LevelStartCountDown
+  m_Name: CountdownText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1786,6 +1801,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5374788334492927341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3440858947648954008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3267ed1ae166f247944370ce593b397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: 9d1200c469329a34ba44d5b8e6b0ae15, type: 2}
 --- !u!1 &3800845383931594364
 GameObject:
   m_ObjectHideFlags: 0

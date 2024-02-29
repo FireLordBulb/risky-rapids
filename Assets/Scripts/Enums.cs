@@ -7,8 +7,8 @@ public enum GameState
     Paused,
     GameOver,
     MainMenu,
-    EndGame,
-    CountDown,
+    LevelComplete,
+    Countdown,
     Tutorial
 }
 

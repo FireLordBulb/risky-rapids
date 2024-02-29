@@ -141,7 +141,7 @@ public class BoatPhysics : MonoBehaviour
     {
 
         if (GameManager.Instance.CurrentGameState != GameState.Playing &&
-            GameManager.Instance.CurrentGameState != GameState.EndGame)
+            GameManager.Instance.CurrentGameState != GameState.LevelComplete)
         {
             return;
         }
