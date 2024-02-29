@@ -1036,7 +1036,6 @@ GameObject:
   - component: {fileID: 1335760910540012311}
   - component: {fileID: 4870819954278661018}
   - component: {fileID: 1008991521453944858}
-  - component: {fileID: 6265683647960287906}
   m_Layer: 5
   m_Name: ShopPanel
   m_TagString: Untagged
@@ -1120,20 +1119,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linker: {fileID: 11400000, guid: 2eb1daadc1dcdbd46a1d4502e63b3135, type: 2}
---- !u!114 &6265683647960287906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6405010852775110232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe48e51df513c346ab13d6e211899bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelSwitchers:
-  - {fileID: 5491778668857478625}
 --- !u!1 &7577730505546971120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1728,18 +1713,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 158020847638988549}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5491778668857478625 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5622691933419834084, guid: ccc4ed75132ea974880843dcebf46b8a,
-    type: 3}
-  m_PrefabInstance: {fileID: 158020847638988549}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3eb32c8c5d603fe47ab71ca770ba1520, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &575086127589083693
 PrefabInstance:
   m_ObjectHideFlags: 0

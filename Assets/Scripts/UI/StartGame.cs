@@ -14,7 +14,7 @@ public class StartGame : ActivePanelSwitcher
             {
                 return;
             }
-            SwitchPanel();
+            Switch();
             GameManager.Instance.StartCountdown();
         });
     }

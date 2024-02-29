@@ -251,7 +251,6 @@ GameObject:
   - component: {fileID: 1133734634905835632}
   - component: {fileID: 8466041668371452902}
   - component: {fileID: 190225796953371466}
-  - component: {fileID: 6829340218717245958}
   m_Layer: 5
   m_Name: LevelCompletePanel
   m_TagString: Untagged
@@ -336,23 +335,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linker: {fileID: 11400000, guid: e067ce6699aa21c458fd0ed8174e8104, type: 2}
---- !u!114 &6829340218717245958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 971179082503237890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe48e51df513c346ab13d6e211899bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelSwitchers:
-  - {fileID: 1199431919698656010}
-  - {fileID: 71260345565894356}
-  - {fileID: 1103399182629477456}
-  - {fileID: 8276325317029417951}
 --- !u!1 &1089690751145608364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,7 +1798,6 @@ GameObject:
   - component: {fileID: 4805070200165804332}
   - component: {fileID: 8050093992507853356}
   - component: {fileID: 4055286582902501443}
-  - component: {fileID: 2103461968319685961}
   m_Layer: 5
   m_Name: GameOverPanel
   m_TagString: Untagged
@@ -1897,21 +1878,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linker: {fileID: 11400000, guid: 63f0622c30076b140bb0e3b51a3c93ec, type: 2}
---- !u!114 &2103461968319685961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3800845383931594364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe48e51df513c346ab13d6e211899bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelSwitchers:
-  - {fileID: 4748298858603724258}
-  - {fileID: 3041687075523549491}
 --- !u!1 &4164511049729716850
 GameObject:
   m_ObjectHideFlags: 0

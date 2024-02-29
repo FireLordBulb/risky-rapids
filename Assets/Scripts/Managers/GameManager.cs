@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private List<GameData> gameDatas;
     [SerializeField] private LevelDataList levelDataList;
+    [SerializeField] private UIObjectLinker mainMenuLinker;
     [SerializeField] private UIObjectLinker hudLinker;
     [SerializeField] private UIObjectLinker pauseMenuLinker;
     [SerializeField] private UIObjectLinker gameOverLinker;
@@ -114,10 +115,11 @@ public class GameManager : MonoBehaviour
         {
             case GameState.MainMenu:
                 ReturnToMenu();
-                UIManager.Instance.ShowMainMenuPanel();
+                ActivePanelSwitcher.SwitchTo(mainMenuLinker);
                 break;
             case GameState.Playing:
-                UIManager.Instance.StartGame();
+                StartCountdown();
+                ActivePanelSwitcher.SwitchTo(hudLinker);
                 break;
             case GameState.Paused:
             case GameState.EndGame:
@@ -170,8 +172,7 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         CurrentGameState = GameState.Paused;
-        hudLinker.GameObject.SetActive(false);
-        pauseMenuLinker.GameObject.SetActive(true);
+        ActivePanelSwitcher.SwitchTo(pauseMenuLinker);
         Time.timeScale = 0;
         AudioManager.Instance.StopRiverAudio();
     }
@@ -292,8 +293,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdateEndPanelText(levelTimer.CurrentTimeString, coinsFromTime, coinsCollected);
         levelTimer.Reset();
         
-        hudLinker.GameObject.SetActive(false);
-        levelCompleteLinker.GameObject.SetActive(true);
+        ActivePanelSwitcher.SwitchTo(levelCompleteLinker);
         AudioManager.Instance.PlayMenuMusic();
         SaveManager.Instance.Save();
     }
@@ -303,8 +303,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         AudioManager.Instance.StopRiverAudio();
         Coins = levelStartCoins;
-        hudLinker.GameObject.SetActive(false);
-        gameOverLinker.GameObject.SetActive(true);
+        ActivePanelSwitcher.SwitchTo(gameOverLinker);
     }
     private void ResetLevel()
     {

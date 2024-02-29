@@ -4,22 +4,27 @@ using UnityEngine.UI;
 
 public class ActivePanelSwitcher : MonoBehaviour
 {
+    private static GameObject currentActivePanel;
+    
     [SerializeField] private UIObjectLinker linker;
     protected Button Button;
-    private GameObject parentPanel;
 
     protected virtual void Awake()
     {
         Button = GetComponent<Button>();
-        Button.onClick.AddListener(SwitchPanel);
+        Button.onClick.AddListener(Switch);
     }
-    protected void SwitchPanel()
+    protected void Switch()
     {
-        parentPanel.SetActive(false);
-        linker.GameObject.SetActive(true);
+        SwitchTo(linker);
     }
-    public void SetParentPanel(GameObject panel)
+    public static void SwitchTo(UIObjectLinker linker)
     {
-        parentPanel = panel;
+        if (currentActivePanel != null)
+        {
+            currentActivePanel.SetActive(false);
+        }
+        currentActivePanel = linker.GameObject;
+        currentActivePanel.SetActive(true);
     }
 }

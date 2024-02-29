@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1062746283541751805}
   - component: {fileID: 273771938978136357}
   - component: {fileID: 734126796073706607}
-  - component: {fileID: 1972560590983313154}
   m_Layer: 5
   m_Name: PauseMenuPanel
   m_TagString: Untagged
@@ -93,22 +92,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linker: {fileID: 11400000, guid: 9f013a9b9aed7624ea9e290479dcdf00, type: 2}
---- !u!114 &1972560590983313154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2282926769070120609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe48e51df513c346ab13d6e211899bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelSwitchers:
-  - {fileID: 5043099637032700024}
-  - {fileID: 5957572295659255466}
-  - {fileID: 595027960430904436}
 --- !u!1 &3622080648693289391
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +262,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.29921013, y: 0.18589364}
   m_AnchorMax: {x: 0.7013191, y: 0.45238304}
-  m_AnchoredPosition: {x: 0.86169434, y: 2.8714142}
+  m_AnchoredPosition: {x: 0.86169434, y: 2.871399}
   m_SizeDelta: {x: 2.3722992, y: 1.5876007}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3309191288345868845
