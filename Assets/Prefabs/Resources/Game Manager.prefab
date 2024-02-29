@@ -47,6 +47,8 @@ MonoBehaviour:
   gameDatas:
   - {fileID: 11400000, guid: 947909780fd52324dafe3e5899e6a00e, type: 2}
   levelDataList: {fileID: 11400000, guid: bbfc50ebc6dc3ff46955d3feb8eb61bc, type: 2}
+  menuBackgroundPanel: {fileID: 0}
+  tutorialLinker: {fileID: 11400000, guid: e820fea07a5e73a4bb635cee3fc5178b, type: 2}
   gameEndDragScale: 1.3
   coinsPerSecond: 2
   countDownTime: 4

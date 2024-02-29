@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UISystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +11,7 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private List<GameData> gameDatas;
     [SerializeField] private LevelDataList levelDataList;
-    [SerializeField] private LoadingScreenFade menuBackgroundPanel;
+    [SerializeField] private UIObjectLinker tutorialLinker;
     [SerializeField] private float gameEndDragScale;
     [SerializeField] private float coinsPerSecond;
     [SerializeField] private int countDownTime;
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
     private const string UI = "UIScene";
     private readonly List<Interactable> interactableObjects = new();
 
+    private Tutorial tutorial;
+    
     private Vector3 playerSpawnPosition;
     private Quaternion playerSpawnRotation;
     private Player player;
@@ -101,6 +104,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         levelTimer = FindObjectOfType<LevelTimer>(true);
+        tutorial = tutorialLinker.GameObject.GetComponent<Tutorial>();
         // Main menu and playing are the only two possible starting GameStates.
         switch(CurrentGameState)
         {
@@ -227,13 +231,13 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlayRiverAudio();
         AudioManager.Instance.PlayGameplayMusic();
         UIManager.Instance.WrongWayPanelSetActive(false);
+        UIManager.Instance.PauseButtonSetActive(false);
         if (currentLevelIndex == 0 && !tutorialIsOver)
         {
             CurrentGameState = GameState.Tutorial;
-            UIManager.Instance.StartTutorial();
+            tutorial.StartTutorial();
             return;
         }
-        UIManager.Instance.PauseButtonSetActive(false);
         CurrentGameState = GameState.CountDown;
         countDownLeft = countDownTime;
     }

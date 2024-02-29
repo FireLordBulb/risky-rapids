@@ -11,7 +11,7 @@ public class LoadLevelInMenu : ActivePanelSwitcher
     protected override void Awake()
     {
         base.Awake();
-        GetComponent<Button>().onClick.AddListener(() =>
+        Button.onClick.AddListener(() =>
         {
             GameManager.Instance.LoadLevelInMenu(levelIndex);
         });
