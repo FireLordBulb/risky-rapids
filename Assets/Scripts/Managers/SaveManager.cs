@@ -48,7 +48,6 @@ public class UpgradeLevel
         upgradeType = type;
         level = 0;
     }
-
     public void IncreaseLevel()
     {
         level++;
@@ -76,7 +75,8 @@ public class SaveManager : MonoBehaviour
         saveDirectoryPath = Application.persistentDataPath + "/Saves/";
         saveFilePath = saveDirectoryPath + fileName + ".json";
     }
-    private void Start() {
+    private void Start()
+    {
         try
         {
             if (File.Exists(saveFilePath)){
