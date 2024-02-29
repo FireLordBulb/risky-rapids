@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -12,16 +10,11 @@ public class UIManager : MonoBehaviour
     public LoadingScreenFade menuBackgroundPanel;
     public LoadingScreenFade loadingScreenPanel;
     
-    [SerializeField] private GameObject wrongWayPanel;
-    [SerializeField] private GameObject mainMenuPanel;
-    [SerializeField] private GameObject pauseButton;
-    
     [Space] [Space] 
     
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TextMeshProUGUI countDownText;
     [SerializeField] private List<TextMeshProUGUI> coinTexts;
-    [SerializeField] private Camera uiCamera;
     [Space]
     [SerializeField] private TextMeshProUGUI endTime;
     [SerializeField] private TextMeshProUGUI endCoinsFromTime;
@@ -35,8 +28,6 @@ public class UIManager : MonoBehaviour
             return;
         } 
         Instance = this;
-
-        UICameraSetActive(false);
     }
     public void UpdateEndPanelText(string time, int coinsFromTime, int coinsCollected)
     {
@@ -58,9 +49,5 @@ public class UIManager : MonoBehaviour
     public void UpdateHealthSlider(float health)
     {
         healthSlider.value = health;
-    }
-    public void UICameraSetActive(bool isActive)
-    {
-        uiCamera.gameObject.SetActive(isActive);
     }
 }

@@ -47,6 +47,7 @@ MonoBehaviour:
   gameDatas:
   - {fileID: 11400000, guid: 947909780fd52324dafe3e5899e6a00e, type: 2}
   levelDataList: {fileID: 11400000, guid: bbfc50ebc6dc3ff46955d3feb8eb61bc, type: 2}
+  uiCameraLinker: {fileID: 11400000, guid: a05f43b5e29894b4589e25765667e271, type: 2}
   mainMenuLinker: {fileID: 11400000, guid: 1ae48aaadad4f014f8ced410c0398d5e, type: 2}
   hudLinker: {fileID: 11400000, guid: 32e121d814fb00a4a8f66c6dba1bea18, type: 2}
   pauseMenuLinker: {fileID: 11400000, guid: 9f013a9b9aed7624ea9e290479dcdf00, type: 2}

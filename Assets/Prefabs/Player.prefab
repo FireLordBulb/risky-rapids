@@ -526,6 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5583401dab5ac24fa7dcc983340d2d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiCameraLinker: {fileID: 11400000, guid: a05f43b5e29894b4589e25765667e271, type: 2}
 --- !u!1001 &648540282643537085
 PrefabInstance:
   m_ObjectHideFlags: 0

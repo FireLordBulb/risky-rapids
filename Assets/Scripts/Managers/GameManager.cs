@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private List<GameData> gameDatas;
     [SerializeField] private LevelDataList levelDataList;
+    [SerializeField] private UIObjectLinker uiCameraLinker;
     [SerializeField] private UIObjectLinker mainMenuLinker;
     [SerializeField] private UIObjectLinker hudLinker;
     [SerializeField] private UIObjectLinker pauseMenuLinker;
@@ -97,7 +98,6 @@ public class GameManager : MonoBehaviour
         if (currentSceneName.Equals(UI))
         {
             CurrentGameState = GameState.MainMenu;
-            UIManager.Instance.UICameraSetActive(true);
             LoadLevel(0, () => {});
         } else
         { 
@@ -120,6 +120,7 @@ public class GameManager : MonoBehaviour
                 ReturnToMenu();
                 break;
             case GameState.Playing:
+                uiCameraLinker.GameObject.SetActive(false);
                 ActivePanelSwitcher.SwitchTo(hudLinker);
                 StartCountdown();
                 break;
