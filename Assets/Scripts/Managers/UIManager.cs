@@ -6,11 +6,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-
-    [Space] [Space] 
     
-    [SerializeField] private Slider healthSlider;
-    [SerializeField] private TextMeshProUGUI countDownText;
     [SerializeField] private List<TextMeshProUGUI> coinTexts;
     [Space]
     [SerializeField] private TextMeshProUGUI endTime;
@@ -31,12 +27,5 @@ public class UIManager : MonoBehaviour
         endTime.text = $"TIME : {time}";
         endCoinsFromTime.text = $"COINS FROM TIME : +{coinsFromTime}";
         endCoinsCollected.text = $"COINS COLLECTED : +{coinsCollected}";
-    }
-    public void UpdateCoinTexts()
-    {
-        foreach (TextMeshProUGUI coinText in coinTexts)
-        {
-            coinText.text = GameManager.Instance.Coins.ToString();
-        }
     }
 }

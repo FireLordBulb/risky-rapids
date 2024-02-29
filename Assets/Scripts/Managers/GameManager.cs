@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIObjectLinker loadingScreenLinker;
     [SerializeField] private UIObjectLinker countdownLinker;
     [SerializeField] private UIObjectLinker levelTimerLinker;
+    [SerializeField] private UIObjectLinker resultsLinker;
+    [SerializeField] private UIObjectLinker[] countTextLinkers;
     [Space]
     [SerializeField] private float gameEndDragScale;
     [SerializeField] private float coinsPerSecond;
@@ -40,6 +42,8 @@ public class GameManager : MonoBehaviour
     private LoadingScreenFade loadingScreen;
     private TextMeshProUGUI countdown;
     private LevelTimer levelTimer;
+    private MonoBehaviour results;
+    private TextMeshProUGUI[] coinTexts;
     
     private Vector3 playerSpawnPosition;
     private Quaternion playerSpawnRotation;
@@ -60,25 +64,16 @@ public class GameManager : MonoBehaviour
         set
         {
             coins = value;
-            UIManager.Instance.UpdateCoinTexts();
+            foreach (TextMeshProUGUI coinText in coinTexts)
+            {
+                coinText.text = Coins.ToString();
+            }
             ShopItemHolder.RefreshShopUI();
         }
     }
-    public GameState CurrentGameState
-    {
-        get;
-        private set;
-    }
-    public bool IsLoadingLevel
-    {
-        get;
-        private set;
-    }
-    public GameData CurrentGameData
-    {
-        get;
-        private set;
-    }
+    public GameState CurrentGameState { get; private set; }
+    public bool IsLoadingLevel { get; private set; }
+    public GameData CurrentGameData { get; private set; }
     private void Awake()
     {
         if (Instance != null && Instance != this) 
@@ -148,6 +143,11 @@ public class GameManager : MonoBehaviour
     }
     public void SetStartCoins(int amount)
     {
+        coinTexts = new TextMeshProUGUI[countTextLinkers.Length];
+        for (int i = 0; i < coinTexts.Length; i++)
+        {
+            coinTexts[i] = countTextLinkers[i].GameObject.GetComponent<TextMeshProUGUI>();
+        }
         Coins = amount;
         levelStartCoins = amount;
     }

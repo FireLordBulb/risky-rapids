@@ -584,6 +584,7 @@ GameObject:
   - component: {fileID: 162992752307382708}
   - component: {fileID: 4356872800178291713}
   - component: {fileID: 8710465280943964068}
+  - component: {fileID: 8812371681569548118}
   m_Layer: 5
   m_Name: CoinAmount
   m_TagString: Untagged
@@ -708,6 +709,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8812371681569548118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542762491061355334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3267ed1ae166f247944370ce593b397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: f0eee5d43e918924e87a3e61b40975de, type: 2}
 --- !u!1 &1685499917364703877
 GameObject:
   m_ObjectHideFlags: 0
@@ -3159,6 +3173,7 @@ GameObject:
   - component: {fileID: 3764708762787285496}
   - component: {fileID: 8106856136319642430}
   - component: {fileID: 8723447517837020380}
+  - component: {fileID: 60660591555653778}
   m_Layer: 5
   m_Name: CoinText
   m_TagString: Untagged
@@ -3283,6 +3298,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &60660591555653778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672249616210139045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3267ed1ae166f247944370ce593b397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: 530288633903bfd47967d223d1492ed1, type: 2}
 --- !u!1 &6914622995317899706
 GameObject:
   m_ObjectHideFlags: 0
@@ -4179,7 +4207,7 @@ GameObject:
   - component: {fileID: 6971193697492969786}
   - component: {fileID: 3754605865292130497}
   m_Layer: 5
-  m_Name: ScorePanel
+  m_Name: ResultsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
