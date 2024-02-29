@@ -1,25 +1,28 @@
 using System;
+using UnityEngine.UI;
 
 public class PlayerHealth
 {
+    private Slider healthBar;
     private float currentHealth;
     private float maxHealth;
     private float armor;
     private float currentMaxArmor;
     
-    public PlayerHealth(float maxHealth, float armor)
+    public PlayerHealth(float maxHealth, float armor, Slider healthBar)
     {
         this.maxHealth = maxHealth;
         currentHealth = this.maxHealth;
         this.armor = armor;
         currentMaxArmor = armor;
+        this.healthBar = healthBar;
     }
 
     public void ReplenishHealth()
     {
         currentHealth = maxHealth;
+        healthBar.value = currentHealth;
         armor = currentMaxArmor;
-        UIManager.Instance.UpdateHealthSlider(currentHealth);
     }
 
     public void TakeDamage(float damage)
@@ -38,7 +41,7 @@ public class PlayerHealth
         }
         
         currentHealth -= damage;
-        UIManager.Instance.UpdateHealthSlider(currentHealth);
+        healthBar.value = currentHealth;
         
         if (currentHealth <= 0)
         {

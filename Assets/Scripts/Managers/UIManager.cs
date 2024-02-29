@@ -39,8 +39,4 @@ public class UIManager : MonoBehaviour
             coinText.text = GameManager.Instance.Coins.ToString();
         }
     }
-    public void UpdateHealthSlider(float health)
-    {
-        healthSlider.value = health;
-    }
 }

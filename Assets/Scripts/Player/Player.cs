@@ -1,8 +1,10 @@
+using UISystem;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private UIObjectLinker healthBarLinker;
     [SerializeField] private MaterialData materialData;
     [SerializeField] private Rower[] rowers;
     [Space] 
@@ -14,7 +16,6 @@ public class Player : MonoBehaviour
     public int ActiveSpeedBoosts { get; set; }
     private void Awake()
     {
-        InitializeHealth();
         foreach (Rower rower in rowers)
         {
             rower.Initialize(materialData);
@@ -22,20 +23,13 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        InitializeHealth();
+        GameData currentGameData = GameManager.Instance.CurrentGameData;
+        playerHealth = new PlayerHealth(currentGameData.MaxHealth, currentGameData.Armor, healthBarLinker.GameObject.GetComponent<Slider>());
         playerHealth.ReplenishHealth();
         GameManager.Instance.InitializePlayer(this);
         UpgradeHolder.Instance.InitializePlayer(this);
     }
-    private void InitializeHealth()
-    {
-        if (GameManager.Instance == null)
-        {
-            return;
-        }
-        GameData currentGameData = GameManager.Instance.CurrentGameData;
-        playerHealth = new PlayerHealth(currentGameData.MaxHealth, currentGameData.Armor);
-    }
+
     public void InitializeModel(CharacterAppearance[] characterAppearances)
     {
         for (int i = 0; i < rowers.Length; i++)
