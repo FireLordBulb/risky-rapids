@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8239809031537185687}
   - component: {fileID: 1062746283541751805}
   - component: {fileID: 273771938978136357}
+  - component: {fileID: 734126796073706607}
+  - component: {fileID: 1972560590983313154}
   m_Layer: 5
   m_Name: PauseMenuPanel
   m_TagString: Untagged
@@ -78,6 +80,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &734126796073706607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2282926769070120609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3267ed1ae166f247944370ce593b397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: 9f013a9b9aed7624ea9e290479dcdf00, type: 2}
+--- !u!114 &1972560590983313154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2282926769070120609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe48e51df513c346ab13d6e211899bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelSwitchers:
+  - {fileID: 5043099637032700024}
+  - {fileID: 5957572295659255466}
+  - {fileID: 595027960430904436}
 --- !u!1 &3622080648693289391
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +121,7 @@ GameObject:
   - component: {fileID: 1746053656276759373}
   - component: {fileID: 6672938757528068274}
   - component: {fileID: 4272519841383852439}
+  - component: {fileID: 5957572295659255466}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -197,19 +229,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6672938757528068274}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: RestartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &5957572295659255466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3622080648693289391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da3f8edbf2181a47961004ee146b0b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: 32e121d814fb00a4a8f66c6dba1bea18, type: 2}
 --- !u!1 &6846185396743582219
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +255,7 @@ GameObject:
   - component: {fileID: 3309191288345868845}
   - component: {fileID: 2684998039508595478}
   - component: {fileID: 8574154419174815140}
+  - component: {fileID: 595027960430904436}
   m_Layer: 5
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -245,7 +279,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.29921013, y: 0.18589364}
   m_AnchorMax: {x: 0.7013191, y: 0.45238304}
-  m_AnchoredPosition: {x: 0.86169434, y: 2.87146}
+  m_AnchoredPosition: {x: 0.86169434, y: 2.8714142}
   m_SizeDelta: {x: 2.3722992, y: 1.5876007}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3309191288345868845
@@ -329,19 +363,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2684998039508595478}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ResumeGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &595027960430904436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6846185396743582219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb30b9b52745c24594afcdd42e377d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: 32e121d814fb00a4a8f66c6dba1bea18, type: 2}
 --- !u!1 &8195739662504629641
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,6 +389,7 @@ GameObject:
   - component: {fileID: 8753517320480122980}
   - component: {fileID: 7499599552907732346}
   - component: {fileID: 2343199156309383691}
+  - component: {fileID: 5043099637032700024}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -461,19 +497,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7499599552907732346}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ReturnToMainMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &5043099637032700024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8195739662504629641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2c13fff1a881d4cabdd30c8a95d627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: 1ae48aaadad4f014f8ced410c0398d5e, type: 2}
 --- !u!1 &9139624732733670787
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private List<GameData> gameDatas;
     [SerializeField] private LevelDataList levelDataList;
+    [SerializeField] private UIObjectLinker hudLinker;
+    [SerializeField] private UIObjectLinker pauseMenuLinker;
     [SerializeField] private UIObjectLinker tutorialLinker;
     [SerializeField] private float gameEndDragScale;
     [SerializeField] private float coinsPerSecond;
@@ -166,7 +168,9 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         CurrentGameState = GameState.Paused;
-        UIManager.Instance.ShowPausePanel();
+        //UIManager.Instance.ShowPausePanel();
+        hudLinker.GameObject.SetActive(false);
+        pauseMenuLinker.GameObject.SetActive(true);
         Time.timeScale = 0;
         AudioManager.Instance.StopRiverAudio();
     }
