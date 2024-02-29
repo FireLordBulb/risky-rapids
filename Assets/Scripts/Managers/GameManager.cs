@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UISystem;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIObjectLinker gameOverLinker;
     [SerializeField] private UIObjectLinker levelCompleteLinker;
     [SerializeField] private UIObjectLinker tutorialLinker;
+    [SerializeField] private UIObjectLinker wrongWayLinker;
+    [SerializeField] private UIObjectLinker pauseButtonLinker;
     [SerializeField] private float gameEndDragScale;
     [SerializeField] private float coinsPerSecond;
     [SerializeField] private int countDownTime;
@@ -146,7 +149,7 @@ public class GameManager : MonoBehaviour
                 countDownText = "GO!";
                 if (CurrentGameState == GameState.CountDown)
                 {
-                    UIManager.Instance.PauseButtonSetActive(true);
+                    pauseButtonLinker.GameObject.SetActive(true);
                     StartGame();
                 }
             }
@@ -178,13 +181,13 @@ public class GameManager : MonoBehaviour
     public void LoadNextLevel()
     {
         AudioManager.Instance.PlayGameplayMusic();
-        UIManager.Instance.loadingScreenPanel.MakeOpaque();
         int index = currentLevelIndex+1;
         if (levels.Length <= index)
         {
             ReturnToMenu();
             return;
         }
+        UIManager.Instance.loadingScreenPanel.MakeOpaque();
         LoadLevel(index, () => StartCountdown());
     }
     public void LoadLevelInMenu(int index)
@@ -234,8 +237,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         AudioManager.Instance.PlayRiverAudio();
         AudioManager.Instance.PlayGameplayMusic();
-        UIManager.Instance.WrongWayPanelSetActive(false);
-        UIManager.Instance.PauseButtonSetActive(false);
+        WrongWayUISetActive(false);
+        pauseButtonLinker.GameObject.SetActive(false);
         if (currentLevelIndex == 0 && !tutorialIsOver)
         {
             CurrentGameState = GameState.Tutorial;
@@ -253,7 +256,7 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlayRiverAudio();
         levelTimer.Reset();
         levelStartCoins = Coins;
-        UIManager.Instance.WrongWayPanelSetActive(false);
+        WrongWayUISetActive(false);
     }
     public void ResumeGame()
     {
@@ -303,6 +306,11 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.StopRiverAudio();
         Coins = levelStartCoins;
         ActivePanelSwitcher.SwitchTo(gameOverLinker);
+    }
+
+    public void WrongWayUISetActive(bool isActive)
+    {
+        wrongWayLinker.GameObject.SetActive(isActive);
     }
     private void ResetLevel()
     {

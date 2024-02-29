@@ -266,6 +266,6 @@ public class BoatPhysics : MonoBehaviour
     private void HandleWrongWayUI()
     {
         bool isGoingWrongWay = Vector3.Dot(transform.forward, localFlowDirection) < 0;
-        UIManager.Instance.WrongWayPanelSetActive(isGoingWrongWay);
+        GameManager.Instance.WrongWayUISetActive(isGoingWrongWay);
     }
 }

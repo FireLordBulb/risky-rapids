@@ -63,12 +63,4 @@ public class UIManager : MonoBehaviour
     {
         uiCamera.gameObject.SetActive(isActive);
     }
-    public void WrongWayPanelSetActive(bool isActive)
-    {
-        wrongWayPanel.SetActive(isActive);
-    }
-    public void PauseButtonSetActive(bool isActive)
-    {
-        pauseButton.SetActive(isActive);
-    }
 }
