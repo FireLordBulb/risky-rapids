@@ -1,19 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UISystem;
 using UnityEngine;
 
 public class CameraToggler : MonoBehaviour
 {
+    [SerializeField] private UIObjectLinker uiCameraLinker;
     private void Awake()
     {
-        if (UIManager.Instance != null)
+        if (uiCameraLinker.GameObject != null)
         {
-            UIManager.Instance.UICameraSetActive(false);
+            uiCameraLinker.GameObject.SetActive(false);
         }
     }
     private void OnDestroy()
     {
-        UIManager.Instance.UICameraSetActive(true);
+        if (uiCameraLinker.GameObject != null)
+        {
+            uiCameraLinker.GameObject.SetActive(true);
+        }
     }
 }

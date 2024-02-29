@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe44d8fcde1a9f47be0f04d0cbf2b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBarLinker: {fileID: 11400000, guid: 3867b3780f95c74448092ece2ddd80f8, type: 2}
   materialData: {fileID: 11400000, guid: 7e5fd6dffbdcad746a7702d4ed346088, type: 2}
   rowers:
   - bodyMesh: {fileID: 3207669477561090397}
@@ -526,6 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5583401dab5ac24fa7dcc983340d2d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiCameraLinker: {fileID: 11400000, guid: a05f43b5e29894b4589e25765667e271, type: 2}
 --- !u!1001 &648540282643537085
 PrefabInstance:
   m_ObjectHideFlags: 0
