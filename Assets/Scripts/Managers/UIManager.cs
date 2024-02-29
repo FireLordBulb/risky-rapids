@@ -27,7 +27,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI endCoinsFromTime;
     [SerializeField] private TextMeshProUGUI endCoinsCollected;
 
-    private GameObject activePanel;
     private void Awake()
     {
         if (Instance != null && Instance != this) 
@@ -37,7 +36,6 @@ public class UIManager : MonoBehaviour
         } 
         Instance = this;
 
-        activePanel = mainMenuPanel;
         UICameraSetActive(false);
     }
     public void UpdateEndPanelText(string time, int coinsFromTime, int coinsCollected)
@@ -72,15 +70,5 @@ public class UIManager : MonoBehaviour
     public void PauseButtonSetActive(bool isActive)
     {
         pauseButton.SetActive(isActive);
-    }
-    public void ShowMainMenuPanel()
-    {
-        MakeActivePanel(mainMenuPanel);
-    }
-    public void MakeActivePanel(GameObject panel)
-    {
-        activePanel.SetActive(false);
-        activePanel = panel;
-        activePanel.SetActive(true);
     }
 }

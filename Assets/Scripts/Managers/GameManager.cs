@@ -115,11 +115,10 @@ public class GameManager : MonoBehaviour
         {
             case GameState.MainMenu:
                 ReturnToMenu();
-                ActivePanelSwitcher.SwitchTo(mainMenuLinker);
                 break;
             case GameState.Playing:
-                StartCountdown();
                 ActivePanelSwitcher.SwitchTo(hudLinker);
+                StartCountdown();
                 break;
             case GameState.Paused:
             case GameState.EndGame:
@@ -184,7 +183,6 @@ public class GameManager : MonoBehaviour
         if (levels.Length <= index)
         {
             ReturnToMenu();
-            UIManager.Instance.ShowMainMenuPanel();
             return;
         }
         LoadLevel(index, () => StartCountdown());
@@ -273,6 +271,7 @@ public class GameManager : MonoBehaviour
     {
         CurrentGameState = GameState.MainMenu;
         Time.timeScale = 1;
+        ActivePanelSwitcher.SwitchTo(mainMenuLinker);
         AudioManager.Instance.StopRiverAudio();
         AudioManager.Instance.PlayMenuMusic();
         levelTimer.Reset();
