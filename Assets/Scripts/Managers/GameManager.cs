@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LevelDataList levelDataList;
     [SerializeField] private UIObjectLinker hudLinker;
     [SerializeField] private UIObjectLinker pauseMenuLinker;
+    [SerializeField] private UIObjectLinker gameOverLinker;
+    [SerializeField] private UIObjectLinker levelCompleteLinker;
     [SerializeField] private UIObjectLinker tutorialLinker;
     [SerializeField] private float gameEndDragScale;
     [SerializeField] private float coinsPerSecond;
@@ -168,7 +170,6 @@ public class GameManager : MonoBehaviour
     public void PauseGame()
     {
         CurrentGameState = GameState.Paused;
-        //UIManager.Instance.ShowPausePanel();
         hudLinker.GameObject.SetActive(false);
         pauseMenuLinker.GameObject.SetActive(true);
         Time.timeScale = 0;
@@ -277,7 +278,7 @@ public class GameManager : MonoBehaviour
         Coins = levelStartCoins;
         ResetLevel();
     }
-    public void EndGame()
+    public void CompleteLevel()
     {
         CurrentGameState = GameState.EndGame;
         boatPhysics.ScaleLinearDrag(gameEndDragScale);
@@ -291,7 +292,8 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.UpdateEndPanelText(levelTimer.CurrentTimeString, coinsFromTime, coinsCollected);
         levelTimer.Reset();
         
-        UIManager.Instance.ShowGameEndPanel();
+        hudLinker.GameObject.SetActive(false);
+        levelCompleteLinker.GameObject.SetActive(true);
         AudioManager.Instance.PlayMenuMusic();
         SaveManager.Instance.Save();
     }
@@ -301,7 +303,8 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         AudioManager.Instance.StopRiverAudio();
         Coins = levelStartCoins;
-        UIManager.Instance.ShowGameOverPanel();
+        hudLinker.GameObject.SetActive(false);
+        gameOverLinker.GameObject.SetActive(true);
     }
     private void ResetLevel()
     {

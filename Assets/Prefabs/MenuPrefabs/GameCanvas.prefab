@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2496769792470377378}
   - component: {fileID: 5275767747151010785}
   - component: {fileID: 3868217472484157506}
+  - component: {fileID: 4748298858603724258}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -120,19 +121,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2496769792470377378}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ReturnToMainMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &3868217472484157506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +136,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: a2ae32afa8c64c24b8c7146b7ff24303, type: 3}
   spriteName: MainMenuButton
+--- !u!114 &4748298858603724258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411283470100864624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2c13fff1a881d4cabdd30c8a95d627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: 1ae48aaadad4f014f8ced410c0398d5e, type: 2}
 --- !u!1 &492469558855177823
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,6 +251,7 @@ GameObject:
   - component: {fileID: 1133734634905835632}
   - component: {fileID: 8466041668371452902}
   - component: {fileID: 190225796953371466}
+  - component: {fileID: 6829340218717245958}
   m_Layer: 5
   m_Name: LevelCompletePanel
   m_TagString: Untagged
@@ -333,6 +336,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linker: {fileID: 11400000, guid: e067ce6699aa21c458fd0ed8174e8104, type: 2}
+--- !u!114 &6829340218717245958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971179082503237890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe48e51df513c346ab13d6e211899bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelSwitchers:
+  - {fileID: 1199431919698656010}
+  - {fileID: 71260345565894356}
+  - {fileID: 1103399182629477456}
+  - {fileID: 8276325317029417951}
 --- !u!1 &1089690751145608364
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,6 +739,7 @@ GameObject:
   - component: {fileID: 4698046800527089828}
   - component: {fileID: 2625408965031142142}
   - component: {fileID: 4884511143938380398}
+  - component: {fileID: 8276325317029417951}
   m_Layer: 5
   m_Name: ShopButton
   m_TagString: Untagged
@@ -826,19 +847,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4698046800527089828}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ToggleShop
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &4884511143938380398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,6 +862,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: f904f130d54aba04d902d936ab2a2259, type: 3}
   spriteName: ShopButton
+--- !u!114 &8276325317029417951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685499917364703877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2c13fff1a881d4cabdd30c8a95d627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: 2eb1daadc1dcdbd46a1d4502e63b3135, type: 2}
 --- !u!1 &1738590416866923194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,6 +1816,7 @@ GameObject:
   - component: {fileID: 4805070200165804332}
   - component: {fileID: 8050093992507853356}
   - component: {fileID: 4055286582902501443}
+  - component: {fileID: 2103461968319685961}
   m_Layer: 5
   m_Name: GameOverPanel
   m_TagString: Untagged
@@ -1874,6 +1897,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linker: {fileID: 11400000, guid: 63f0622c30076b140bb0e3b51a3c93ec, type: 2}
+--- !u!114 &2103461968319685961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3800845383931594364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe48e51df513c346ab13d6e211899bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelSwitchers:
+  - {fileID: 4748298858603724258}
+  - {fileID: 3041687075523549491}
 --- !u!1 &4164511049729716850
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,6 +2212,7 @@ GameObject:
   - component: {fileID: 7200061387517677995}
   - component: {fileID: 5975912040673946538}
   - component: {fileID: 8278449899126321082}
+  - component: {fileID: 3041687075523549491}
   m_Layer: 5
   m_Name: RestartGameButton
   m_TagString: Untagged
@@ -2281,19 +2320,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7200061387517677995}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: RestartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &8278449899126321082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2308,6 +2335,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: a2ae32afa8c64c24b8c7146b7ff24303, type: 3}
   spriteName: RestartButton
+--- !u!114 &3041687075523549491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5091221171824287659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da3f8edbf2181a47961004ee146b0b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: 32e121d814fb00a4a8f66c6dba1bea18, type: 2}
 --- !u!1 &5438850932450977223
 GameObject:
   m_ObjectHideFlags: 0
@@ -2516,6 +2556,7 @@ GameObject:
   - component: {fileID: 7916826757642545447}
   - component: {fileID: 997095556172168000}
   - component: {fileID: 5118146431363224160}
+  - component: {fileID: 1103399182629477456}
   m_Layer: 5
   m_Name: MainMenuButton
   m_TagString: Untagged
@@ -2623,19 +2664,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7916826757642545447}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ReturnToMainMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &5118146431363224160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2650,6 +2679,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: f904f130d54aba04d902d936ab2a2259, type: 3}
   spriteName: MenuButton 1
+--- !u!114 &1103399182629477456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5651548180920462319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2c13fff1a881d4cabdd30c8a95d627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: 1ae48aaadad4f014f8ced410c0398d5e, type: 2}
 --- !u!1 &5962208532828131845
 GameObject:
   m_ObjectHideFlags: 0
@@ -2663,6 +2705,7 @@ GameObject:
   - component: {fileID: 9029691338076907542}
   - component: {fileID: 9197893621188014356}
   - component: {fileID: 7631625685908874338}
+  - component: {fileID: 71260345565894356}
   m_Layer: 5
   m_Name: RestartGameButton
   m_TagString: Untagged
@@ -2770,19 +2813,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9029691338076907542}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: RestartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &7631625685908874338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2797,6 +2828,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: f904f130d54aba04d902d936ab2a2259, type: 3}
   spriteName: RestartLevelButton
+--- !u!114 &71260345565894356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5962208532828131845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da3f8edbf2181a47961004ee146b0b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: 32e121d814fb00a4a8f66c6dba1bea18, type: 2}
 --- !u!1 &6063261227419275117
 GameObject:
   m_ObjectHideFlags: 0
@@ -3965,6 +4009,7 @@ GameObject:
   - component: {fileID: 2672197653482077987}
   - component: {fileID: 4000921556459095619}
   - component: {fileID: 43507900048389809}
+  - component: {fileID: 1199431919698656010}
   m_Layer: 5
   m_Name: NextLevelButton
   m_TagString: Untagged
@@ -4072,19 +4117,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2672197653482077987}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: LoadNextScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &43507900048389809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4099,6 +4132,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atlas: {fileID: 100100200, guid: f904f130d54aba04d902d936ab2a2259, type: 3}
   spriteName: NextLevelButton 1
+--- !u!114 &1199431919698656010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8768121700301465962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b825821fe6406699018aadda3020d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: 32e121d814fb00a4a8f66c6dba1bea18, type: 2}
 --- !u!1 &8885512510775323079
 GameObject:
   m_ObjectHideFlags: 0

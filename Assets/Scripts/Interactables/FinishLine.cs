@@ -7,6 +7,6 @@ public class FinishLine : Interactable
     protected override void Interact(Collider other)
     {
         AudioManager.Instance.PlayCompletedLevelAudio();
-        GameManager.Instance.EndGame();
+        GameManager.Instance.CompleteLevel();
     }
 }

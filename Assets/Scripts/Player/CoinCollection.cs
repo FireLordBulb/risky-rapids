@@ -23,7 +23,7 @@ public class CoinCollection : MonoBehaviour
     {
         if (UnityEngine.Input.GetKeyDown(KeyCode.Y))
         {
-            GameManager.Instance.EndGame();
+            GameManager.Instance.CompleteLevel();
         }
     }
 #endif
