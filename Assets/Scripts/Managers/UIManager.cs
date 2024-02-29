@@ -12,14 +12,8 @@ public class UIManager : MonoBehaviour
     public LoadingScreenFade menuBackgroundPanel;
     public LoadingScreenFade loadingScreenPanel;
     
-    [SerializeField] private GameObject gameEndPanel;
-    [SerializeField] private GameObject hudPanel;
     [SerializeField] private GameObject wrongWayPanel;
     [SerializeField] private GameObject mainMenuPanel;
-    [SerializeField] private GameObject pausePanel;
-    [SerializeField] private GameObject gameOverPanel; 
-    [SerializeField] private GameObject controlsTutorialPanel;
-    [SerializeField] private GameObject goalTutorialPanel;
     [SerializeField] private GameObject pauseButton;
     
     [Space] [Space] 
@@ -45,15 +39,6 @@ public class UIManager : MonoBehaviour
 
         activePanel = mainMenuPanel;
         UICameraSetActive(false);
-    }
-    public void StartGame()
-    {
-        if (GameManager.Instance.IsLoadingLevel)
-        {
-            return;
-        }
-        GameManager.Instance.StartCountdown();
-        MakeActivePanel(hudPanel);
     }
     public void UpdateEndPanelText(string time, int coinsFromTime, int coinsCollected)
     {
@@ -92,62 +77,10 @@ public class UIManager : MonoBehaviour
     {
         MakeActivePanel(mainMenuPanel);
     }
-    public void ShowGameEndPanel()
-    {
-        MakeActivePanel(gameEndPanel);
-    }
-    public void ShowGameOverPanel()
-    {
-        MakeActivePanel(gameOverPanel);
-    }
-    public void ShowPausePanel()
-    {
-        MakeActivePanel(pausePanel);
-    }
     public void MakeActivePanel(GameObject panel)
     {
         activePanel.SetActive(false);
         activePanel = panel;
         activePanel.SetActive(true);
-    }
-    public void StartTutorial()
-    {
-        controlsTutorialPanel.SetActive(true);
-        PauseButtonSetActive(false);
-    }
-    public void ContinueTutorial()
-    {
-        controlsTutorialPanel.SetActive(false);
-        goalTutorialPanel.SetActive(true);
-    }
-    public void EndTutorial()
-    {
-        GameManager.Instance.StartCountdown(true);
-        goalTutorialPanel.SetActive(false);
-    }
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-    // GameManager method relays |>----------------------------------------------------------------------------------------
-    public void GameManagerLoadLevel(int index)
-    {
-        GameManager.Instance.LoadLevelInMenu(index);
-    }
-    public void GameManagerLoadNextLevel()
-    {
-        GameManager.Instance.LoadNextLevel();
-    }
-    public void GameManagerReturnToMenu()
-    {
-        GameManager.Instance.ReturnToMenu();
-    }
-    public void GameManagerRestartGame()
-    {
-        GameManager.Instance.RestartGame();
-    }
-    public void GameManagerResumeGame()
-    {
-        GameManager.Instance.ResumeGame();
     }
 }
