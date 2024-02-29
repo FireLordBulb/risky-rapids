@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     private LoadingScreenFade loadingScreen;
     private TextMeshProUGUI countdown;
     private LevelTimer levelTimer;
-    private MonoBehaviour results;
+    private Results results;
     private TextMeshProUGUI[] coinTexts;
     
     private Vector3 playerSpawnPosition;
@@ -120,6 +120,7 @@ public class GameManager : MonoBehaviour
         loadingScreen = loadingScreenLinker.GameObject.GetComponent<LoadingScreenFade>();
         countdown = countdownLinker.GameObject.GetComponent<TextMeshProUGUI>();
         levelTimer = levelTimerLinker.GameObject.GetComponent<LevelTimer>();
+        results = resultsLinker.GameObject.GetComponent<Results>();
         // Main menu and playing are the only two possible starting GameStates.
         switch(CurrentGameState)
         {
@@ -305,7 +306,7 @@ public class GameManager : MonoBehaviour
         int coinsFromTime = Math.Max((int)(coinsPerSecond*timeDifference), 0);
         Coins += coinsFromTime;
         levelStartCoins = Coins;
-        UIManager.Instance.UpdateEndPanelText(levelTimer.CurrentTimeString, coinsFromTime, coinsCollected);
+        results.UpdateText(levelTimer.CurrentTimeString, coinsFromTime, coinsCollected);
         levelTimer.Reset();
         
         ActivePanelSwitcher.SwitchTo(levelCompleteLinker);

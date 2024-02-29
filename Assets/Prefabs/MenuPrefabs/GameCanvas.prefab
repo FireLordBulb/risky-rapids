@@ -4206,6 +4206,8 @@ GameObject:
   - component: {fileID: 46552140776424992}
   - component: {fileID: 6971193697492969786}
   - component: {fileID: 3754605865292130497}
+  - component: {fileID: 3994119624576850244}
+  - component: {fileID: 1106149746326291404}
   m_Layer: 5
   m_Name: ResultsPanel
   m_TagString: Untagged
@@ -4273,6 +4275,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3994119624576850244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8885512510775323079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3267ed1ae166f247944370ce593b397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linker: {fileID: 11400000, guid: 898681cd999d75d478510f5f6be506b6, type: 2}
+--- !u!114 &1106149746326291404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8885512510775323079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f5b6a60d6b5474b837530e2b06a033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endTime: {fileID: 5158753289189368832}
+  endCoinsFromTime: {fileID: 6571953846424569600}
+  endCoinsCollected: {fileID: 6115970216720952256}
 --- !u!1001 &824803430597072396
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -63,7 +63,7 @@ MonoBehaviour:
     type: 2}
   countdownLinker: {fileID: 11400000, guid: 9d1200c469329a34ba44d5b8e6b0ae15, type: 2}
   levelTimerLinker: {fileID: 11400000, guid: 26f46361398510d46b0f50911b3f9854, type: 2}
-  resultsLinker: {fileID: 0}
+  resultsLinker: {fileID: 11400000, guid: 898681cd999d75d478510f5f6be506b6, type: 2}
   countTextLinkers:
   - {fileID: 11400000, guid: 530288633903bfd47967d223d1492ed1, type: 2}
   - {fileID: 11400000, guid: f0eee5d43e918924e87a3e61b40975de, type: 2}
